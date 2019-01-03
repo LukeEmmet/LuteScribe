@@ -8,6 +8,10 @@ LuteScribe can open tabulature written in the following formats: TAB, Fronimo (F
 
 You can preview your tabulature, or save as PDF or print it out.
 
+## Download binaries
+
+An installer is available on the project page at https://www.orlando-lutes.com/pages/lutescribe
+
 # Screenshots
 
 Print view showing typeset content:
