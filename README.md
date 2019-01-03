@@ -8,6 +8,16 @@ LuteScribe can open tabulature written in the following formats: TAB,Fronimo (FT
 
 You can preview your tabulature, or save as PDF or print it out.
 
+# Screenshots
+
+Print view showing typeset content:
+
+![Print view](Help/images/dowland_pdf_preview.png)
+
+Editor tab where you create the tabulature content:
+
+![Main window](Help/images/main_window.png)
+
 ## License
 
 LuteScribe is released under the GNU Public License version 3. 
