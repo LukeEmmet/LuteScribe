@@ -154,7 +154,7 @@ namespace LuteScribe.Tests
 
             var piece = model.Pieces[0];
             Assert.AreEqual(2, piece.Staves.Count, "number of staves should be 2");
-            Assert.AreEqual("Section title/Section author", piece.Title);
+            Assert.AreEqual("Section 1 name/Section 1 author", piece.Title);
 
             var firstStave = model.Pieces[0].Staves[0];
             Assert.AreEqual("b", firstStave.Chords[0].Flag);
