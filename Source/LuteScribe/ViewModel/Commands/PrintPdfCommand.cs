@@ -71,8 +71,6 @@ namespace LuteScribe.ViewModel.Commands
             gsPath = Path.GetFullPath(gsPath);
 
 
-            navigator.Execute(appDir + @"Resources\creating-pdf.pdf");
-
             //cleanup the last preview file if it exists..
             var lastPreviewPath = _viewModel.PreviewPath;
 
