@@ -1,0 +1,16 @@
+
+\.hg/
+.hg*
+Deploy/LuteScribe-cache/*
+Samples/
+Source/GenericUndoRedo/bin/*
+Source/GenericUndoRedo/obj/*
+Source/JtxmlParserLib/bin/*
+Source/JtxmlParserLib/obj/*
+Source/LuteScribe.Tests/bin/*
+Source/LuteScribe.Tests/obj/*
+Source/LuteScribe/obj/*
+Source/packages/*
+Source/.vs/*
+Deploy/LuteScribe-SetupFiles/*
+Source/LuteScribe/bin/*
