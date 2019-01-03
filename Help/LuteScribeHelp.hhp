@@ -1,0 +1,25 @@
+[OPTIONS]
+Binary Index=No
+Compatibility=1.1 or later
+Compiled file=LuteScribeHelp.chm
+Contents file=TOC.hhc
+Default topic=start.htm
+Display compile notes=No
+Display compile progress=No
+Error log file=CompileError.log
+Full-text search=Yes
+Language=0x809 English (United Kingdom)
+Title=LuteScribe Help
+
+
+[FILES]
+start.htm
+editing.htm
+import.htm
+tab-commands.htm
+relationship-to-tab.htm
+quick-start.htm
+known-issues.htm
+
+[INFOTYPES]
+

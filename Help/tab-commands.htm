@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+	<style type="text/css">
+	.auto-style1 {
+		border-left-style: solid;
+		border-left-width: 1px;
+	}
+	.auto-style2 {
+		border-right-style: solid;
+		border-right-width: 1px;
+	}
+	.auto-style3 {
+		border-left-style: solid;
+		border-left-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+	.auto-style4 {
+		border-right-style: solid;
+		border-right-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+	.auto-style5 {
+		border-left-style: solid;
+		border-left-width: 1px;
+		border-top-style: solid;
+		border-top-width: 1px;
+	font-weight: bold;
+	text-align: center;
+}
+	.auto-style6 {
+		border-right-style: solid;
+		border-right-width: 1px;
+		border-top-style: solid;
+		border-top-width: 1px;
+	font-weight: bold;
+	text-align: center;
+}
+	</style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>TAB commands</h1>
+
+        <p>You can insert any valid TAB command into the editing region or 
+		header area. </p>
+		<p style="margin-left:30px">N.B You don't need to 
+		insert <em>x </em>as a flag to indicate <em>continue same flag as before</em>. 
+		This results in a cleaner and simpler editing experience.</p>
+		<p>For a full set of Tab commands, 
+		please consult the following PDF files:</p>
+		
+		<ul>
+			<li><i>TAB Manual by Leonard William</i>s - provides an in-depth 
+			discussion of the various formatting options offered by TAB, with 
+			many examples</li>
+			<li><i>TAB Manual Appendix</i>&nbsp; - a full list of all commands 
+			supported by TAB, which is part of the TAB distribution.</li>
+		</ul>
+		<p>Both of these files are available via the <a href="menus.htm#help">
+		Help menu</a> in LuteScribe.</p>
+		
+		<h3>TAB header commands</h3>
+		<p>Each TAB file has a number of associated header commands which define 
+		the piece title and a number overall settings for the piece. Enter these 
+		into the <a href="editing-headers.htm">headers section</a>. Read the TAB 
+		file PDF documentation for more details</p>
+		<p>Some useful 
+		header commands are as follows:</p>
+		<table align="center" style="padding:10">
+			<tr>
+				<td class="auto-style5" valign="top">header command&nbsp;</td>
+				<td class="auto-style6" valign="top">notes&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="auto-style1" valign="top">{Title of piece}&nbsp;</td>
+				<td class="auto-style2" valign="top">sets the title of the piece. &nbsp;Separate 
+				with &quot;/&quot; for title and author - e.g. {title/author}</td>
+			</tr>
+			<tr>
+				<td class="auto-style1" valign="top">-a4&nbsp;</td>
+				<td class="auto-style2" valign="top">sets the page&nbsp;size to A4 (TAB 
+				default page size is American letter)</td>
+			</tr>
+			<tr>
+				<td class="auto-style1" valign="top">-guitar</td>
+				<td class="auto-style2" valign="top">shows rudimentary output as 
+				guitar standard notation</td>
+			</tr>
+			<tr>
+				<td class="auto-style1" valign="top">-m</td>
+				<td class="auto-style2" valign="top">shows rudimantary output as 
+				standard dual stave (piano style) mensural notation</td>
+			</tr>
+			<tr>
+				<td class="auto-style1" valign="top">-b</td>
+				<td class="auto-style2" valign="top">use baroque style flags and 
+				font</td>
+			</tr>
+			<tr>
+				<td class="auto-style3" valign="top">$flagstyle=xxx&nbsp;<br>
+				$charstyle=xxx<br>$numstyle=xxx</td>
+				<td class="auto-style4" valign="top">sets the flag style, number 
+				of character style to be used, where xxx is one of the 
+				following:<br><br>$flagstyle=board english manuscript style<br>
+				$flagstyle=capirola thin line flags<br>$flagstyle=contemp 
+				regular notes<br>$flagstyle=italian a long italian flag<br>
+				$flagstyle=smallitalian basic italian style<br>
+				$flagstyle=standard the default<br>$flagstyle=thin like 
+				capirola, dowland<br><br>$charstyle=board like m board book<br>
+				$charstyle=dowland does nothing!<br>$charstyle=mace like mace<br>
+				$charstyle=standard regular characters<br>$charstyle=robinson 
+				like robinson, 1600 english<br><br>$numstyle=standard<br>
+				$numstyle=italian&nbsp;</td>
+			</tr>
+		</table>
+		
+		<h3>TAB 
+		stave commands</h3>
+		<p>Within the stave editing region you can set the command or flag for 
+		any chord. </p>
+		<p>In historical tabulature, the top line of each chord indicates the 
+		flag associated with the current note or chord, and then below are shown 
+		the frets and courses of each chord. Similarly in LuteScribe, stave commands can be inserted into the stave lines 
+		directly by editing the relevant cell. So the main difference from standard TAB is that each row is rotated for 
+		ease of playing, </p>
+		<p>To set an element in the first column in plain text 
+		Tab, enter the corresponding command into the top row of the chord.</p>
+		<p>On the <i>Insert</i> menu, a menu of common stave commands is available 
+		for rapid selection (see image below). These are example Tab commands and are not a 
+		full list of those you can choose.&nbsp; Each of these is flag style 
+		command which will be applied to the currently selected chord. </p>
+		<p class="text-center"><img height="758" src="images/tab_flag_commands.png" width="327"></p>
+		
+
+    </div>
+
+</body>
+</html>

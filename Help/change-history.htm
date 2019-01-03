@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    
+    <title>Change History</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Change history</h1>
+		
+		<h3>1.0.1 </h3>
+		<p>December 2018</p>
+		<ul>
+			<li>Public release</li>
+		</ul>
+		<h3>0.3.3 Beta</h3>
+		<p>December 2018</p>
+		<ul>
+			<li>FT3 loading - better detection of fretted and open diapason 
+			strings</li>
+			<li>No longer need to type &quot;x&quot; to repeat the last flag. Simply leave 
+			the flag empty as you would see in tabulature</li>
+			<li>Rudimentary undo implemented - can now revert to previous 
+			snapshot taken whenever you run a menu command, paste or delete 
+			content</li>
+			<li>No longer requires two new lines between headers and content 
+			when loading TAB files</li>
+			<li>User option to set preferred default charset and flag style when 
+			loading TAB files without any explicitly set</li>
+			<li>Title and author now both set when loading FT3 or JTXML files</li>
+		</ul>
+		<h3>0.3.1 Beta</h3>
+
+		<ul>
+               <li>Better styling of first bar in each stave</li>
+               <li>New option to control whether the last stave is padded at the end with a flourish (otherwise can result in unattractive stretching of sparse content  by TAB)</li>
+               <li>Default charset and flag style is thin robinson style flags and elements, unless explicitly set</li>
+			<li>PDF generation indicates piece number for multi-piece files</li>
+               <li>Improvements to JTXML parser</li>
+			<li>Added recent file list for convenience</li>
+			<li>Better handling of empty elements when generating TAB output</li>
+			<li>Minor change to LSML serialisation format (older LSML files still open), official LSML version 1.0</li>
+			<li>Can open multi-piece TAB files delimited with "%=== new section ==="</li>
+			<li>Section menu to navigate through pieces within same file (TAB, JTXML)</li>
+			<li>Added unit tests</li>
+		</ul>
+
+        <h3>0.2.4 Beta</h3>
+		<p>Released 30 December 2017</p>
+		<ul>
+			<li>Now works on Linux with Wine<ul>
+				<li>Confirmed on Ubuntu</li>
+				<li>Recommended to use Winetricks to install Microsoft .NET 4.6 
+				plus Gecko</li>
+			</ul>
+			</li>
+			<li>New files can now be saved</li>
+			<li>Added experimental JTXML loader</li>
+			<li>Remembers the last UI tab chosen - e.g. editing or preview tab, 
+			making it better for using LuteScribe as a viewer</li>
+		</ul>
+
+		<h3>0.2.3 Beta</h3>
+		<ul>
+			<li>Installer creates application shortcut on desktop</li>
+			<li>Menus to view TAB help files (PDF) work better</li>
+			<li>Updated help</li>
+               <li>Can now save a copy of FT3 files as LSML or TAB</li>
+               <li>Each note now trims off any leading or trailing space to prevent offsetting to next course by TAB</li>
+		</ul>
+        
+		<h3>0.2.2 Beta</h3>
+		<p>Released 5 November 2017</p>
+		<ul>
+			<li>Rebuilt to run correctly on Windows 10 64 bit</li>
+			<li>Improved performance for print preview</li>
+		</ul>
+		
+        <h3>0.2.1 Beta</h3>
+		<p>Released 4 November 2017</p>
+            <ul>
+            
+                <li>Print preview</li>
+				<li>Print and save as PDF</li>
+				<li>Removed PostScript export option</li>
+				<li>Integrated Ghostscript to convert PS to PDF</li>
+				<li>Set file associations for LSML, FT3 and TAB files to open 
+				with LuteScribe</li>
+				<li>Bug fixes</li>
+				<li>Updated help</li>
+            </ul>
+		<h3>0.1.4 Beta </h3>
+		<p>Released 11 October 2017</p>
+		<ul>
+			<li>Fixed file opening bug</li>
+			<li>Quick start tutorial</li>
+		</ul>
+		<h3>0.1.3 Beta</h3>
+		<p>Released 5 October 2017</p>
+		<ul>
+			<li>Initial beta version</li>
+			<li>Allows editing TAB/LSML files, and importing FT3</li>
+			<li>Export as PostScript</li>
+		</ul>
+
+    </div>
+
+	<h3>&nbsp;</h3>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+	<style type="text/css">
+	.auto-style1 {
+		border-collapse: collapse;
+		font-size: 11.0pt;
+		font-family: Calibri, sans-serif;
+		border: 1px solid #000080;
+	}
+	.auto-style2 {
+		font-family: LuteScribeFlagSymbols;
+	}
+	.auto-style3 {
+		color: #456B45;
+	}
+	.auto-style4 {
+		color: #439043;
+	}
+	.auto-style5 {
+		font-family: LeRoy;
+	}
+	.auto-style6 {
+		font-size: large;
+	}
+	.auto-style7 {
+		font-family: LuteScribeFlagSymbols;
+		font-size: large;
+	}
+	</style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Editing</h1>
+
+        <p>LuteScribe's main window presents a tabular input editor for each 
+		stave.</p>
+		<h3>Keyboard navigation</h3>
+		<p>Use your cursor keys to move around each stave. Typing in each cell 
+		will set its contents.</p>
+		<h3>Inserting new chords</h3>
+		<p>You can use the menu to insert a chord element after the currently 
+		selected element.</p>
+		<h3>Visual formatting</h3>
+		<p class="MsoNormal">LuteScribe aims to offer an editing experience that 
+		reflects the underlying Tab commands used, yet at the same time is 
+		displayed in a way that is familiar to tabulature readers. In this way 
+		it is possible to play directly from the tabulature you are editing.</p>
+		<p class="MsoNormal">To achieve this it uses some visual formatting 
+		rules for the top row of the tabulature which shows the command 
+		character. The rationale is to present the tabulature in a familiar way 
+		and to de-emphasise the display of common characters that are not needed 
+		to be read when playing the tabulature (e.g. b, B etc). The lines of 
+		tabulature that indicate the courses and frets use a historic style font<o:p> 
+		(e.g. <span class="auto-style5">a b c d e f g 0 1 2 3 4 5</span>)</o:p></p>
+        
+          <p><i>Note that the "x" command of TAB to indicate "Continue previous flag" is not needed 
+          in LuteScribe. This results in a cleaner display and less editing for each note.</i></p>
+          
+		<table cellpadding="10" cellspacing="5" class="auto-style1" style="mso-yfti-tbllook: 1184;  mso-padding-alt: 0cm 5.4pt 0cm 5.4pt" align="center">
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><b><span>Element</span></b><span></span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal"><b><span>Tab command <br>character</span></b></p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal"><b><span>Font symbol shown <br>in LuteScribe</span></b></p>
+				</td>
+				<td style="width: 136px" valign="top">
+				<p class="MsoNormal"><b><span>Notes</span></b></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Whole note</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">W</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>W</span></p>
+				</td>
+				<td rowspan="13" style="width: 136px" valign="top">
+				<p class="MsoNormal"><span>These command characters are shown 
+				using a custom font which renders the character using a symbol 
+				familiar to readers of tabulature, <br>e.g.</span> (1 = <span>
+				<span class="auto-style2">1</span>, 2 =
+				<span class="auto-style2">2</span> </span>etc)<span></span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Half note</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">w</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>w</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>0 flags</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">0</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>0</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>1 flag</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">1</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>1</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>2 flags</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">2</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>2</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>3 flags</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">3</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>3</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>4 flags</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">4</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>4</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>5 flags</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">5</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>5</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Dal segno </span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">D</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>d</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Fermata type 1</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">Y</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>y</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Fermata type 2</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">Y</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>Y</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Common time</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">C</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>C</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Cut time</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">C</p>
+				</td>
+				<td class="auto-style7" valign="top" width="161">
+				<p class="MsoNormal"><span>c</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Continue previous item<b></b></span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">x</p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal"><span>(none - not shown,<br>nor required)</span></p>
+				</td>
+				<td rowspan="3" style="width: 136px" valign="top">
+				<p class="MsoNormal"><span>the "x" command is not required in LuteScribe</p>
+                    <p>These command characters are shown in 
+				a small light grey font to be less visually prominent. 
+				</span></p>
+				<p class="MsoNormal"><span><o:p>&nbsp;</o:p></span></p>
+				<p class="MsoNormal"><span>(e.g. <span class="text-muted">b, 
+				B</span>)</span></p>
+				<p class="MsoNormal"><span><o:p>&nbsp;</o:p></span></p>
+				<p class="MsoNormal"><span>For those items having a bar line, 
+				the element is shown with a single border.</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Bar line <b></b></span>
+				</p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">b</p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal">V<span>ertical bar</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Heavy bar line </span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">B</p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal">H<span>eavy vertical bar</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><span>Complex bar line</span></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal">bB, .b, BB etc</p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal"><span>Vertical bar</span></p>
+				</td>
+				<td style="width: 136px" valign="top">
+				<p class="MsoNormal">T<span>hese items are shown in a green font 
+				to convey they are not a standard bar line</span></p>
+				<p class="MsoNormal"><span><o:p>&nbsp;</o:p></span></p>
+				<p class="MsoNormal"><span>(e.g.<span class="auto-style3">
+				</span><span class="auto-style4">bB BB</span>)</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="147">
+				<p class="MsoNormal"><i><span>&lt;other Tab command&gt;</span></i></p>
+				</td>
+				<td valign="top" width="158">
+				<p class="MsoNormal"><i>&lt;various&gt;</i></p>
+				</td>
+				<td valign="top" width="161">
+				<p class="MsoNormal"><i><span>&lt;character shown as standard asci 
+				font symbol&gt;</span></i></p>
+				</td>
+				<td style="width: 136px" valign="top">
+				<p class="MsoNormal"><span><o:p>&nbsp;</o:p></span></p>
+				</td>
+			</tr>
+		</table>
+		<h3><o:p>&nbsp;Example</o:p></h3>
+		<p class="text-center">
+		<a href="images/main_window.png">
+		<img  src="images/main_window_600px.png"></a><o:p>&nbsp;</o:p></p>
+		<p>&nbsp;</p>
+
+    </div>
+
+</body>
+</html>

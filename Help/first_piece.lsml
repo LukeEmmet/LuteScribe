@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Headers>
+    <Header>
+      <Content>{Simple LuteScribe demo piece}</Content>
+    </Header>
+    <Header />
+  </Headers>
+  <Staves>
+    <Stave>
+      <Chords>
+        <Chord>
+          <Flag>b</Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>1</Flag>
+          <C1>a</C1>
+          <C2>a</C2>
+          <C3> </C3>
+          <C4>c</C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>2</Flag>
+          <C1>c</C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>x</Flag>
+          <C1>d</C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>1</Flag>
+          <C1>c</C1>
+          <C2>d</C2>
+          <C3>d</C3>
+          <C4>a</C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>x</Flag>
+          <C1> </C1>
+          <C2>c</C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>b</Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>0</Flag>
+          <C1>a</C1>
+          <C2>a</C2>
+          <C3> </C3>
+          <C4>c</C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>0</Flag>
+          <C1>a</C1>
+          <C2>a</C2>
+          <C3> </C3>
+          <C4>c</C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>b</Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag> </Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+        <Chord>
+          <Flag>e</Flag>
+          <C1> </C1>
+          <C2> </C2>
+          <C3> </C3>
+          <C4> </C4>
+          <C5> </C5>
+          <C6> </C6>
+          <C7> </C7>
+        </Chord>
+      </Chords>
+    </Stave>
+  </Staves>
+</TabModel>

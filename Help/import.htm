@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+	
+	<style type="text/css">
+	td {
+		padding:6px;
+}
+	.auto-style1 {
+		color: #008000;
+	}
+	.auto-style2 {
+		color: #D58512;
+	}
+	.auto-style3 {
+		border-left-style: solid;
+		border-left-width: 1px;
+	}
+	.auto-style4 {
+		border-color: gray;
+		border-width: thin;
+	}
+	.auto-style5 {
+		border-right-style: solid;
+		border-right-width: 1px;
+	}
+	.auto-style6 {
+		border-left-style: solid;
+		border-left-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+	.auto-style7 {
+		color: #008000;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+	.auto-style8 {
+		border-right-style: solid;
+		border-right-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+	.auto-style9 {
+		border-left-style: solid;
+		border-left-width: 1px;
+		border-top-style: solid;
+		border-top-width: 1px;
+	}
+	.auto-style10 {
+		border-top-style: solid;
+		border-top-width: 1px;
+	}
+	.auto-style11 {
+		border-right-style: solid;
+		border-right-width: 1px;
+		border-top-style: solid;
+		border-top-width: 1px;
+	}
+	.auto-style12 {
+		color: #EC971F;
+	}
+	</style>
+	
+	<title>Import compatibility</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Import Compatibility</h1>
+
+        <p>LuteScribe can open a number of tabulature formats, as described in 
+		the following table. See notes below for details.</p>
+		<p><em>This is the current level of compatibility - the intention is to 
+		support more import features as LuteScribe is improved.</em></p>
+		<table align="center" cellspacing="10" cellpadding="12" class="auto-style4">
+			<tr>
+				<td class="auto-style9" >&nbsp;</td>
+				<td class="auto-style10" ><strong>LSML</strong></td>
+				<td class="auto-style10" ><strong>TAB</strong></td>
+				<td class="auto-style10" ><strong>FT3</strong></td>
+				<td class="auto-style10" ><strong>FT2</strong></td>
+				<td class="auto-style11" ><strong>JTXML, JTZ</strong></td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >&nbsp;</td>
+				<td>LuteScribe <br>XML file</td>
+				<td>Wayne Cripps <br>TAB file</td>
+				<td>Fronimo <br>FT3 file</td>
+				<td >Fronimo <br>FT2 file</td>
+				<td class="auto-style5" >Fandango <br>JTXML <br>and JTZ files</td>
+			</tr>
+			<tr>
+				<td style="height: 20px" class="auto-style3" >&nbsp;</td>
+				<td style="height: 20px">&nbsp;</td>
+				<td style="height: 20px">&nbsp;</td>
+				<td style="height: 20px">&nbsp;</td>
+				<td style="height: 20px" >&nbsp;</td>
+				<td style="height: 20px" class="auto-style5" >&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="height: 20px" class="auto-style3" >Open file and 
+				preview output</td>
+				<td style="height: 20px" class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td style="height: 20px" class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004;&nbsp; </b></td>
+				<td style="height: 20px" class="auto-style2">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span></b></td>
+				<td style="height: 20px" class="auto-style2" >
+				limited</td>
+				<td style="height: 20px" class="auto-style5" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Open multi-section files</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style2">
+				<span >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004;</b></span></td>
+				<td class="auto-style2">
+				&nbsp;</td>
+				<td class="auto-style2" >&nbsp;</td>
+				<td class="auto-style5" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Read flags and chord information</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style2">
+				<span >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004;</b></span><b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				</b></td>
+				<td class="auto-style2" >limited</td>
+				<td class="auto-style5" >
+				<span class="auto-style12" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004;</b></span><b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				</b></td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Read ornaments and fingering</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td >&nbsp;</td>
+				<td class="auto-style1" ></span></td>
+				<td class="auto-style5" >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Read piece title and author</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1">&#10004;</span> </b></td>
+				<td class="auto-style5" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Read time signatures and other stave elements</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td ><span class="auto-style1"></td>
+				<td class="auto-style1" ></span></span></td>
+				<td class="auto-style5" >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Read other headers</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td ><span class="auto-style1"></td>
+				<td class="auto-style1" ></span></span></td>
+				<td class="auto-style5" >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Save</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b>
+				</td>
+				<td class="auto-style1">&nbsp;</td>
+				<td class="auto-style1" ></td>
+				<td class="auto-style5" >&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="auto-style3" >Save as TAB or LSML</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b>
+				</td>
+				<td class="auto-style1">
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style1" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style5" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+			</tr>
+			<tr>
+				<td class="auto-style6" >Print and export PDF output</td>
+				<td class="auto-style7" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style7" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style7" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				&#10004; </b></td>
+				<td class="auto-style7" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+				<td class="auto-style8" >
+				<b  style="text-shadow: none; -webkit-box-shadow: none!important;">
+				<span class="auto-style1" >&#10004;</span> </b></td>
+			</tr>
+		</table>
+
+
+	<p>&nbsp;</p>
+	<h3>Import notes</h3>
+	<p>LSML</p>
+	<ul>
+		<li>full support (native XML format for LuteScribe)</li>
+	</ul>
+	<p>TAB</p>
+	<ul>
+		<li>all tabulature commands are recognised</li>
+		<li>no support for dual tabulature and mensural/standard notation staves</li>
+		<li>multi-section files can be detected if the sections are separated by 
+		a comment in the TAB content: <em>%===new section===</em></li>
+	</ul>
+	<p>FT3 - Fronimo file format</p>
+	<ul>
+		<li>most chordal and rhythmic information imported</li>
+		<li>some fingering or ornamentation information may be ignored in the 
+		current version</li>
+	</ul>
+	<p>FT2 - Legacy Fronimo file format</p>
+	<ul>
+		<li>not recommended - very limited support for reading FT2 files</li>
+		<li>most content will need to be edited after loading</li>
+	</ul>
+
+    	<p>JTZ, JTXML - Fandango file format</p>
+		<ul>
+			<li>can read multi-section files</li>
+			<li>all content is converted to French tabulature. If requried, you 
+			can - use the -h and -O TAB header options to automatically convert 
+			the output to italian tabulature.</li>
+			<li>basic chord and rhythmic information imported</li>
+			<li>some fingering or ornamentation information may be ignored in 
+			the current version</li>
+		</ul>
+
+    </div>
+
+</body>
+</html>

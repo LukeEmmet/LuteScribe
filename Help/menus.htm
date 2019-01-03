@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    
+    <title>Menus</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Menus</h1>
+
+        <p>Here we summarise the behaviour of LuteScribe's menu commands.</p>
+		<h3>File</h3>
+		<dl>
+			<dt>New</dt>
+			<dd>Creates a new blank file.</dd>
+			<dt>Open</dt>
+			<dd>Opens a file in one of the following formats: LSML, TAB, FT3, 
+			FT2. See <a href="import.htm">import compatibility</a> for details 
+			of any compatibility issues when loading TAB, FT3 or FT2 formats.</dd>
+			<dt>Save</dt>
+			<dd>Saves the current edited content as LSML (LuteScribe XML format) 
+			or TAB.</dd>
+			<dt>Save As</dt>
+			<dd>Saves the current content to a new location.</dd>
+			<dt>Export</dt>
+			<dd>Export as PDF - creates a PDF file within the same folder as the 
+			current tabulature file. Note that some PDF viewers such as Adobe 
+			Acrobat lock the PDF file being viewed, in which case LuteScribe 
+			cannot overwrite the file. If it this occurs, simply close the file 
+			in Acrobat and then you can resave the PDF from LuteScribe</dd>
+			<dt>Print preview</dt>
+			<dd>Previews the current piece (shown in the third tab). 
+			See <a href="printing-save-pdf.htm">preview, printing and saving PDF</a> 
+			for further details.</dd>
+			<dt>Print</dt>
+			<dd>Prints the current file to a chosen printer.</dd>
+			<dt>Recent files</dt>
+			<dd>Shows a list of the most recent files opened.</dd>
+			<dt>Exit</dt>
+			<dd>Exits LuteScribe</dd>
+		</dl>
+		<h3>Edit</h3>
+		<dl>
+			<dt>Undo</dt>
+			<dd>Reverts back to a recent snapshot of the content, created when 
+			running a menu command, paste, delete items.</dd>
+			<dt>Redo</dt>
+			<dd>Undoes the most recent undo</dd>
+			<dt>Cut</dt>
+			<dd><i>&lt;Not currently implemented - can be achieved by copying the 
+			content using Copy then deleting the original content&gt;</i></dd>
+			<dt>Copy</dt>
+			<dd>Copies the currently selected chords onto the clipboard. </dd>
+			<dt>Paste</dt>
+			<dd>Paste the content of the clipboard before the currently selected 
+			chord.</dd>
+		</dl>
+		<h3>Chord</h3>
+		<dl>
+			<dt>Insert blank chord</dt>
+			<dd>Inserts an empty chord after the current selection.</dd>
+			<dt>Insert bar line</dt>
+			<dd>Inserts a simple bar line after the current selection. An empty 
+			chord can also be converted to a bar line by setting its flag to &quot;b&quot; 
+			or &quot;B&quot;</dd>
+			<dt>Delete chord</dt>
+			<dd>Deletes the currently selected chord. You can also delete 
+			selected items using [DEL] on your keyboard.</dd>
+		</dl>
+		<h3>Insert</h3>
+		<dl>
+			<dt><i>&lt;Various items&gt;</i></dt>
+			<dd>Insert the chosen item after the current selection. Each item is 
+			a shortcut to a common <a href="tab-commands.htm">TAB command</a>. 
+			These and any other TAB commands can be inserted manually since you can also edit the current chord directly as needed.</dd>
+		</dl>
+		<h3>Stave </h3>
+		<dl>
+			<dt>Insert stave break</dt>
+			<dd>Inserts a new stave after the current selection. This new stave 
+			will contain any chords after the selection.</dd>
+			<dt>Delete stave end</dt>
+			<dd>Deletes the end of the current stave. As a result any chords on 
+			the following stave will be added to the end of the currently 
+			selected stave.</dd>
+			<dt>Insert new stave </dt>
+			<dd>Inserts an empty stave before or after the currently selected 
+			stave.</dd>
+		</dl>
+		<h3><a name="tools"></a>Tools</h3>
+		<dl>
+			<dt>Reflow all</dt>
+			<dd>Reflows all the bars of the current file so to fit within the 
+			specified <a href="options.htm">stave wrap</a> value. The approach 
+			taken is that a whole number of bars are shown on each stave up to 
+			the stave wrap value.</dd>
+			<dt>Set grid flag styles</dt>
+			<dd>Updates all grid flags in the current file to use the preferred 
+			style. Both styles are supported by TAB, but the N# format is 
+			preferred by some as it shows the flag element first, so lines up 
+			better with the rest of the chord.</dd>
+			<dt>Remove comments from staves</dt>
+			<dd>Removes any chords that are comments, namely begin &quot;%&quot; on the 
+			flag line. This can result in simpler files. Comments in
+			<a href="editing-headers.htm">headers</a> are not affected.</dd>
+			
+		</dl>
+		
+		
+
+    	<h3><a name="help"></a>Help</h3>
+		<dl>
+			<dt>Help contents</dt>
+			<dd>Shows this help file.</dd>
+			<dt>Tab Manual</dt>
+			<dd>Shows the TAB Manual by Leonard Williams (PDF)</dd>
+			<dt>Tab Manual Appendix</dt>
+			<dd>A full list of commands supported by TAB (PDF)</dd>
+			
+		</dl>
+		
+		
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+    </div>
+
+</body>
+</html>

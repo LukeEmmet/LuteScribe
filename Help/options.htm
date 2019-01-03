@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    
+    <title>Options</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Options tab</h1>
+		<p>The 3rd tab on the main window provides access to the following user 
+		preferences and options.</p>
+		<dl>
+			<dt>Stave wrap</dt>
+			<dd>Sets the maximum number of chord elements per stave 
+			when reflowing the bars of the piece (see <a href="menus.htm#tools">reflow 
+			all</a> menu command). The algorithm repositions the stave breaks 
+			within the piece according to the number of bars created. Each stave 
+			is updated to have a whole number of bars, where the total number of 
+			chords does not exceed the Stave wrap value. You can adjust this 
+			value to put more or fewer chords on each stave.</dd>
+			<dt>Pad last stave with flourish</dt>
+			<dd>Normally TAB will space out the elements to fit the stave. On 
+			the last stave in a piece this can look unattractive, particularly 
+			if there are not many notes on that stave. This option pads out the 
+			last stave with empty elements and adds a final flourish (if none is 
+			already provided). This usually makes the last stave in a piece more 
+			visually appealing. It does not alter the content of the file, but 
+			just when the output display is created.</dd>
+			<dt>Associate file extensions (FT3, TAB, LSML)</dt>
+			<dd>Sets the Windows file association for these file 
+			types to open in LuteScribe. Once set you will be able to double 
+			click on one of these tabulature file types in Windows Explorer and 
+			it will open in LuteScribe</dd>
+			<dt>Default flag style</dt>
+			<dd>Sets the default flag style used when previewing a piece when 
+			none is specified in the headers. The default one - <em>standard</em> 
+			- used by TAB can be harder to read, and the <em>thin</em> style is 
+			recommended.</dd>
+			<dt>Default character style</dt>
+			<dd>Sets the default character style used when previewing a piece 
+			when none is specified in the headers. The default one - <em>
+			standard</em> - used by TAB is less visually balanced than others 
+			(particularly <em>f, b </em>and<em> d</em> characters, so the <em>
+			robinson</em> style is recommended.</dd>
+			<dt>Show debug log</dt>
+			<dd>Shows a debug log of the interactions with some of the 
+			supporting systems that LuteScribe uses. This is useful for 
+			debugging, but otherwise not important for normal use of LuteScribe.</dd>
+		</dl>
+
+        <p class="text-center">
+		<img src="images/options_tab_600px.png" width="600"></p>
+
+    </div>
+
+</body>
+</html>
