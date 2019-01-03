@@ -1,0 +1,485 @@
+﻿<Window x:Class="LuteScribe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vc="clr-namespace:LuteScribe.ValueConverters"
+        xmlns:View="clr-namespace:LuteScribe.View"
+        xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+        Title="{Binding Path=WindowTitle}"
+        WindowState="Maximized"
+        Icon="/LuteScribe;component/Resources/ringtones.ico"
+        Height="500" Width="800" WindowStartupLocation="CenterScreen">
+ 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding NewFile}" Modifiers="Ctrl+Shift" Key="N"/>
+        <KeyBinding Command="{Binding SaveFile}" Modifiers="Ctrl" Key="S"/>
+        <KeyBinding Command="{Binding OpenFile}" Modifiers="Ctrl" Key="O"/>
+        <KeyBinding Command="{Binding PreviewPdf}" Modifiers="Ctrl+Shift" Key="P" CommandParameter="1"/>
+        <KeyBinding Command="{Binding PrintPdf}" Modifiers="Ctrl" Key="P"/>
+        <KeyBinding Command="{Binding ApplicationQuit}" Modifiers="Alt" Key="F4"/>
+
+        <KeyBinding Command="{Binding Undo}" Modifiers="Ctrl" Key="Z"/>
+        <KeyBinding Command="{Binding Redo}" Modifiers="Ctrl" Key="Y"/>
+        <KeyBinding Command="{Binding PasteParse}" Modifiers="Ctrl" Key="V"/>
+        <KeyBinding Command="{Binding InsertItem}"  Modifiers="Ctrl" Key="I"/>
+        <KeyBinding Command="{Binding InsertItem}" CommandParameter="b" Modifiers="Ctrl" Key="B"/><!--insert bar-->
+        <KeyBinding Command="{Binding DeleteItem}" Modifiers="Ctrl" Key="D"/>
+        
+        <KeyBinding Command="{Binding DeleteStaveEnd}" Modifiers="Ctrl+Shift" Key="E"/>
+        <KeyBinding Command="{Binding InsertStaveBreak}" Modifiers="Ctrl+Shift" Key="I"/>
+        
+        <KeyBinding Command="{Binding Reflow}" Modifiers="Ctrl+Shift" Key="R"/>
+        
+        <KeyBinding Command="{Binding ShowHelp}"  Key="F1"/>
+        
+        
+        <!-- stave shifting not working yet, as shifting focus not yet implemented
+        <KeyBinding Command="{Binding ShiftStaveFocus}" CommandParameter="1" Modifiers="Ctrl+Shift" Key="D"/>
+        <KeyBinding Command="{Binding ShiftStaveFocus}" CommandParameter="-1" Modifiers="Ctrl+Shift" Key="U"/>
+        -->
+        
+    </Window.InputBindings>
+
+    <Window.Resources>
+
+        <!-- The WPF DataGrid (WPF  version) has a bug that throws a format exception
+        when a WPF DataGrid is bound to a SelectedItem property, as we do here. The Ignore New
+        Item Plave Holder Converter works around this bug. For more information on the bug and
+        the converter, see Nigel Spencer's Blog (2009-04-30), which discusses the bug and provides 
+        the fix. Link to blog post can be found in the remarks to the value converter.  -->
+
+        <!-- Value Converters -->
+        <vc:FlagFontFamilyConverter x:Key="FlagFontFamilyConverter"/>
+        <vc:FlagFontSizeConverter x:Key="FlagFontSizeConverter"/>
+        <vc:FlagColourConverter x:Key="FlagColourConverter"/>
+        <vc:FlagBackgroundColourConverter x:Key="FlagBackgroundColourConverter"/>
+        <vc:FlagBorderColourConverter x:Key="FlagBorderColourConverter"/>
+        <vc:FlagBorderThicknessConverter x:Key="FlagBorderThicknessConverter"/>
+        <vc:IsBarLineConverter x:Key="IsBarLineConverter"/>
+        <vc:IgnoreNewItemPlaceHolderConverter x:Key="ignoreNewItemPlaceHolderConverter"/>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        
+        <Style x:Key="RotatedCell" TargetType="DataGridCell">
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                    <Setter Property="Foreground" Value="Navy"/>
+                    <Setter Property="BorderBrush" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style x:Key="FlagLine" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
+            <Setter Property="Margin" Value="0,0,0,0"/>
+
+            <Setter Property="FontSize" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                    Path =Item.Flag, 
+                    Converter={StaticResource FlagFontSizeConverter}}" />
+            
+            
+            <!-- programatically setting the font doesnt work on Wine - not sure why...
+            see also corresponding option to hardwire the font below on the 
+            -->
+            <Setter Property="FontFamily" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                    Path =Item.Flag, 
+                    Converter={StaticResource FlagFontFamilyConverter}}" />
+
+            <!--need to test if this option works in Wine or not s an alternative to inlining
+            it below on DataGridTextColumn or not-->
+            <!--<Setter Property="FontFamily" Value="LuteScribeFlagSymbols"/>
+            -->
+
+            <!--
+            -->
+
+
+
+        </Style>
+
+        <Style x:Key="TopStave" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource FlagBorderThicknessConverter}" ConverterParameter="top">
+                        <Binding Path="Item.Flag" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
+                        <Binding Path="Item.SequenceNumber" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
+
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--
+        Use a multi-binding converter to pass in both the flag and the sequence number
+        https://stackoverflow.com/questions/15309008/binding-converterparameter
+        -->
+        <Style x:Key="LowerStaves" TargetType="DataGridCell" BasedOn="{StaticResource TopStave}">
+            
+            <Setter Property="BorderBrush" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                    Path =Item.Flag, 
+                    Converter={StaticResource FlagBorderColourConverter}}" />
+            
+            <Setter Property="BorderThickness">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource FlagBorderThicknessConverter}" ConverterParameter="lower">
+                        <Binding Path="Item.Flag" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
+                        <Binding Path="Item.SequenceNumber" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
+                        
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BottomStave" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
+        </Style>
+
+
+        <Style x:Key="FlagStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="Foreground" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                    Path =Item.Flag, 
+                    Converter={StaticResource FlagColourConverter}}" />
+        </Style>
+
+
+    </Window.Resources>
+
+    <DockPanel>
+        
+        <!--include Menus control-->
+        <DockPanel DockPanel.Dock="Top">
+            <View:Menus/>
+        </DockPanel>
+
+
+        <DockPanel LastChildFill="False" DockPanel.Dock="Top" Margin="5,0,5,0">
+            
+            <TextBlock Text="{Binding TabModel.ActivePiece.Title}"  Margin="0,10,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Cambria" FontSize="21.333">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="#FF437CA6"/>
+        		</TextBlock.Foreground>
+            </TextBlock>
+        </DockPanel>
+
+
+        <TabControl SelectionChanged="TabControl_SelectionChanged" SelectedIndex="{Binding SelectedTab}" >
+            <TabItem Name="stavesTab" Header="Staves" >
+
+                <!--VirtualizingPanel.ScrollUnit="ScrollUnit" requires .NEt 4.5
+        see https://msdn.microsoft.com/en-us/library/system.windows.controls.virtualizingpanel.scrollunit(v=vs.110).aspx
+        -->
+                <ListBox ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
+                 SelectedItem="{Binding TabModel.ActivePiece.SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
+                 HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" Margin="5,5,0,0" BorderBrush="White" Background="{x:Null}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5,5,5,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <DataGrid x:Name="MainGrid" GridLinesVisibility="None"
+                                    ItemsSource="{Binding Chords}" 
+                                    SelectedItem="{Binding SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
+                                    AutoGenerateColumns="False" 
+                                    DockPanel.Dock="Top"
+                                    MouseMove="OnMainGridMouseMove"
+                                    DragEnter="OnMainGridCheckDropTarget"
+                                    DragLeave="OnMainGridCheckDropTarget"
+                                    PreviewKeyDown="OnMainGridPreviewKeyDown"
+                                    DragOver="OnMainGridCheckDropTarget"
+                                    KeyDown="OnMainGridKeyDown"
+                                    Background="White"
+                                    BorderBrush="White"
+                                    BorderThickness="0"           
+                                    MinRowHeight="12"
+                                    Drop="OnMainGridDrop" DataContextChanged="OnMainGridDataContextChanged" HeadersVisibility="None" >
+
+                                    <DataGrid.RowStyle>
+                                        <Style TargetType="{x:Type DataGridRow}">
+                                            <Setter Property="FontSize" Value="16"/>
+
+                                            <!-- if fronimo or fronimo demo installed we can use the fonts it installs
+                                            <Setter Property="FontFamily" Value="Fronimo Recercare Regular"/>
+                                            -->
+                                            <Setter Property="FontFamily" Value="LeRoy"/>
+                                        </Style>
+                                    </DataGrid.RowStyle>
+                                    <DataGrid.LayoutTransform>
+                                        <TransformGroup>
+                                            <RotateTransform Angle="90"/>
+                                            <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                                        </TransformGroup>
+                                    </DataGrid.LayoutTransform>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn
+                                            Header="" Width="Auto" Binding="{Binding Flag}" IsReadOnly="false" 
+                                            CellStyle="{StaticResource FlagLine}" 
+                                            ElementStyle="{StaticResource FlagStyle}">
+                                            
+                                            <!--explicit setting of font this works on Wine, whereas
+                                            setting the font via a valueconverter seems to crash on Wine (fine on Windows 
+                                            who knew...-->
+                                            <!--
+                                            <DataGridTextColumn.FontFamily>LuteScribeFlagSymbols</DataGridTextColumn.FontFamily>
+                                            -->
+                                            
+                                        </DataGridTextColumn>
+
+
+
+                                        <!-- change width from 0 to Auto to compact the list. Ironically the cell height (rotated as width is 
+                                        also affected - not sure why...-->
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C1}" IsReadOnly="false" CellStyle="{StaticResource TopStave}" />
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C2}" IsReadOnly="false" CellStyle="{StaticResource LowerStaves}"/>
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C3}" IsReadOnly="false" CellStyle="{StaticResource LowerStaves}" />
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C4}" IsReadOnly="false" CellStyle="{StaticResource LowerStaves}"/>
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C5}" IsReadOnly="false" CellStyle="{StaticResource LowerStaves}" />
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C6}" IsReadOnly="false" CellStyle="{StaticResource LowerStaves}"/>
+                                        <DataGridTextColumn Header="" Width="Auto" Binding="{Binding C7}" IsReadOnly="false" CellStyle="{StaticResource BottomStave}"/>
+                                    </DataGrid.Columns>
+
+
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}"  
+                       >
+                                            <Setter Property="LayoutTransform">
+                                                <Setter.Value>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="-90"/>
+                                                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                                    </TransformGroup>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+                                    <DataGrid.CellStyle>
+                                        <Style  TargetType="DataGridCell">
+                                            <Setter Property="LayoutTransform">
+                                                <Setter.Value>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="-90"/>
+                                                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                                    </TransformGroup>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </DataGrid.CellStyle>
+
+                                </DataGrid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+            </TabItem>
+            <TabItem Name="headersTab" Header="Headers">
+                <DataGrid ItemsSource="{Binding TabModel.ActivePiece.Headers}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+            </TabItem>
+            
+            <!-- print view-->
+            <TabItem Name="PdfViewerTab" Header="Print view" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" >
+                <Grid Background="LightGray" Margin="0,0,0,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Margin="2" HorizontalAlignment="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Padding="2" Margin="5" Visibility="{Binding Path=HasMultipleSections, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <ContentControl>
+                                <Menu Background="{x:Null}">
+                                    <MenuItem  Header="_Section" IsEnabled="{Binding HasMultipleSections}" ToolTip="Other sections in this file">
+                                        <MenuItem Header="Next section" Command="{Binding NavigateSection}" CommandParameter="next"/>
+                                        <MenuItem Header="Previous section" Command="{Binding NavigateSection}" CommandParameter="previous"/>
+                                        <MenuItem Header="Sections" ItemsSource="{Binding SectionMenus}"/>
+                                    </MenuItem>
+                                </Menu>
+                            </ContentControl>
+                        </Button>
+
+                        <Button Grid.Row="0" Grid.Column="1" Command="{Binding PrintPdf}"  Padding="5" Content="Print" Margin="5"/>
+                        <Button Grid.Row="0" Grid.Column="2" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="First page" CommandParameter="first" Content="&lt;&lt;" Margin="5"/>
+                        <Button Grid.Row="0" Grid.Column="3" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="Previous page" CommandParameter="previous" Content="&lt;" Margin="5"/>
+                        <Button Grid.Row="0" Grid.Column="4" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="Next page" CommandParameter="next" Content="&gt;" Margin="5"/>
+                        <Button Grid.Row="0" Grid.Column="5" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="Last page" CommandParameter="last" Content="&gt;&gt;" Margin="5"/>
+                        <Button Grid.Row="0" Grid.Column="6" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="Zoom out" CommandParameter="zoomout" Content="-" Margin="5" />
+                        <Button Grid.Row="0" Grid.Column="7" Command="{Binding NavigatePdfPage}" Padding="5" ToolTip="Zoom in" CommandParameter="zoomin" Content="+" Margin="5" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="8" Margin="2,5,0,5" Padding="5" Text="Page"/>
+                        <TextBox Grid.Row="0" Grid.Column="9" Margin="2,5" Padding="5" Text="{Binding PdfViewSettings.ActivePage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="10" Margin="2,5,0,5" Padding="5" Text="of"/>
+                        <TextBlock Grid.Row="0" Grid.Column="11" Margin="2,5" Padding="5" Text="{Binding PdfViewSettings.NumPages}"/>
+                        <CheckBox Grid.Row="2" Grid.Column="12" Margin="5" Padding="5" 
+                                  Name="ShowTwoPages" Content="Show 2 pages" HorizontalAlignment="Right" 
+                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center" 
+                                  IsChecked="{Binding ViewTwoPages}"/>
+
+                    </Grid>
+                    
+                    
+
+                    <!--PageRowDisplay="ContinuousPageRows" is buggy - avoid-->
+                    <!--IsManipulationEnabled=True is buggy, makes setting pages not work I think - avoid-->
+                    <!--zoomstep is 0.15 as default zoom level we have chosen is 1.15-->
+                    <mpp:MoonPdfPanel Name="MoonPdf" Background="LightGray"  Grid.Column="0"  Grid.Row="1" ZoomStep="0.15" >
+                        <mpp:MoonPdfPanel.ContextMenu>
+                            <ContextMenu>
+
+                                <MenuItem Header="_Next page" Command="{Binding NavigatePdfPage}" CommandParameter="next" />
+                                <MenuItem Header="_Previous page" Command="{Binding NavigatePdfPage}" CommandParameter="previous" />
+                                <MenuItem Header="_First page" Command="{Binding NavigatePdfPage}" CommandParameter="first" />
+                                <MenuItem Header="_Last page" Command="{Binding NavigatePdfPage}" CommandParameter="last" />
+                                <Separator/>
+                                <MenuItem Header="Zoom _in" Command="{Binding NavigatePdfPage}" CommandParameter="zoomin" />
+                                <MenuItem Header="Zoom _out" Command="{Binding NavigatePdfPage}" CommandParameter="zoomout" />
+                                <Separator/>
+                                <MenuItem Header="_Print" Command="{Binding PrintPdf}" InputGestureText="Ctrl+P"/>
+                                <MenuItem Header="_Export PDF" Command="{Binding CreatePdf}" CommandParameter="."/>
+
+                                
+                            </ContextMenu>
+                        </mpp:MoonPdfPanel.ContextMenu>
+
+                        <mpp:MoonPdfPanel.Style>
+                            <Style TargetType="{x:Type mpp:MoonPdfPanel}">
+                                <Setter Property="ViewType" Value="SinglePage"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ShowTwoPages, Path=IsChecked}" Value="True">
+                                        <Setter Property="ViewType" Value="Facing"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </mpp:MoonPdfPanel.Style>
+                    </mpp:MoonPdfPanel>
+                </Grid>
+            </TabItem>
+
+            <!--options dialog-->
+            <TabItem Name="optionsTab" Header="Options">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                      
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Stave wrap:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Padding="5" Text="{Binding StaveWrap}" HorizontalAlignment="Left" MinWidth="80"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Pad last stave with flourish</Label>
+                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="3" Padding="5" IsChecked="{Binding PadEndAndFlourish}" HorizontalAlignment="Left" MinWidth="80"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Associate file extensions (FT3, TAB, LSML):</Label>
+                    <Button Grid.Row="2" Grid.Column="1" Margin="3" Padding="5" Content="Set file association" Command="{Binding AssociateFileExtensions}" HorizontalAlignment="Left"/>
+
+
+                    <Label Grid.Row="3" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default flag style</Label>
+                    <ComboBox Grid.Row="3" Grid.Column="1" Margin="3" Padding="5" Width="100" Name="FlagStyle" Text="{Binding FlagStyle}" HorizontalAlignment="Left" >
+                        <ComboBoxItem>board</ComboBoxItem>
+                        <!--<ComboBoxItem>capriola</ComboBoxItem> - same as thin-->
+                        <ComboBoxItem>contemporary</ComboBoxItem>
+                        <ComboBoxItem>italian</ComboBoxItem>
+                        <ComboBoxItem>smallitalian</ComboBoxItem>
+                        <ComboBoxItem>standard</ComboBoxItem>
+                        <ComboBoxItem>thin</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Grid.Row="4" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default character style</Label>
+                    <ComboBox Grid.Row="4" Grid.Column="1" Margin="3" Padding="5" Width="100" Name="CharStyle" Text="{Binding CharStyle}" HorizontalAlignment="Left">
+                        <ComboBoxItem>board</ComboBoxItem>
+                        <!--<ComboBoxItem>dowland</ComboBoxItem> - does nothing according to tab appendix!-->
+                        <ComboBoxItem>mace</ComboBoxItem>
+                        <ComboBoxItem>standard</ComboBoxItem>
+                        <ComboBoxItem>robinson</ComboBoxItem>
+                    </ComboBox>
+                    
+                    <CheckBox Grid.Row="5" Name="ShowDebugLog" Content="Show debug log:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding DebugLog.Messages}"  
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                             IsReadOnly="True" Margin="0,0,0,114" Grid.RowSpan="2"
+                             Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}"
+                           
+                             >
+                       
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ShowDebugLog, Path=IsChecked}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                       
+                    </TextBox>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </DockPanel>
+</Window>

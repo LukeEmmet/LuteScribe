@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="LuteScribe.View.Menus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LuteScribe.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Menu DockPanel.Dock="Top">
+        <MenuItem Header="_File">
+            <MenuItem Header="_New" Command="{Binding NewFile}" InputGestureText="Ctrl+Shift+N"/>
+            <MenuItem Header="_Open" Command="{Binding OpenFile}" InputGestureText="Ctrl+O" />
+            <MenuItem Header="_Save" Command="{Binding SaveFile}" CommandParameter="0" InputGestureText="Ctrl+S" />
+            <MenuItem Header="Save _As" Command="{Binding SaveFile}" CommandParameter="1" />
+
+            <Separator/>
+            <MenuItem Header="_Export">
+                <MenuItem Header="Export as _PDF" Command="{Binding CreatePdf}" CommandParameter="."/>
+            </MenuItem>
+
+            <Separator/>
+            <MenuItem Header="Print pre_view" Command="{Binding PreviewPdf}" InputGestureText="Ctrl+Shift+P" CommandParameter="1"/>
+            <MenuItem Header="_Print" Command="{Binding PrintPdf}" InputGestureText="Ctrl+P" CommandParameter="."/>
+
+            <MenuItem Header="_Recent files" ItemsSource="{Binding LastFileMenus}"/>
+
+            <Separator />
+            <MenuItem Header="_Exit" Command="{Binding ApplicationQuit}" InputGestureText="Alt+F4"/>
+        </MenuItem>
+        <MenuItem Header="_Edit">
+            <MenuItem Header="_Undo" Command="{Binding Undo}" InputGestureText="Ctrl+Z"/>
+            <MenuItem Header="_Redo" Command="{Binding Redo}" InputGestureText="Ctrl+Y"/>
+            <MenuItem Command="Cut" />
+            <MenuItem Command="Copy" />
+            <MenuItem Header="_Paste" Command="{Binding PasteParse}" InputGestureText="Ctrl+V" />
+        </MenuItem>
+
+        <MenuItem Header="_Chord">
+            <MenuItem Header="_Insert blank chord" Command="{Binding InsertItem}" InputGestureText="Ctrl+I" />
+
+            <MenuItem Header="_Insert bar line" Command="{Binding InsertItem}" CommandParameter="b" InputGestureText="Ctrl+B" />
+            <MenuItem Header="_Delete chord" Command="{Binding DeleteItem}" InputGestureText="Ctrl+D" />
+
+        </MenuItem>
+
+        <MenuItem Header="Insert" ItemsSource="{Binding TabFlagMenus}">
+        </MenuItem>
+        
+        <MenuItem Header="_Stave">
+            <MenuItem Header="_Insert stave break" Command="{Binding InsertStaveBreak}" InputGestureText="Ctrl+Shift+I" />
+            <MenuItem Header="_Delete stave end" Command="{Binding DeleteStaveEnd}" InputGestureText="Ctrl+Shift+E" />
+
+            <MenuItem Header="_Insert new stave">
+                <MenuItem Header="_Before current" Command="{Binding NewStave}" CommandParameter="-1"  />
+                <MenuItem Header="_After current" Command="{Binding NewStave}" CommandParameter="1"  />
+            </MenuItem>
+
+        </MenuItem>
+        <MenuItem Header="_Tools">
+            <MenuItem Header="_Reflow all" Command="{Binding Reflow}" InputGestureText="Ctrl+Shift+R" />
+            <MenuItem Header="_Set grid flag styles">
+                <MenuItem Header="N# style" Command="{Binding GridStyleSwitcher}" CommandParameter="N#" />
+                <MenuItem Header="#N style" Command="{Binding GridStyleSwitcher}" CommandParameter="#N" />
+            </MenuItem>
+            <MenuItem Header="_Remove comments from staves" Command="{Binding StripComments}" />
+        </MenuItem>
+
+        <MenuItem Header="_Section"  Visibility="{Binding Path=HasMultipleSections, Converter={StaticResource BoolToVisibilityConverter}}" >
+            <MenuItem Header="Next section" Command="{Binding NavigateSection}" CommandParameter="next"/>
+            <MenuItem Header="Previous section" Command="{Binding NavigateSection}" CommandParameter="previous"/>
+            <MenuItem Header="Sections" ItemsSource="{Binding SectionMenus}"/>
+        </MenuItem>
+        
+        <MenuItem Header="_Help">
+            <MenuItem Header="Help contents" Command="{Binding ShowHelp}" InputGestureText="F1"/>
+            <MenuItem Header="Tab manual" Command="{Binding LaunchFile}"  CommandParameter="..\..\..\tab\TabManual.pdf"/>
+            <MenuItem Header="Tab manual appendix" Command="{Binding LaunchFile}"  CommandParameter="..\..\..\tab\TabManualAppendix.pdf"/>
+            <Separator/>
+            <MenuItem Header="About LuteScribe" Command="{Binding ShowHelpAbout}"/>
+
+        </MenuItem>
+    </Menu>
+
+
+</UserControl>

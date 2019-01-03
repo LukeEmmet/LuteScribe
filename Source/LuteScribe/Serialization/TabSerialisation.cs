@@ -1,0 +1,294 @@
+﻿//===================================================
+//    LuteScribe, a GUI tool to view and edit lute tabulature 
+//    (and for related plucked instruments).
+
+//    Copyright (C) 2018, Luke Emmet 
+
+//    Email: luke [dot] emmet [at] orlando-lutes [dot] com
+
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//===================================================
+
+using LuteScribe.Domain;
+using System;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace LuteScribe.Serialization
+{
+    public struct PrettyOptions
+    {
+        public string FlagStyle;
+        public string CharStyle;
+        public bool PadEndAndFlourish;
+
+    }
+    public static class TabSerialisation
+    {
+        public static string GenerateTab(Piece piece, PrettyOptions prettyOptions, bool prettify)
+        {
+            var builder = new StringBuilder();
+            var hasFlourish = false;
+            var totalLength = 0;
+            var lastStavePad = 35;  //default when there is only one stave
+
+            var flagStyleSet = false;
+            var charStyleSet = false;
+            
+            var staves = piece.Staves;
+
+            //determine if the piece already has explicit flag or char styles in which case we 
+            //don't overrule them below
+            flagStyleSet = HeaderFlagStyleSet(piece);
+            charStyleSet = HeaderCharStyleSet(piece);
+
+            //output new defaults before piece headers.
+            if (prettify)
+            {
+                if (!flagStyleSet) { builder.Append("$flagstyle=" + prettyOptions.FlagStyle + "\n"); }
+                if (!charStyleSet) { builder.Append("$charstyle=" + prettyOptions.CharStyle + "\n"); }
+            }
+
+            foreach (var header in piece.Headers)
+            {
+                builder.Append(header.Content);
+                builder.Append("\n");       //output unix/mac style new lines - most samples in this format. TAB accepts both unix and win style
+
+            }
+            
+            if (prettify)
+            {
+                if (staves.Count > 1)
+                {
+                    //calculate the average stave length of all but the last stave
+                    for (var n = 0; n < staves.Count - 1; n++)
+                    {
+                        var stave = staves[n];
+                        totalLength += stave.Chords.Count;
+                    }
+                    //pad length is 5 (approx length of flourish) less than the
+                    //average length of preceding staves
+                    lastStavePad = ((totalLength / (staves.Count - 1)) - 5);
+                }
+
+            }
+
+            //end of headers
+            builder.Append("\n");
+            
+
+            foreach (var stave in staves)
+            {
+                var staveEmpty = true;
+
+                foreach (var chord in stave.Chords)
+                {
+                    var chordBuilder = new StringBuilder();
+
+                    if (prettify)
+                    {
+                        //set a flag to indicate if this stave is empty or just has "e" marker
+                        //(new pieces start like this)
+                        if (chord.Flag != "e" & chord.ToString().Trim().Length > 0) { staveEmpty = false; }
+
+                        //if it is end of piece of a non-empty last stave with the option set, we pad and add flourish
+                        if (chord.Flag == "e" & prettyOptions.PadEndAndFlourish & !staveEmpty & (stave == staves[staves.Count - 1]))
+                        {
+                            //add a flourish to indicate end
+                            if (!hasFlourish)
+                            {
+                                builder.Append("B\nq\n");
+                            }
+                            //pad with blank elements out to the pad width
+                            for (int n = stave.Chords.Count; n < lastStavePad; n++)
+                            {
+                                builder.Append("3!" + "\n");
+                            }
+                            builder.Append("b\n");
+                        }
+                        //if this piece has a flourish set a flag so we won't add our own
+                        if (FlagParser.IsFlourish(chord.Flag))
+                        {
+                            hasFlourish = true;
+                        }
+
+                    }
+
+                    //if chord is empty - denoting a "same as previous", output an x for TAB
+                    //which means we don't need them in our own data model
+                    chordBuilder.Append("" == chord.Flag.Trim() ? "x" : chord.Flag);
+
+                    //output notes
+                    chordBuilder.Append(TabNote(chord.C1));
+                    chordBuilder.Append(TabNote(chord.C2));
+                    chordBuilder.Append(TabNote(chord.C3));
+                    chordBuilder.Append(TabNote(chord.C4));
+                    chordBuilder.Append(TabNote(chord.C5));
+                    chordBuilder.Append(TabNote(chord.C6));
+                    chordBuilder.Append(TabNote(chord.C7));
+
+                    var chordContent = chordBuilder.ToString().TrimEnd();
+
+                    //only output non-empty lines when generating tab, otherwise 
+                    //you can get extra stave breaks
+                    if (!String.IsNullOrWhiteSpace(chordContent))
+                    {
+                        builder.Append(chordContent);   //end of chord
+                        builder.Append("\n");
+                    }
+
+                }
+
+                builder.Append("\n");                //new stave
+
+            }
+
+            return builder.ToString();
+        }
+
+        private static bool HeaderCharStyleSet(Piece piece)
+        {
+            var result = false;
+            foreach (var header in piece.Headers)
+            {
+                switch (header.Content) {
+                    case "-b":
+                        result = true;
+                        break;
+                    case "-n":
+                        //mace
+                        result = true;
+                        break;
+                    case "-N":
+                        //robinson
+                        result = true;
+                        break;
+                    case "-sItalNotes":
+                        //small italian notes
+                        result = true;
+                        break;
+                    case "-fc":
+                        //reset to standard style
+                        result = true;
+                        break;
+                    default:
+                        if (header.Content != null)
+                        {
+
+                            if (Regex.IsMatch(header.Content, "\\$charstyle=.*"))
+                            {
+                                result = true;
+                            }
+                        }
+                        break;
+                     
+
+                }
+            }
+
+            return result;
+        }
+
+        private static bool HeaderFlagStyleSet(Piece piece)
+        {
+            var result = false;
+            foreach (var header in piece.Headers)
+            {
+                switch (header.Content)
+                {
+                    case "-b":
+                        //baroque flags and chars
+                        result = true;
+                        break;
+                    case "-F":
+                        //modern style flags
+                        result = true;
+                        break;
+                    case "-ff":
+                        //standard flags
+                        result = true;
+                        break;
+                    case "-D":
+                        //dowland style
+                        result = true;
+                        break;
+                    case "-italFlags":
+                        //italian style
+                        result = true;
+                        break;
+                    case "-O":
+                        //dalza and shift notes to centre of line
+                        result = true;
+                        break;
+                    case "-T":
+                        //dalza style flags
+                        result = true;
+                        break;
+                    default:
+
+                        if (header.Content != null) {
+                            if (Regex.IsMatch(header.Content, "\\$flagstyle=.*"))
+                            {
+                                result = true;
+                            }
+                        }
+                        break;
+
+
+                }
+            }
+
+            return result;
+        }
+
+        public static string GenerateTab(TabModel tabModel, PrettyOptions prettyOptions, bool prettify)
+        {
+            var builder = new StringBuilder();
+
+            var count = 1;
+
+            foreach (var section in tabModel.Pieces)
+            {
+                if (count > 1) {
+                    //for multi-piece/section files, we output a delimiter as a special TAB comment
+                    //which is used on re-loading to identify sections.
+                    builder.Append("%=== new section ===\n");
+                }
+
+                builder.Append(GenerateTab(section, prettyOptions, prettify));
+
+                count++;
+            }
+
+            return builder.ToString();
+        }
+
+
+        private static string TabNote(string cell)
+        {
+            if (cell == null)
+            {
+                return " ";
+            }
+
+            if (cell == "")
+            {
+                return " ";
+            }
+
+            return cell;
+        }
+
+    }
+}

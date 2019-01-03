@@ -1,0 +1,148 @@
+=== Active notes ===
+
+
+New data format: can parse TAB, JTZ, JTXML, FT3 well, and FT2 very rudimentary
+cannot parse: multi-piece FT3
+
+=== General ===
+
+This document contains thoughts for the future, and todo list
+
+=== bugs ===
+
+=== TBD ==
+
+ - web page
+ - file association for ft3 (zipped version) doesnt quite work when double clicking on file (ok for other formats)
+ - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
+
+=== DONE ===
+
+ - better bourdon detection in ft3
+ - fingered diapasons on 8th course (e.g. /c /e etc) - see Samples\ft3\14a_langton_pavane.ft3 for an example
+ - rudimentary undo - undoes back to the last snapshot recorded during: menu command, paste, delete 
+   no fine grained undo yet of cell editing 
+ - the "x" flag or TAB is no longer needed during editing, resulting in a cleaner looking display.
+ - empty line break between headers and body no longer needed when loading TAB files
+ - when loading ft3/jtxml files author and title are now shown at top of front sheet
+ - can now set default flag and character styles when none explicitly specified (default "standard" ones from TAB
+   not very attractive)
+ - more attractive display of first element if it is a barline
+ - new option to control whether the last stave is padded at the end with a flourish (otherwise can result in
+   strange stretching of sparse content  by TAB)
+ - generating PDF shows piece number in exported file name for multi-section files
+ - better handling of empty elements when generating TAB
+ - added unit test framework
+ - can get multi-pieces from JTXML, LSML, TAB (delimited "#=== new section ===")
+ - LSML format updated to support multiple pieces, and loads legacy beta LSML files
+ - now works with files containing multiple pieces
+ - works with Wine
+ - now remembers the last print view settings to show 2 pages
+ - now reopens using the same tab as last time (good for using as a viewer)
+ - now opens JTZ and JTXML if JtxmlParser is found
+ - now generates PDF and can preview output
+ - announcement and beta testing
+ - improve cell highlight model - so it is clearer to see the dotted border
+ - use Advanced installer
+ - installer to register fonts
+ - installer to create shortcuts to application and documentation
+ - contact author of LeRoy fonts for re-use (Steve Horn)
+ - wrote to Wayne Cripps to inform about upcoming release
+ - user documentation
+ - build a release and installer
+ - test installer on another machine
+ - application icon added
+ - help integrated into menu system
+ - load italian tabulature
+ - save as TAB
+ - resize to fit content on editing cell
+ - persist any user settings (e.g. stavewrap)
+ - support Ft3 missing flags (continue previous)
+ - added revert feature
+ - strip comments command
+ - added SaveAs - for general use (pass command parameter = "1")
+ - reorganise files so rebol/gzip in sub folders
+ - saving Ps files with original not in Data folder
+ - better error handling, at least for file open
+ - disabled menus to move between staves (not working yet)
+ - better font for headers options
+ - font colour: black if flag or symbol, dark grey if less frequent, light grey if ^[bBx]$, red if ^e$
+ - font family: luteflags or arial in flags, leroy notes only in stave area
+ - font sizes: large if flag or symbol, medium if less frequent, small if ^[bBx]$
+ - load italian tabulature
+ - insert stave before/after current
+ - remove text box binding to viewmodel.path
+ - remove maxsize property on stave (obsolete)
+ - user option to specify wrap length
+ - file->exit exits application
+ - be able to open both zipped ft3 and plain ft3 - may be determined by version of fronimo
+ - copy/paste
+ - merge open ft, tab, lsml into single dialog
+ - parse ft3 by reading CArchive format (mfc serialisation)
+ - better tab parsing - e.g. ornaments, fingering and capriola ghost notes
+ - support full header list
+
+
+=== Maybe ===
+
+ - possible extras
+	- file association (handle via app itself, or by regedit by installer?)
+ - font binding, so no need to install with installer
+ - delete cell content on DEL, without deleting whole chord
+ - offer to save changes when doing file/open/import if active session
+ - cut (as it copy/paste)
+ - better tools to organise headers (insert before after current)
+ - navigate between staves using the keyboard and focus shifting
+
+=== Nice to have
+
+ - on opening TAB that is not fully supported (e.g. with mensural staves plus tab) would be nice to give a warning, 
+ - user options to control font selection and colours for each type of item
+ - user can specify default settings for new project
+ - nested menus by category
+ - apply flag to current chord as well as insert new chord
+ - user generic flags for running tab (general preferences)
+ - user can turn on and off the fancy font/colours/sizes
+ - keyboard navigation across staves using cursor keys (partially working)
+ - some way of visually indicating line of vertical dots
+ - midi generation for preview
+
+=== Bugs/issues ===
+
+ - for some reason rebol2.exe from commandline on Win64 does not return content on stdout. Adjusted to write to a file instead :-/
+  (but no difference... maybe it is something to do with the fact that the script argument passed to the path does not get loaded
+   for some reason...?)
+  story seems to be that rebol2.exe cannot load a file (silent fail) if the passed path contains "c:\program files (x86)" - otherwise OK
+  (ok for admin and non-admin) - on windows 10 64 bit. 
+  relative paths including ..\ are ok
+  FIXED - use relative path for rebol2 script.
+ - REBOL exe cannot seem to open file from UNC drive at present, but this is OK as we copy to temp folder before opening
+
+
+=== The future ===
+
+ - integrated undo
+ - show comments with a clickable glyph with tooltip, not full text
+ - integrated raw text editor for TAB
+ - detect file change and reload TAB?
+
+=== TAB parsing ==
+
+ - get ornaments onto same note as they apply
+ - detect if complex tab with music plus tab - abort loading this, or just load tab
+ - misses extra text if it comes just before bar line e.g. [Foo}\nb e.g. fuen_contra_08
+ - misses P9 - pagination - e.g. fuen_contra_08
+ - misses line length directives like this -l "4.0 in" -  e.g. 001_FMRicercar01
+ - misses directives like this: t#1 a and #tx   a (ties across a bar line?) - e.g. 01_bossinensis_recercar
+ - misses directive i on a line on its own (indent a bit) e.g. Capirola_Recercar_ottavo
+
+
+=== Fronimo parsing ===
+
+ - more improvements
+
+=== Focus model ===
+
+ - would be good to be able to set focus programmatically, e.g. for
+   keyboard navigation across staves
+
