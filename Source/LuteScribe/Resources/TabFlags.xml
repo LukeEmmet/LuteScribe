@@ -10,9 +10,6 @@
   <Command flag="" name="-"/>
 
   <!--"Rhythm elements"-->
-  <Command flag="x" name="Continue previous rhythm element"/>
-  <Command flag="" name="-"/>
-
   <Command flag="L" name="Longa"/>
   <Command flag="B-" name="Breve"/>
   <Command flag="W" name="Semibreve (whole note)"/>

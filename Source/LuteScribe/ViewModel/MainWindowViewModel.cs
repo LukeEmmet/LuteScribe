@@ -87,7 +87,8 @@ namespace LuteScribe
         public ICommand DeleteItem { get; set; }
         public ICommand Undo { get; set; }
         public ICommand Redo { get; set; }
-        public ICommand InsertItem { get; set; }
+        public ICommand InsertItemBefore { get; set; }
+        public ICommand InsertItemAfter { get; set; }
         public ICommand PasteParse { get; set; }
 
         public ICommand DeleteStaveEnd { get; set; }
@@ -341,7 +342,8 @@ namespace LuteScribe
             this.DeleteItem = new DeleteItemCommand(this);
             this.DeleteStaveEnd = new DeleteStaveEndCommand(this);
             this.InsertStaveBreak = new InsertStaveBreakCommand(this);
-            this.InsertItem = new InsertItemCommand(this);
+            this.InsertItemAfter = new InsertItemAfterCommand(this);
+            this.InsertItemBefore = new InsertItemBeforeCommand(this);
             this.SaveFile = new SaveFileCommand(this);
             this.SaveXml = new SaveXmlCommand(this);
             this.SaveTabPiece = new SaveTabPieceCommand(this);

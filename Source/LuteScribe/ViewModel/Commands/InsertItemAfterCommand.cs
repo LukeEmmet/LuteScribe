@@ -28,13 +28,13 @@ using System.Windows.Input;
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class InsertItemCommand : ICommand
+    public class InsertItemAfterCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public InsertItemCommand(MainWindowViewModel viewModel)
+        public InsertItemAfterCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }

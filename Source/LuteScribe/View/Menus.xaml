@@ -41,9 +41,17 @@
         </MenuItem>
 
         <MenuItem Header="_Chord">
-            <MenuItem Header="_Insert blank chord" Command="{Binding InsertItem}" InputGestureText="Ctrl+I" />
-
-            <MenuItem Header="_Insert bar line" Command="{Binding InsertItem}" CommandParameter="b" InputGestureText="Ctrl+B" />
+            <MenuItem Header="_Insert blank chord">
+                <MenuItem Header="_Before" Command="{Binding InsertItemBefore}" InputGestureText="Ctrl+Alt+I" />
+                <MenuItem Header="_After" Command="{Binding InsertItemAfter}" InputGestureText="Ctrl+I" />
+            </MenuItem>
+            <MenuItem Header="_Insert bar line">
+                <MenuItem Header="_Before" Command="{Binding InsertItemBefore}" CommandParameter="b" InputGestureText="Ctrl+Alt+B" />
+                <MenuItem Header="_After" Command="{Binding InsertItemAfter}" CommandParameter="b" InputGestureText="Ctrl+B" />
+            </MenuItem>
+            
+            <Separator/>
+            
             <MenuItem Header="_Delete chord" Command="{Binding DeleteItem}" InputGestureText="Ctrl+D" />
 
         </MenuItem>

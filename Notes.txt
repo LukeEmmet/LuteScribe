@@ -6,17 +6,23 @@ cannot parse: multi-piece FT3
 
 === General ===
 
-This document contains thoughts for the future, and todo list
+This document contains list of changes, buts and thoughts for the future, and todo list
 
-=== bugs ===
+=== bugs to fix soon ===
 
 === TBD ==
 
- - web page
  - file association for ft3 (zipped version) doesnt quite work when double clicking on file (ok for other formats)
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
 
-=== DONE ===
+=== CHANGES ===
+
+v1.0.2
+
+ - insert bar or blank item before current
+ - cursor keys commit current edit (more like a spreadsheet)
+
+v1.0.1
 
  - better bourdon detection in ft3
  - fingered diapasons on 8th course (e.g. /c /e etc) - see Samples\ft3\14a_langton_pavane.ft3 for an example
@@ -85,9 +91,6 @@ This document contains thoughts for the future, and todo list
 
 === Maybe ===
 
- - possible extras
-	- file association (handle via app itself, or by regedit by installer?)
- - font binding, so no need to install with installer
  - delete cell content on DEL, without deleting whole chord
  - offer to save changes when doing file/open/import if active session
  - cut (as it copy/paste)

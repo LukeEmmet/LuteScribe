@@ -62,7 +62,7 @@ namespace LuteScribe.ViewModel
                 {
                     var menuItem = new MenuItem();
                     menuItem.Header = el.GetAttribute("flag") + "\t" + el.GetAttribute("name");
-                    menuItem.Command = new InsertItemCommand(viewModel);
+                    menuItem.Command = new InsertItemAfterCommand(viewModel);
                     menuItem.CommandParameter = el.GetAttribute("flag");
 
                     menuItems.Add(menuItem);

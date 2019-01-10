@@ -99,6 +99,7 @@
     <Compile Include="Serialization\JtxmlLoader\JtxmlToLsml.cs" />
     <Compile Include="Serialization\LsmlLoader\TabToLsml.cs" />
     <Compile Include="Singletons\Session.cs" />
+    <Compile Include="ViewModel\Commands\InsertItemBeforeCommand.cs" />
     <Compile Include="ViewModel\Commands\RedoCommand.cs" />
     <Compile Include="ViewModel\Commands\UndoCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateSectionCommand.cs" />
@@ -163,7 +164,7 @@
     <Compile Include="ViewModel\ValueConverters\FlagFontSizeConverter.cs" />
     <Compile Include="ViewModel\ValueConverters\FlagFontFamilyConverter.cs" />
     <Compile Include="ViewModel\ValueConverters\IsBarLineConverter.cs" />
-    <Compile Include="ViewModel\Commands\InsertItemCommand.cs" />
+    <Compile Include="ViewModel\Commands\InsertItemAfterCommand.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

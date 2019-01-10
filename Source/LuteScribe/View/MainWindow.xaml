@@ -20,8 +20,12 @@
         <KeyBinding Command="{Binding Undo}" Modifiers="Ctrl" Key="Z"/>
         <KeyBinding Command="{Binding Redo}" Modifiers="Ctrl" Key="Y"/>
         <KeyBinding Command="{Binding PasteParse}" Modifiers="Ctrl" Key="V"/>
-        <KeyBinding Command="{Binding InsertItem}"  Modifiers="Ctrl" Key="I"/>
-        <KeyBinding Command="{Binding InsertItem}" CommandParameter="b" Modifiers="Ctrl" Key="B"/><!--insert bar-->
+        <!--insert blank chord before/after-->
+        <KeyBinding Command="{Binding InsertItemAfter}"  Modifiers="Ctrl" Key="I"/>
+        <KeyBinding Command="{Binding InsertItemBefore}"  Modifiers="Ctrl+Alt" Key="I"/>
+        <!--insert bar before/after-->
+        <KeyBinding Command="{Binding InsertItemAfter}" CommandParameter="b" Modifiers="Ctrl" Key="B"/>
+        <KeyBinding Command="{Binding InsertItemBefore}" CommandParameter="b" Modifiers="Ctrl+Alt" Key="B"/>
         <KeyBinding Command="{Binding DeleteItem}" Modifiers="Ctrl" Key="D"/>
         
         <KeyBinding Command="{Binding DeleteStaveEnd}" Modifiers="Ctrl+Shift" Key="E"/>
@@ -212,6 +216,8 @@
                                     DragLeave="OnMainGridCheckDropTarget"
                                     PreviewKeyDown="OnMainGridPreviewKeyDown"
                                     DragOver="OnMainGridCheckDropTarget"
+                                    PreparingCellForEdit="OnMainGridPreparingCellForEdit"
+                                    CellEditEnding="OnMainGridCellEditEnding"
                                     KeyDown="OnMainGridKeyDown"
                                     Background="White"
                                     BorderBrush="White"

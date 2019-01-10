@@ -44,6 +44,7 @@ namespace LuteScribe
         private DataGridRow _oldRow;
         private Chord _targetItem;
         private MainWindowViewModel _viewModel;
+        private bool _cellBeingEdited;
 
         public MainWindow()
         {
@@ -225,18 +226,22 @@ namespace LuteScribe
             switch (e.Key)
             {
                 case Key.Left:
+                    CommitAnyCellEdits(grid);
                     Send(Key.Up);
                     e.Handled = true;
                     break;
                 case Key.Right:
+                    CommitAnyCellEdits(grid);
                     Send(Key.Down);
                     e.Handled = true;
                     break;
                 case Key.Down:
+                    CommitAnyCellEdits(grid);
                     Send(Key.Right);
                     e.Handled = true;
                     break;
                 case Key.Up:
+                    CommitAnyCellEdits(grid);
                     Send(Key.Left);
                     e.Handled = true;
                     break;
@@ -244,6 +249,15 @@ namespace LuteScribe
                     break;
             }
 
+        }
+
+        private void CommitAnyCellEdits(DataGrid grid)
+        {
+            if (_cellBeingEdited)
+            {
+                grid.CommitEdit();
+
+            }
         }
 
         /// <summary>
@@ -303,5 +317,14 @@ namespace LuteScribe
             }
         }
 
+        private void OnMainGridPreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
+        {
+            _cellBeingEdited = true;
+        }
+
+        private void OnMainGridCellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            _cellBeingEdited = false;
+        }
     }
 }
