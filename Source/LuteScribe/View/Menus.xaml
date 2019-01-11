@@ -52,7 +52,7 @@
             
             <Separator/>
             
-            <MenuItem Header="_Delete chord" Command="{Binding DeleteItem}" InputGestureText="Ctrl+D" />
+            <MenuItem Header="_Delete chord" Command="{Binding DeleteItem}" InputGestureText="Ctrl+-" />
 
         </MenuItem>
 

@@ -26,7 +26,7 @@
         <!--insert bar before/after-->
         <KeyBinding Command="{Binding InsertItemAfter}" CommandParameter="b" Modifiers="Ctrl" Key="B"/>
         <KeyBinding Command="{Binding InsertItemBefore}" CommandParameter="b" Modifiers="Ctrl+Alt" Key="B"/>
-        <KeyBinding Command="{Binding DeleteItem}" Modifiers="Ctrl" Key="D"/>
+        <KeyBinding Command="{Binding DeleteItem}" Modifiers="Ctrl" Key="OemMinus"/>
         
         <KeyBinding Command="{Binding DeleteStaveEnd}" Modifiers="Ctrl+Shift" Key="E"/>
         <KeyBinding Command="{Binding InsertStaveBreak}" Modifiers="Ctrl+Shift" Key="I"/>
@@ -62,8 +62,23 @@
         <vc:IgnoreNewItemPlaceHolderConverter x:Key="ignoreNewItemPlaceHolderConverter"/>
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+        <!-- as per https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-apply-a-focusvisualstyle-to-a-control
+        -->
+        <Style x:Key="FocusedCellStyle">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="-2" StrokeThickness="2" Stroke="DarkGray" StrokeDashArray="1 1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
         <Style x:Key="RotatedCell" TargetType="DataGridCell">
+
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedCellStyle}"/>
+
             <Setter Property="LayoutTransform">
                 <Setter.Value>
                     <TransformGroup>
@@ -73,6 +88,7 @@
                 </Setter.Value>
             </Setter>
 
+            
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="AliceBlue"/>
@@ -80,12 +96,13 @@
                     <Setter Property="BorderBrush" Value="AliceBlue"/>
                 </Trigger>
             </Style.Triggers>
-
+            
         </Style>
 
-        <Style x:Key="FlagLine" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
+        <Style x:Key="FlagLine" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}" >
             <Setter Property="Margin" Value="0,0,0,0"/>
-
+            
+            
             <Setter Property="FontSize" 
                     Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
                     Path =Item.Flag, 
@@ -114,6 +131,7 @@
 
         <Style x:Key="TopStave" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
             <Setter Property="BorderBrush" Value="Black"/>
+
             <Setter Property="BorderThickness">
                 <Setter.Value>
                     <MultiBinding Converter="{StaticResource FlagBorderThicknessConverter}" ConverterParameter="top">
@@ -295,7 +313,23 @@
                                             </Setter>
                                         </Style>
                                     </DataGrid.CellStyle>
-
+                                    <!--<DataGrid.Resources>
+                                        <Style x:Key="MyFocusVisual">
+                                            <Setter Property="Control.Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Control}">
+                                                        <Grid>
+                                                            <Rectangle Name="r1" StrokeThickness="2" Stroke="Red"/>
+                                                            <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}"/>
+                                        </Style>
+                                    </DataGrid.Resources>-->
                                 </DataGrid>
                             </Grid>
                         </DataTemplate>

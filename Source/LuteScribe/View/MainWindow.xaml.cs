@@ -204,6 +204,19 @@ namespace LuteScribe
         {
         }
 
+        private void ClearCell(DataGridCellInfo cellInfo)
+        {
+            var newValue = "";      //we will clear the content of the underlying property (assumes is a string)
+
+            //use reflection to directly set the property to empty string
+            //see https://stackoverflow.com/questions/7737345/how-can-i-set-the-value-of-a-datagrid-cell-using-its-column-and-row-index-values
+            var chord = (Chord)cellInfo.Item;
+            var item = (System.Windows.Data.Binding)((DataGridTextColumn)cellInfo.Column).Binding;
+            var propertyName = item.Path.Path;
+            var propertyInfo = chord.GetType().GetProperty(propertyName);
+            propertyInfo.SetValue(chord, newValue);   //set new value to empty string
+        }
+
         private void OnMainGridPreviewKeyDown(object sender, KeyEventArgs e)
         {
             var grid = (DataGrid)sender;
@@ -214,10 +227,32 @@ namespace LuteScribe
             //record undo snapshot if user presses delete
             if (e.Key == Key.Delete)
             {
-                //delete in the grid only removes item not whole grid (==stave) so 
-                //just record an undo for the stave
+                //what we want is that delete key clears the current cell 
+                //so behaviour is similar to a using a spreadsheet.
+                //Normally delete key will delete the whole row which is
+                //not what we want. We want to get to the underlying propert
+                //of the selected cell
+                
+                //The following delete in the grid will only clear the current cell and not affect other 
+                //staves so we just record an undo for the stave
                 viewModel.RecordUndoSnapshotStave();
 
+                if (grid.SelectedItems.Count == 1)
+                {
+                    //only clear the current cell
+                    ClearCell(grid.CurrentCell);
+                } else
+                {
+                    //clear all cells in the chords
+                    foreach (var cellInfo in grid.SelectedCells)
+                    {
+                        ClearCell(cellInfo);
+                    }
+                }
+
+                //mark the event as handled so no further processing takes place
+                e.Handled = true;
+                
             }
 
 
