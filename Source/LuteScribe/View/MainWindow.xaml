@@ -206,7 +206,7 @@
                 <!--VirtualizingPanel.ScrollUnit="ScrollUnit" requires .NEt 4.5
         see https://msdn.microsoft.com/en-us/library/system.windows.controls.virtualizingpanel.scrollunit(v=vs.110).aspx
         -->
-                <ListBox ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
+                <ListBox Name="StaveGrids" ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
                  SelectedItem="{Binding TabModel.ActivePiece.SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
                  HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" Margin="5,5,0,0" BorderBrush="White" Background="{x:Null}">
 
@@ -236,6 +236,7 @@
                                     DragOver="OnMainGridCheckDropTarget"
                                     PreparingCellForEdit="OnMainGridPreparingCellForEdit"
                                     CellEditEnding="OnMainGridCellEditEnding"
+                                          LostFocus="OnMainGridLostFocus"
                                     KeyDown="OnMainGridKeyDown"
                                     Background="White"
                                     BorderBrush="White"

@@ -22,6 +22,7 @@ https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-
 
 v1.0.2
 
+ - commit pending edits before switching to preview
  - insert bar or blank item before current
  - cursor keys commit current edit (more like a spreadsheet)
  - delete key now just clears the current cell or selected chords (more like a spreadsheet)
@@ -96,7 +97,6 @@ v1.0.1
 
 === Maybe ===
 
- - delete cell content on DEL, without deleting whole chord
  - offer to save changes when doing file/open/import if active session
  - cut (as it copy/paste)
  - better tools to organise headers (insert before after current)
@@ -111,7 +111,6 @@ v1.0.1
  - apply flag to current chord as well as insert new chord
  - user generic flags for running tab (general preferences)
  - user can turn on and off the fancy font/colours/sizes
- - keyboard navigation across staves using cursor keys (partially working)
  - some way of visually indicating line of vertical dots
  - midi generation for preview
 

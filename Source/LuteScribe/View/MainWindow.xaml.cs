@@ -30,9 +30,12 @@ using System.IO;
 using LuteScribe.ViewModel.Commands;
 using System;
 using LuteScribe.Singletons;
+using LuteScribe.View;
 
 namespace LuteScribe
 {
+
+
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
@@ -206,15 +209,21 @@ namespace LuteScribe
 
         private void ClearCell(DataGridCellInfo cellInfo)
         {
-            var newValue = "";      //we will clear the content of the underlying property (assumes is a string)
+           
+                var newValue = "";      //we will clear the content of the underlying property (assumes is a string)
 
-            //use reflection to directly set the property to empty string
-            //see https://stackoverflow.com/questions/7737345/how-can-i-set-the-value-of-a-datagrid-cell-using-its-column-and-row-index-values
-            var chord = (Chord)cellInfo.Item;
-            var item = (System.Windows.Data.Binding)((DataGridTextColumn)cellInfo.Column).Binding;
-            var propertyName = item.Path.Path;
-            var propertyInfo = chord.GetType().GetProperty(propertyName);
-            propertyInfo.SetValue(chord, newValue);   //set new value to empty string
+            //check the item corresponds to a chord
+            //e.g. the very last one on the stave, is a "New item placeholder".
+            if (cellInfo.Item.GetType().Name == "Chord")
+            {
+                //use reflection to directly set the property to empty string
+                //see https://stackoverflow.com/questions/7737345/how-can-i-set-the-value-of-a-datagrid-cell-using-its-column-and-row-index-values
+                var chord = (Chord)cellInfo.Item;
+                var item = (System.Windows.Data.Binding)((DataGridTextColumn)cellInfo.Column).Binding;
+                var propertyName = item.Path.Path;
+                var propertyInfo = chord.GetType().GetProperty(propertyName);
+                propertyInfo.SetValue(chord, newValue);   //set new value to empty string
+            }
         }
 
         private void OnMainGridPreviewKeyDown(object sender, KeyEventArgs e)
@@ -342,12 +351,39 @@ namespace LuteScribe
                     if (tabItem == 2)
                     {
 
+                        //there might be some uncommitted edits on the currently edited stave 
+                        //so we need to commit them otherwise the preview wont reflect them
+                        CommitPendingGridEdits();
+                        
                         SimpleLogger.Instance.LogMessage("Pdf tab selected - updating preview");
 
                         //regenerate the pdf view when its tab is switched to
                         var generatePreview = new PreviewPdfCommand(viewModel);
                         generatePreview.Execute(null);
                     }
+                }
+            }
+        }
+
+        private void CommitPendingGridEdits()
+        {
+            //use a utility class to delve into the controls tree
+            ChildControls ccChildren = new ChildControls();
+
+            //traverse down the tree to find the grids from the collection
+            //of grids
+            foreach (object o in ccChildren.GetChildren(StaveGrids, 5))
+            {
+                if (o is DataGrid)
+                {
+                    var grid = (o as DataGrid);
+
+                    //not sure why we need 2 commits, perhaps the first one commits the cell
+                    //then we commit the row or something like that. Otherwise if the cell
+                    //was being edited it doesnt get committed back to the data model
+                    grid.CommitEdit();
+                    grid.CommitEdit();
+
                 }
             }
         }
@@ -360,6 +396,21 @@ namespace LuteScribe
         private void OnMainGridCellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             _cellBeingEdited = false;
+        }
+
+        private void OnMainGridLostFocus(object sender, RoutedEventArgs e)
+        {
+            //this would seem to be the natural place
+            //to commit any uncommitted cells, but it appears to be too late.
+            //so for now we catch the tab_selected event to commit any unsaved changes...
+            //and this is commented out
+
+            //Control ctrl = FocusManager.GetFocusedElement(this) as Control;
+            //if (ctrl != null) {
+            //    if (ctrl.Parent != null && ctrl.Parent.GetType() != typeof(DataGridCell)) {
+            //        CommitPendingGridEdits();
+            //    }
+            //}
         }
     }
 }
