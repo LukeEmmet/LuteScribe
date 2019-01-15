@@ -31,6 +31,8 @@ using LuteScribe.ViewModel.Commands;
 using System;
 using LuteScribe.Singletons;
 using LuteScribe.View;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace LuteScribe
 {
@@ -411,6 +413,26 @@ namespace LuteScribe
             //        CommitPendingGridEdits();
             //    }
             //}
+        }
+
+        private void UpdateChordSelected(IList changedItems, bool value)
+        {
+            foreach (var item in changedItems)
+            {
+                if (item.GetType().Name == "Chord")     //ignore NewItemPlaceholder at end...
+                {
+                    var chord = (Chord)item;
+                    chord.IsSelected = value;
+                }
+            }
+
+        }
+        private void OnMainGridSelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            //update the chords to be marked as selected or not
+            UpdateChordSelected(e.AddedItems, true);
+            UpdateChordSelected(e.RemovedItems, false);
+
         }
     }
 }

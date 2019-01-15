@@ -67,19 +67,22 @@ namespace LuteScribe.ViewModel.Commands
             var selectedChord = stave.SelectedItem;
             var removeIndex = stave.Chords.IndexOf(selectedChord);
 
+            var lowestIndex = removeIndex;
+
             //record undo at the stave level
             _viewModel.RecordUndoSnapshotStave();
 
-            stave.Chords.Remove(selectedChord);
-
-            //TBD not quite right - e.g. when removing last item in chords
-            //TBD - better to wire this up to change events?
-            //_viewModel.Stave = SequencingService.SetCollectionSequence(_viewModel.Stave);
-            //TBD - focus seems to switch elsewhere...
-            if (removeIndex < stave.Chords.Count)
+            //there might be a range of chords selected - delete them all.
+            foreach (var chord in stave.SelectedItems)
             {
-                stave.SelectedItem = stave.Chords[removeIndex];
-            }            
+                var curIndex = stave.Chords.IndexOf(chord);
+                lowestIndex = curIndex < lowestIndex ? curIndex : lowestIndex;
+                stave.Chords.Remove(chord);
+            }
+
+            //select the lowest index from the selection as the newly selected chord
+            stave.SelectedItem = stave.Chords[lowestIndex];
+            
 
         }
 

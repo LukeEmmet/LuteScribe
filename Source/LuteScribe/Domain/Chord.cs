@@ -40,6 +40,7 @@ namespace LuteScribe.Domain
         private string _c7;
 
         private Stave _stave;
+        private bool _isSelected;
 
         /// <summary>
         /// Default constructor
@@ -98,9 +99,20 @@ namespace LuteScribe.Domain
 
                 //stave is set on each chord when the chords collection change
                 //so update the sequence number
-                base.RaisePropertyChangedEvent("SequenceNumber");   
+                base.RaisePropertyChangedEvent("SequenceNumber");
             }
         }
+
+        [XmlIgnoreAttribute]
+        public bool IsSelected {
+            get { return _isSelected; }
+            set {
+                _isSelected = value;
+                base.RaisePropertyChangedEvent("IsSelected");
+            }
+
+        }
+
         /// <summary>
         /// The sequential position of this item in a list of items.
         /// </summary>

@@ -90,6 +90,15 @@ namespace LuteScribe.Domain
         }
 
         [XmlIgnoreAttribute]
+        public List<Chord> SelectedItems
+        {
+            get
+            {
+                return (from chord in Chords where chord.IsSelected select chord).ToList();
+            }
+        }
+
+        [XmlIgnoreAttribute]
         public Chord SelectedItem
         {
             get

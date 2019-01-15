@@ -230,6 +230,7 @@
                                     AutoGenerateColumns="False" 
                                     DockPanel.Dock="Top"
                                     MouseMove="OnMainGridMouseMove"
+                                    SelectionChanged="OnMainGridSelectionChange"
                                     DragEnter="OnMainGridCheckDropTarget"
                                     DragLeave="OnMainGridCheckDropTarget"
                                     PreviewKeyDown="OnMainGridPreviewKeyDown"
