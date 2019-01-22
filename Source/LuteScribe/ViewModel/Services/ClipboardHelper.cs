@@ -81,6 +81,40 @@ namespace LuteScribe.ViewModel.Services
             return clipboardData;
         }
 
+        public static void SetClipboardTabularData(string csv, string tsv)
+        {
+            //put on clipboard in a form we can consume later
+            //if it is TSV of info from a datagrid it can also be
+            //pasted into Excel (albeit rotated as per underlying content)
+
+            Clipboard.Clear();
+
+            DataObject d = new DataObject();
+            d.SetText(csv, TextDataFormat.CommaSeparatedValue);
+            d.SetText(tsv, TextDataFormat.Text);
+            Clipboard.SetDataObject(d);
+
+        }
+
+        //Help function that encode text to csv, 
+        //from https://stackoverflow.com/questions/3362255/generic-class-to-csv-all-properties
+        public static string ToCsv(string input)
+        {
+            if (input != null)
+            {
+                input = input.Replace("\r\n", string.Empty)
+                    .Replace("\r", string.Empty)
+                    .Replace("\n", string.Empty);
+                if (input.Contains("\""))
+                {
+                    input = input.Replace("\"", "\"\"");
+                }
+
+            }
+
+            return input;
+        }
+
         public static string[] ParseCsvFormat(string value)
         {
             return ParseCsvOrTextFormat(value, true);

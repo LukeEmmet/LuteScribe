@@ -35,9 +35,11 @@
         <MenuItem Header="_Edit">
             <MenuItem Header="_Undo" Command="{Binding Undo}" InputGestureText="Ctrl+Z"/>
             <MenuItem Header="_Redo" Command="{Binding Redo}" InputGestureText="Ctrl+Y"/>
-            <MenuItem Command="Cut" />
-            <MenuItem Command="Copy" />
+          
+            <MenuItem Header="Cu_t" Command="{Binding CutItems}" InputGestureText="Ctrl+X"/>
+            <MenuItem Header="_Copy" Command="{Binding CopyItems}" InputGestureText="Ctrl+C"/>
             <MenuItem Header="_Paste" Command="{Binding PasteParse}" InputGestureText="Ctrl+V" />
+            <MenuItem Command="SelectAll" />
         </MenuItem>
 
         <MenuItem Header="_Chord">

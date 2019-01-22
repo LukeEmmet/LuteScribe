@@ -108,7 +108,7 @@ namespace LuteScribe.Domain
             get { return _isSelected; }
             set {
                 _isSelected = value;
-                base.RaisePropertyChangedEvent("IsSelected");
+                base.RaisePropertyChangedEvent("IsSelected");   //TBD - would be good to have this directly affect the WPF selection (not working yet)
             }
 
         }

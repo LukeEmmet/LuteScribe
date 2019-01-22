@@ -20,23 +20,22 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
-using System;
-using System.Windows.Input;
-using LuteScribe.Domain;
 using LuteScribe.ViewModel.Services;
+using System;
+using System.Linq;
 using System.Windows;
-using System.Text;
+using System.Windows.Input;
 
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class PasteCommand : ICommand
+    public class CopyItemsCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public PasteCommand(MainWindowViewModel viewModel)
+        public CopyItemsCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -46,18 +45,8 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            var model = _viewModel.TabModel;
-            var stave = model.ActivePiece.SelectedItem;
+            return (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem != null);
 
-            if (stave == null) { return false; }
-
-            var selChord = stave.SelectedItem;
-
-            if (selChord == null) { return false; }
-
-            //look for delimited data on clipboard (both will be set by our own
-            //copy so we can find correct info
-            return Clipboard.ContainsText(TextDataFormat.CommaSeparatedValue);
         }
 
         /// <summary>
@@ -74,33 +63,31 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public void Execute(object parameter)
         {
-            var model = _viewModel.TabModel;
-            var stave = model.ActivePiece.SelectedItem;
+            if (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem == null) { return; }
 
-            if (stave == null) { return; }
+            var stave = _viewModel.TabModel.ActivePiece.SelectedItem;
+            var selectedChord = stave.SelectedItem;
 
-            var selChord = stave.SelectedItem;
-
-            if (selChord == null) { return; }
-
-            var sb = new StringBuilder();
-            var chords = stave.Chords;
-
-            //paste only happens at a stave level so just record an undo of the stave
-            _viewModel.RecordUndoSnapshotStave();
+            //get the chords in order, according to whether selected or not
+            var chords = (from chord in stave.Chords where stave.SelectedItems.Contains(chord) select chord);
 
 
-            //paste the content at the position of the selected item.
-            foreach (var row in ClipboardHelper.ParseClipboardData())
+            //build a tab separated string to go onto the clipboard
+            var builder = "";
+            foreach (var chord in chords)
             {
-                var chord = new Chord(row);
-
-                //add the chord and move it to the current selection
-                chords.Add(chord);
-                chords.Move(chords.IndexOf(chord), chords.IndexOf(selChord));
-
+                builder += ClipboardHelper.ToCsv(chord.Flag) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C1) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C2) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C3) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C4) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C5) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C6) + "\t";
+                builder += ClipboardHelper.ToCsv(chord.C7) + "\r\n";
             }
 
+            ClipboardHelper.SetClipboardTabularData(builder.Replace("\t", ","), builder);
+            
         }
 
     }

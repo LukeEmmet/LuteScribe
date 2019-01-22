@@ -22,18 +22,19 @@
 
 using LuteScribe.ViewModel.Services;
 using System;
+using System.Linq;
 using System.Windows.Input;
 
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class DeleteItemCommand : ICommand
+    public class CutItemsCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public DeleteItemCommand(MainWindowViewModel viewModel)
+        public CutItemsCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -63,27 +64,15 @@ namespace LuteScribe.ViewModel.Commands
         {
             if (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem == null) { return; }
 
-            var stave = _viewModel.TabModel.ActivePiece.SelectedItem;
-            var selectedChord = stave.SelectedItem;
-            var removeIndex = stave.Chords.IndexOf(selectedChord);
+            var copyCommand = new CopyItemsCommand(_viewModel);
+            var deleteCommand = new DeleteItemsCommand(_viewModel);
 
-            var lowestIndex = removeIndex;
+            //a cut is simply a copy followed by a delete
+            //we dont record undo memo here as delete does it for us...
+            copyCommand.Execute(parameter);
+            deleteCommand.Execute(parameter);
 
-            //record undo at the stave level
-            _viewModel.RecordUndoSnapshotStave();
-
-            //there might be a range of chords selected - delete them all.
-            foreach (var chord in stave.SelectedItems)
-            {
-                var curIndex = stave.Chords.IndexOf(chord);
-                lowestIndex = curIndex < lowestIndex ? curIndex : lowestIndex;
-                stave.Chords.Remove(chord);
-            }
-
-            //select the lowest index from the selection as the newly selected chord
-            stave.SelectedItem = stave.Chords[lowestIndex];
             
-
         }
 
     }

@@ -52,20 +52,36 @@ namespace LuteScribe.ViewModel
 
             var menuItems = new ObservableCollection<Control>();
 
-            foreach (XmlElement el in dom.DocumentElement.SelectNodes("//TabFlags/Command"))
+            foreach (XmlElement xSection in dom.DocumentElement.SelectNodes("//TabFlags/Section"))
             {
-                if (el.GetAttribute("name") == "-")
-                {
-                    menuItems.Add(new Separator());
-                }
-                else
-                {
-                    var menuItem = new MenuItem();
-                    menuItem.Header = el.GetAttribute("flag") + "\t" + el.GetAttribute("name");
-                    menuItem.Command = new InsertItemAfterCommand(viewModel);
-                    menuItem.CommandParameter = el.GetAttribute("flag");
+                var sectionMenu = new MenuItem();
+                
+                sectionMenu.Header = xSection.GetAttribute("name");
+                menuItems.Add(sectionMenu);
 
-                    menuItems.Add(menuItem);
+                foreach (XmlElement el in xSection.SelectNodes("Command")) 
+                {
+                    if (el.GetAttribute("name") == "-")
+                    {
+                        sectionMenu.Items.Add(new Separator());
+                    }
+                    else
+                    {
+                        var menuItem = new MenuItem();
+                        sectionMenu.Items.Add(menuItem);
+
+                        if (el.GetAttribute("flag").Length > 0)
+                        {
+                            menuItem.Header = el.GetAttribute("flag") + "\t" + el.GetAttribute("name");
+                            menuItem.Command = new InsertItemAfterCommand(viewModel);
+                            menuItem.CommandParameter = el.GetAttribute("flag");
+                        } else
+                        {
+                            //simply show some info, but dont enable the menu
+                            menuItem.Header = el.GetAttribute("name");
+                            menuItem.IsEnabled = false;
+                        }
+                    }
                 }
             }
 

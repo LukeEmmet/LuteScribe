@@ -12,7 +12,8 @@ This document contains list of changes, buts and thoughts for the future, and to
 
 === TBD ==
 Bind to Selected items so user can delete a selection of chords (current build you can only delete one)
-https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm
+https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm. But suggests binding
+to object.IsSelected might not work for virtualised data grids...
 
  - file association for ft3 (zipped version) doesnt quite work when double clicking on file (ok for other formats)
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
@@ -22,8 +23,14 @@ https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-
 
 v1.0.2
 
+ - added Edit->Cut to allow moving chords more easily
+ - added menu Edit->Select all, to select all on current stave
+ - new command line parameter "--load-previous" to load the last opened file
+ - better indentation of different types of element under Insert menu
+ - more illustrative items under Insert menu for better discoverability
+ - remove chord (Ctrl+-) now deletes all selected items in a stave
  - commit pending edits before switching to preview
- - insert bar or blank item before current
+ - insert bar line or blank item before current as well as after
  - cursor keys commit current edit (more like a spreadsheet)
  - delete key now just clears the current cell or selected chords (more like a spreadsheet)
  - better visual style for focussed cell - slightly more prominent

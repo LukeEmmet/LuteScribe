@@ -99,6 +99,8 @@
     <Compile Include="Serialization\JtxmlLoader\JtxmlToLsml.cs" />
     <Compile Include="Serialization\LsmlLoader\TabToLsml.cs" />
     <Compile Include="Singletons\Session.cs" />
+    <Compile Include="ViewModel\Commands\CutItemsCommand.cs" />
+    <Compile Include="ViewModel\Commands\CopyItemsCommand.cs" />
     <Compile Include="ViewModel\Commands\InsertItemBeforeCommand.cs" />
     <Compile Include="ViewModel\Commands\RedoCommand.cs" />
     <Compile Include="ViewModel\Commands\UndoCommand.cs" />
@@ -178,7 +180,7 @@
   <ItemGroup>
     <Compile Include="Domain\Chord.cs" />
     <Compile Include="UtilityClasses\ISequencedObject.cs" />
-    <Compile Include="ViewModel\Commands\DeleteItemCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteItemsCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UtilityClasses\ObservableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

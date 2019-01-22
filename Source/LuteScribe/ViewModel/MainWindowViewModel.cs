@@ -85,6 +85,8 @@ namespace LuteScribe
         public ICommand NavigatePdfPage { get; set; }
         public ICommand AssociateFileExtensions { get; set; }
         public ICommand DeleteItem { get; set; }
+        public ICommand CopyItems { get; set; }
+        public ICommand CutItems { get; set; }
         public ICommand Undo { get; set; }
         public ICommand Redo { get; set; }
         public ICommand InsertItemBefore { get; set; }
@@ -339,7 +341,9 @@ namespace LuteScribe
         private void Initialize()
         {
             // Initialize commands
-            this.DeleteItem = new DeleteItemCommand(this);
+            this.DeleteItem = new DeleteItemsCommand(this);
+            this.CopyItems = new CopyItemsCommand(this);
+            this.CutItems = new CutItemsCommand(this);
             this.DeleteStaveEnd = new DeleteStaveEndCommand(this);
             this.InsertStaveBreak = new InsertStaveBreakCommand(this);
             this.InsertItemAfter = new InsertItemAfterCommand(this);

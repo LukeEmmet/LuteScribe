@@ -19,6 +19,8 @@
 
         <KeyBinding Command="{Binding Undo}" Modifiers="Ctrl" Key="Z"/>
         <KeyBinding Command="{Binding Redo}" Modifiers="Ctrl" Key="Y"/>
+        <KeyBinding Command="{Binding CutItems}" Modifiers="Ctrl" Key="X"/>
+        <KeyBinding Command="{Binding CopyItems}" Modifiers="Ctrl" Key="C"/>
         <KeyBinding Command="{Binding PasteParse}" Modifiers="Ctrl" Key="V"/>
         <!--insert blank chord before/after-->
         <KeyBinding Command="{Binding InsertItemAfter}"  Modifiers="Ctrl" Key="I"/>

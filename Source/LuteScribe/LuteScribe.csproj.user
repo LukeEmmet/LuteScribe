@@ -12,6 +12,6 @@
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>d:\desktop\test.lsml</StartArguments>
+    <StartArguments>--load-previous</StartArguments>
   </PropertyGroup>
 </Project>

@@ -1,64 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabFlags>
-  <!-- a useful list of TAB commands offered by LuteScribe -->
-  <Command flag="b" name="Bar line"/>
-  <Command flag="B" name="Strong bar line"/>
-  <Command flag="." name="Vertical dots"/>
-  <Command flag="" name="-"/>
+<!-- a useful list of TAB commands offered by LuteScribe -->
+    <Section name="Bars and breaks">
+        <Command flag="b" name="Bar line"/>
+        <Command flag="bb" name="Double bar line"/>
+        <Command flag="B" name="Strong bar line"/>
+        <Command flag="." name="Vertical dots"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="A1" name="First ending"/>
+        <Command flag="A2" name="Second ending"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="e" name="End of content"/>
 
-  <Command flag="e" name="END OF FILE"/>
-  <Command flag="" name="-"/>
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+    </Section>
 
-  <!--"Rhythm elements"-->
-  <Command flag="L" name="Longa"/>
-  <Command flag="B-" name="Breve"/>
-  <Command flag="W" name="Semibreve (whole note)"/>
-  <Command flag="w" name="Minim"/>
-  <Command flag="0" name="Crotchet"/>
-  <Command flag="1" name="Quaver (1 flag)"/>
-  <Command flag="2" name="Semiquaver (2 flags)"/>
-  <Command flag="3" name="Demisemiquaver (3 flags)"/>
-  <Command flag="4" name="Hemidemisemiquaver"/>
+    <!--Rhythm elements-->
+    <Section name="Rhythm elements">
 
-  <Command flag="" name="-"/>
+        <Command flag="L" name="Longa"/>
+        <Command flag="B-" name="Breve"/>
+        <Command flag="W" name="Whole note"/>
+        <Command flag="w" name="Half note"/>
+        <Command flag="0" name="0 flag note"/>
+        <Command flag="1" name="1 flag note"/>
+        <Command flag="2" name="2 flags"/>
+        <Command flag="3" name="3 flags"/>
+        <Command flag="4" name="4 flags"/>
+        <Command flag="5" name="5 flags"/>
 
-  <Command flag="w." name="Dotted minim"/>
-  <Command flag="0." name="Dotted crotchet"/>
-  <Command flag="1." name="Dotted quaver"/>
-  <Command flag="2." name="Dotted semiquaver"/>
+        <Command flag="" name="-"/>
 
-  <Command flag="" name="-"/>
+        <Command flag="w." name="Dotted half note"/>
+        <Command flag="0." name="Dotted 1 flag"/>
+        <Command flag="1." name="Dotted 2 flags"/>
+        <Command flag="2." name="Dotted 3 flags"/>
 
-  <Command flag="1#" name="Start a grid of quavers"/>
-  <Command flag="2#" name="Start a grid of semiquavers"/>
+        <Command flag="" name="-"/>
 
-  <!--"Time signatures"/>-->
-  <Command flag="C" name="Common time"/>
-  <Command flag="c" name="Cut time"/>
+        <Command flag="1#" name="Start a grid of 1 flag notes"/>
+        <Command flag="2#" name="Start a grid of 2 flag notes"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+        
+    </Section>
 
-  <Command flag="" name="-"/>
+    <!--Time signatures-->
+    <Section name="Time signatures">
+        <Command flag="C" name="Common time"/>
+        <Command flag="c" name="Cut time"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="S2" name="2 in a bar"/>
+        <Command flag="S3" name="3 in a bar"/>
+        
 
-  <!--Other"-->
-  <Command flag="d" name="Segno glyph"/>
-  <Command flag="[D.S}" name="Dal segno (D.S)"/>
-  <Command flag="f" name="Fin"/>
+        <Command flag="" name="-"/>
+        <Command flag="S2|" name="2 in a bar (strike through)"/>
+        <Command flag="S3|" name="3 in a bar (strike through)"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="S3-2" name="3/2 time signature"/>
+        <Command flag="S2-4" name="2/4 time signature"/>
 
-  <Command flag="" name="-"/>
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+        
+    </Section>
 
-  <!--"Flourishes"-->
-  <Command flag="q" name="Flourish (type 1)"/>
-  <Command flag="Q" name="Flourish (type 2)"/>
-  <Command flag="m" name="Flourish (Mersangeau's)"/>
+    <!--Markings and flourishes etc-->
+    <Section name="Markings and flourishes">
+    
+        <Command flag="d" name="Segno glyph"/>
+        <Command flag="[D.S}" name="Dal segno (D.S)"/>
+        <Command flag="f" name="Fin"/>
 
-  <Command flag="" name="-"/>
+        <Command flag="" name="-"/>
 
-  <!--  m = "Fermata"/>-->
+        <!--"Flourishes"-->
+        <Command flag="q" name="Flourish (type 1)"/>
+        <Command flag="Q" name="Flourish (type 2)"/>
+        <Command flag="m" name="Flourish (Mersangeau's)"/>
 
-  <Command flag="y" name="Fermata (type 1)"/>
-  <Command flag="Y" name="Fermata (type 2)"/>
-  <Command flag="yb" name="Fermata over bar (type 1)"/>
-  <Command flag="Yb" name="Fermata over bar (type 2)"/>
+        <Command flag="" name="-"/>
 
-  <Command flag="" name="-"/>
+        <!--"Fermata"/>-->
+        <Command flag="y" name="Fermata (type 1)"/>
+        <Command flag="Y" name="Fermata (type 2)"/>
+        <Command flag="yb" name="Fermata over bar (type 1)"/>
+        <Command flag="Yb" name="Fermata over bar (type 2)"/>
+
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+    </Section>
 
 </TabFlags>
