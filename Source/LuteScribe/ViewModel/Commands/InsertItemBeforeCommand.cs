@@ -76,7 +76,10 @@ namespace LuteScribe.ViewModel.Commands
             stave.Chords.Add(chord);
             chord.SequenceNumber = stave.Chords.Count;
 
-            stave.Chords.Move(stave.Chords.IndexOf(chord), stave.Chords.IndexOf(selectedChord)); 
+            if (stave.Chords.IndexOf(selectedChord) > 0)
+            {
+                stave.Chords.Move(stave.Chords.IndexOf(chord), stave.Chords.IndexOf(selectedChord));
+            }
 
             if (parameter != null)
             {

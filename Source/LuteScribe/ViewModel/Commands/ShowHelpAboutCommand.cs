@@ -70,7 +70,7 @@ namespace LuteScribe.ViewModel.Commands
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
 
-            var message = "LuteScribe v" + version + ", copyright Luke Emmet 2017-2018\n";
+            var message = "LuteScribe v" + version + ", copyright Luke Emmet 2017-2019\n";
                     
             MessageBox.Show(message);
             

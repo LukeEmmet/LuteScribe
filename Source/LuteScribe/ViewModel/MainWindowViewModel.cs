@@ -94,6 +94,7 @@ namespace LuteScribe
         public ICommand PasteParse { get; set; }
 
         public ICommand DeleteStaveEnd { get; set; }
+        public ICommand DeleteStave { get; set; }
         public ICommand InsertStaveBreak { get; set; }
 
         public ICommand Reflow { get; set; }
@@ -345,6 +346,7 @@ namespace LuteScribe
             this.CopyItems = new CopyItemsCommand(this);
             this.CutItems = new CutItemsCommand(this);
             this.DeleteStaveEnd = new DeleteStaveEndCommand(this);
+            this.DeleteStave = new DeleteStaveCommand(this);
             this.InsertStaveBreak = new InsertStaveBreakCommand(this);
             this.InsertItemAfter = new InsertItemAfterCommand(this);
             this.InsertItemBefore = new InsertItemBeforeCommand(this);

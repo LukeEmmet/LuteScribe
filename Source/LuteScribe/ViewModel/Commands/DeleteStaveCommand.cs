@@ -27,13 +27,13 @@ using System.Windows.Input;
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class DeleteItemsCommand : ICommand
+    public class DeleteStaveCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public DeleteItemsCommand(MainWindowViewModel viewModel)
+        public DeleteStaveCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -43,7 +43,7 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            return (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem != null);
+            return (_viewModel.TabModel?.ActivePiece.SelectedItem != null);
 
         }
 
@@ -61,40 +61,16 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public void Execute(object parameter)
         {
-            if (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem == null) { return; }
+            if (_viewModel.TabModel?.ActivePiece.SelectedItem == null) { return; }
 
             var stave = _viewModel.TabModel.ActivePiece.SelectedItem;
-            var selectedChord = stave.SelectedItem;
-            var removeIndex = stave.Chords.IndexOf(selectedChord);
 
-            var lowestIndex = removeIndex;
+            //record undo snapshot
+            _viewModel.RecordUndoSnapshot();
 
-            //record undo at the stave level
-            _viewModel.RecordUndoSnapshotStave();
+            //remove the active stave
+            _viewModel.TabModel.ActivePiece.Staves.Remove(stave);
 
-            //there might be a range of chords selected - delete them all.
-            while (stave.SelectedItems.Count > 0) {
-                var chord = stave.SelectedItems[0];
-
-                if (stave.Chords.Contains(chord)) {
-                    var curIndex = stave.Chords.IndexOf(chord);
-                    lowestIndex = curIndex < lowestIndex ? curIndex : lowestIndex;
-
-                    chord.IsSelected = false;
-                    stave.Chords.Remove(chord);
-                    chord = null;
-                }
-
-                if (stave.SelectedItems.Count == 0 || stave.Chords.Count == 0) { break; }
-            }
-
-            if ((stave.Chords.Count > 0 ) && (1 + lowestIndex < stave.Chords.Count))
-            {
-                //select the lowest index from the selection as the newly selected chord
-                stave.SelectedItem = stave.Chords[lowestIndex];
-
-            }
-            
 
         }
 

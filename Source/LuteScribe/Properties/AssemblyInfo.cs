@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LuteScribe")]
-[assembly: AssemblyCopyright("Copyright ©  2017-2018")]
+[assembly: AssemblyCopyright("Copyright ©  2017-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

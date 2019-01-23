@@ -63,12 +63,15 @@
         
         <MenuItem Header="_Stave">
             <MenuItem Header="_Insert stave break" Command="{Binding InsertStaveBreak}" InputGestureText="Ctrl+Shift+I" />
-            <MenuItem Header="_Delete stave end" Command="{Binding DeleteStaveEnd}" InputGestureText="Ctrl+Shift+E" />
+            <MenuItem Header="_Join with next stave" Command="{Binding DeleteStaveEnd}" InputGestureText="Ctrl+Shift+E" />
 
             <MenuItem Header="_Insert new stave">
                 <MenuItem Header="_Before current" Command="{Binding NewStave}" CommandParameter="-1"  />
                 <MenuItem Header="_After current" Command="{Binding NewStave}" CommandParameter="1"  />
             </MenuItem>
+            
+            <Separator/>
+            <MenuItem Header="_Delete stave" Command="{Binding DeleteStave}"/>
 
         </MenuItem>
         <MenuItem Header="_Tools">

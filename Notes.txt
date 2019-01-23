@@ -23,6 +23,7 @@ to object.IsSelected might not work for virtualised data grids...
 
 v1.0.2
 
+ - new command to delete the current Stave
  - added Edit->Cut to allow moving chords more easily
  - added menu Edit->Select all, to select all on current stave
  - new command line parameter "--load-previous" to load the last opened file

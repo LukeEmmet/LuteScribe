@@ -101,6 +101,7 @@
     <Compile Include="Singletons\Session.cs" />
     <Compile Include="ViewModel\Commands\CutItemsCommand.cs" />
     <Compile Include="ViewModel\Commands\CopyItemsCommand.cs" />
+    <Compile Include="ViewModel\Commands\DeleteStaveCommand.cs" />
     <Compile Include="ViewModel\Commands\InsertItemBeforeCommand.cs" />
     <Compile Include="ViewModel\Commands\RedoCommand.cs" />
     <Compile Include="ViewModel\Commands\UndoCommand.cs" />

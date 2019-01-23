@@ -28,48 +28,48 @@ namespace LuteScribe
 
             if (e.Args.Length == 1) 
             {
-                var path = e.Args[0];
+                var firstArg = e.Args[0];
+                var loadPath = "";  //default is unset or invalid path which we wont try to load.
 
                 //aids debugging - load sample data if it exists
-                if (e.Args[0] == "--load-previous")
+                if (firstArg == "--load-previous")
                 {
                     //option to try to load the most recently opened file
-
+                    
                     var settings = new Settings();
-                    var lastPath = settings.RecentFiles[0];
-
-
-                    //load sample data
-                    if (File.Exists(lastPath))
+                    if (settings.RecentFiles.Count > 0)
                     {
-                        path = lastPath;
-                    } else
-                    {
-                        path = "";  //unset or invalid last path so don't try to load it.
+                        var lastPath = settings.RecentFiles[0];
+
+                        //load previous data
+                        if (File.Exists(lastPath))
+                        {
+                            loadPath = lastPath;
+                        }
                     }
-
+                    
                 } else
                 {
                     //path to load will be the one passed on command line
-                    path = e.Args[0];
+                    loadPath = firstArg;
                 }
 
-                if (path.Length > 0)
+                if (loadPath.Length > 0)
                 {
-                    if (!File.Exists(path))
+                    if (!File.Exists(loadPath))
                     {
-                        MessageBox.Show("Error - passed path does not exist" + path);
+                        MessageBox.Show("Error - passed path does not exist" + loadPath);
                     }
                     else
                     {
 
                         try
                         {
-                            viewModel.OpenFile.Execute(path);
+                            viewModel.OpenFile.Execute(loadPath);
                         }
                         catch (Exception err)
                         {
-                            MessageBox.Show(string.Format("Cannot open {0}, reason: {1}", path, err.Message));
+                            MessageBox.Show(string.Format("Cannot open {0}, reason: {1}", loadPath, err.Message));
                         }
                     }
                 }
