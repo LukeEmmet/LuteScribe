@@ -43,7 +43,17 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            return (_viewModel.TabModel?.ActivePiece.SelectedItem != null);
+            if (_viewModel.TabModel?.ActivePiece.SelectedItem != null)
+            {
+                var piece = _viewModel.TabModel.ActivePiece;
+
+                //can only delete stave if there is more than one (cannot delete last one)
+                return (piece.Staves.Count > 1);
+            } else
+            {
+                //no active stave
+                return false;
+            }
 
         }
 

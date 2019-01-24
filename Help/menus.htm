@@ -32,10 +32,10 @@
 			<dd>Saves the current content to a new location.</dd>
 			<dt>Export</dt>
 			<dd>Export as PDF - creates a PDF file within the same folder as the 
-			current tabulature file. Note that some PDF viewers such as Adobe 
+			current tabulature file. <br><em>Note that some PDF viewers such as Adobe 
 			Acrobat lock the PDF file being viewed, in which case LuteScribe 
 			cannot overwrite the file. If it this occurs, simply close the file 
-			in Acrobat and then you can resave the PDF from LuteScribe</dd>
+			in Acrobat and then you can resave the PDF from LuteScribe</em></dd>
 			<dt>Print preview</dt>
 			<dd>Previews the current piece (shown in the third tab). 
 			See <a href="printing-save-pdf.htm">preview, printing and saving PDF</a> 
@@ -53,22 +53,23 @@
 			<dd>Reverts back to a recent snapshot of the content, created when 
 			running a menu command, paste, delete items.</dd>
 			<dt>Redo</dt>
-			<dd>Undoes the most recent undo</dd>
+			<dd>Reverts the most recent undo.</dd>
 			<dt>Cut</dt>
-			<dd><i>&lt;Not currently implemented - can be achieved by copying the 
-			content using Copy then deleting the original content&gt;</i></dd>
+			<dd>Moves the content onto the clipboard for pasting.</dd>
 			<dt>Copy</dt>
 			<dd>Copies the currently selected chords onto the clipboard. </dd>
 			<dt>Paste</dt>
 			<dd>Paste the content of the clipboard before the currently selected 
 			chord.</dd>
+			<dt>Select all</dt>
+			<dd>Selects all the chords on the current stave.</dd>
 		</dl>
 		<h3>Chord</h3>
 		<dl>
 			<dt>Insert blank chord</dt>
-			<dd>Inserts an empty chord after the current selection.</dd>
+			<dd>Inserts an empty chord before or after the current selection</dd>
 			<dt>Insert bar line</dt>
-			<dd>Inserts a simple bar line after the current selection. An empty 
+			<dd>Inserts a simple bar line before or after the current selection. An empty 
 			chord can also be converted to a bar line by setting its flag to &quot;b&quot; 
 			or &quot;B&quot;</dd>
 			<dt>Delete chord</dt>
@@ -87,13 +88,16 @@
 			<dt>Insert stave break</dt>
 			<dd>Inserts a new stave after the current selection. This new stave 
 			will contain any chords after the selection.</dd>
-			<dt>Delete stave end</dt>
+			<dt>Join with next stave</dt>
 			<dd>Deletes the end of the current stave. As a result any chords on 
 			the following stave will be added to the end of the currently 
 			selected stave.</dd>
 			<dt>Insert new stave </dt>
 			<dd>Inserts an empty stave before or after the currently selected 
 			stave.</dd>
+			<dt>Delete stave</dt>
+			<dd>Deletes the currently selected stave. You cannot delete the last remaining 
+                    stave in a piece - there must be at least one.</dd>
 		</dl>
 		<h3><a name="tools"></a>Tools</h3>
 		<dl>

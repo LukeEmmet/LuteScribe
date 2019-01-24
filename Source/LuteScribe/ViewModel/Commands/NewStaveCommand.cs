@@ -44,7 +44,7 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            return (_viewModel.TabModel?.ActivePiece.SelectedItem?.SelectedItem != null);
+            return (_viewModel.TabModel?.ActivePiece.SelectedItem != null);
             //return true;
         }
 
@@ -63,7 +63,7 @@ namespace LuteScribe.ViewModel.Commands
         public void Execute(object parameter)
         {
 
-            if (_viewModel.TabModel.ActivePiece.SelectedItem?.SelectedItem == null) { return; }
+            if (_viewModel.TabModel.ActivePiece.SelectedItem == null) { return; }
 
             var selectedStave = _viewModel.TabModel.ActivePiece.SelectedItem;
             var staves = _viewModel.TabModel.ActivePiece.Staves;

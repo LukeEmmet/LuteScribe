@@ -6,7 +6,7 @@ cannot parse: multi-piece FT3
 
 === General ===
 
-This document contains list of changes, buts and thoughts for the future, and todo list
+This document contains list of changes, bugs and thoughts for the future, and todo list
 
 === bugs to fix soon ===
 
@@ -23,6 +23,7 @@ to object.IsSelected might not work for virtualised data grids...
 
 v1.0.2
 
+ - can only now delete all but the last stave in a piece
  - new command to delete the current Stave
  - added Edit->Cut to allow moving chords more easily
  - added menu Edit->Select all, to select all on current stave
