@@ -22,6 +22,8 @@
 
 using LuteScribe.Domain;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -36,22 +38,36 @@ namespace LuteScribe.Serialization
     }
     public static class TabSerialisation
     {
-        public static string GenerateTab(Piece piece, PrettyOptions prettyOptions, bool prettify)
+        public static string GenerateTab(ObservableCollection<Header> headers, List<Header> extraHeaders, PrettyOptions prettyOptions, bool prettify)
         {
-            var builder = new StringBuilder();
-            var hasFlourish = false;
-            var totalLength = 0;
-            var lastStavePad = 35;  //default when there is only one stave
 
+            var builder = new StringBuilder();
+
+            //emit normal headers
+            builder.Append(GenerateTab(headers, prettyOptions, prettify));
+
+            //emit extra headers
+            foreach (var header in extraHeaders)
+            {
+                builder.Append(header.Content.ToString());
+                builder.Append("\n");
+            }
+
+            return builder.ToString();
+
+        }
+
+        public static string GenerateTab(ObservableCollection<Header> headers, PrettyOptions prettyOptions, bool prettify)
+        {
+
+            var builder = new StringBuilder();
             var flagStyleSet = false;
             var charStyleSet = false;
-            
-            var staves = piece.Staves;
 
             //determine if the piece already has explicit flag or char styles in which case we 
             //don't overrule them below
-            flagStyleSet = HeaderFlagStyleSet(piece);
-            charStyleSet = HeaderCharStyleSet(piece);
+            flagStyleSet = HeaderFlagStyleSet(headers);
+            charStyleSet = HeaderCharStyleSet(headers);
 
             //output new defaults before piece headers.
             if (prettify)
@@ -60,13 +76,41 @@ namespace LuteScribe.Serialization
                 if (!charStyleSet) { builder.Append("$charstyle=" + prettyOptions.CharStyle + "\n"); }
             }
 
-            foreach (var header in piece.Headers)
+            foreach (var header in headers)
             {
                 builder.Append(header.Content);
                 builder.Append("\n");       //output unix/mac style new lines - most samples in this format. TAB accepts both unix and win style
 
             }
+
+
+            return builder.ToString();
+        }
+
+        public static string GenerateTab(Piece piece, PrettyOptions prettyOptions, bool prettify)
+        {
+            var builder = new StringBuilder();
+
+            //standard headers
+            builder.Append(GenerateTab(piece.Headers, prettyOptions, prettify));
+
+            builder.Append("\n");
+
+            //generate body
+            builder.Append(GenerateTab(piece.Staves, prettyOptions, prettify));
+
+            return builder.ToString();
+        }
+        public static string GenerateTab(ObservableCollection<Stave> staves, PrettyOptions prettyOptions, bool prettify)
+        {
+            var builder = new StringBuilder();
+            var hasFlourish = false;
+            var totalLength = 0;
+            var lastStavePad = 35;  //default when there is only one stave
+
             
+
+
             if (prettify)
             {
                 if (staves.Count > 1)
@@ -83,10 +127,6 @@ namespace LuteScribe.Serialization
                 }
 
             }
-
-            //end of headers
-            builder.Append("\n");
-            
 
             foreach (var stave in staves)
             {
@@ -157,10 +197,10 @@ namespace LuteScribe.Serialization
             return builder.ToString();
         }
 
-        private static bool HeaderCharStyleSet(Piece piece)
+        private static bool HeaderCharStyleSet(ObservableCollection<Header> headers)
         {
             var result = false;
-            foreach (var header in piece.Headers)
+            foreach (var header in headers)
             {
                 switch (header.Content) {
                     case "-b":
@@ -200,10 +240,10 @@ namespace LuteScribe.Serialization
             return result;
         }
 
-        private static bool HeaderFlagStyleSet(Piece piece)
+        private static bool HeaderFlagStyleSet(ObservableCollection<Header> headers)
         {
             var result = false;
-            foreach (var header in piece.Headers)
+            foreach (var header in headers)
             {
                 switch (header.Content)
                 {

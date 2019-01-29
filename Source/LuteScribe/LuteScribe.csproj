@@ -104,6 +104,7 @@
     <Compile Include="ViewModel\Commands\DeleteStaveCommand.cs" />
     <Compile Include="ViewModel\Commands\InsertItemBeforeCommand.cs" />
     <Compile Include="ViewModel\Commands\RedoCommand.cs" />
+    <Compile Include="ViewModel\Commands\PlayPieceCommand.cs" />
     <Compile Include="ViewModel\Commands\UndoCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigateSectionCommand.cs" />
     <Compile Include="ViewModel\Commands\AssociateFileExtensionsCommand.cs" />

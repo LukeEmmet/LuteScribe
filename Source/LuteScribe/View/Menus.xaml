@@ -81,6 +81,12 @@
                 <MenuItem Header="#N style" Command="{Binding GridStyleSwitcher}" CommandParameter="#N" />
             </MenuItem>
             <MenuItem Header="_Remove comments from staves" Command="{Binding StripComments}" />
+            <MenuItem Header="_Play piece with">
+                <MenuItem Header="_Nylon guitar " Command="{Binding PlayPiece}" CommandParameter="024"/>
+                <MenuItem Header="_Acoustic guitar " Command="{Binding PlayPiece}" CommandParameter="025"/>
+                <MenuItem Header="_Harpsichord " Command="{Binding PlayPiece}" CommandParameter="006"/>
+                <MenuItem Header="_Piano " Command="{Binding PlayPiece}" CommandParameter="001"/>
+            </MenuItem>
         </MenuItem>
 
         <MenuItem Header="_Section"  Visibility="{Binding Path=HasMultipleSections, Converter={StaticResource BoolToVisibilityConverter}}" >

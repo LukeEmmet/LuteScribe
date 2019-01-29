@@ -103,6 +103,7 @@ namespace LuteScribe
         public ICommand NewStave { get; set; }
         public ICommand StripComments { get; set; }
         public ICommand GridStyleSwitcher { get; set; }
+        public ICommand PlayPiece { get; set; }
 
         public ICommand ShowHelp { get; set; }
         public ICommand ShowHelpAbout { get; set; }
@@ -342,14 +343,8 @@ namespace LuteScribe
         private void Initialize()
         {
             // Initialize commands
-            this.DeleteItem = new DeleteItemsCommand(this);
-            this.CopyItems = new CopyItemsCommand(this);
-            this.CutItems = new CutItemsCommand(this);
-            this.DeleteStaveEnd = new DeleteStaveEndCommand(this);
-            this.DeleteStave = new DeleteStaveCommand(this);
-            this.InsertStaveBreak = new InsertStaveBreakCommand(this);
-            this.InsertItemAfter = new InsertItemAfterCommand(this);
-            this.InsertItemBefore = new InsertItemBeforeCommand(this);
+            //on file Menu
+            this.NewFile = new NewFileCommand(this);
             this.SaveFile = new SaveFileCommand(this);
             this.SaveXml = new SaveXmlCommand(this);
             this.SaveTabPiece = new SaveTabPieceCommand(this);
@@ -365,22 +360,43 @@ namespace LuteScribe
             this.NavigatePdfPage = new NavigatePdfPageCommand(this);
             this.NavigateSection = new NavigateSectionCommand(this);
             this.PrintPdf = new PrintPdfCommand(this);
-            this.Reflow = new ReflowCommand(this);
-            this.NewFile = new NewFileCommand(this);
-            this.ShiftStaveFocus = new ShiftStaveFocusCommand(this);
+            this.RevertFile = new RevertFileCommand(this);
+            this.PdfViewerNavigate = new PdfViewerNavigate(this);
+            this.ApplicationQuit = new ApplicationQuitCommand(this);
+
+            //on edit menu
+            this.DeleteItem = new DeleteItemsCommand(this);
+            this.CopyItems = new CopyItemsCommand(this);
+            this.CutItems = new CutItemsCommand(this);
             this.Undo = new UndoCommand(this);
             this.Redo = new RedoCommand(this);
             this.PasteParse = new PasteCommand(this);
-            this.ApplicationQuit = new ApplicationQuitCommand(this);
-            this.AssociateFileExtensions = new AssociateFileExtensionsCommand(this);
+
+            //on stave menu
+            this.DeleteStaveEnd = new DeleteStaveEndCommand(this);
+            this.DeleteStave = new DeleteStaveCommand(this);
+            this.InsertStaveBreak = new InsertStaveBreakCommand(this);
+            this.InsertItemAfter = new InsertItemAfterCommand(this);
+            this.InsertItemBefore = new InsertItemBeforeCommand(this);
             this.NewStave = new NewStaveCommand(this);
-            this.RevertFile = new RevertFileCommand(this);
+
+            //on tools menu
+            this.Reflow = new ReflowCommand(this);
             this.StripComments = new StripCommentsCommand(this);
             this.GridStyleSwitcher = new GridStyleSwitcherCommand(this);
+            this.PlayPiece = new PlayPieceCommand(this);
+
+            //on help menu
             this.ShowHelp = new ShowHelpCommand(this);
             this.ShowHelpAbout = new ShowHelpAboutCommand(this);
+
+            //on options tab
+            this.AssociateFileExtensions = new AssociateFileExtensionsCommand(this);
+
+
+            //misc/other commands
             this.LaunchFile = new LaunchFileCommand(this);
-            this.PdfViewerNavigate = new PdfViewerNavigate(this);
+            this.ShiftStaveFocus = new ShiftStaveFocusCommand(this);
 
             var MenuLoader = new TabFlagMenus(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\TabFlags.xml", this);
 

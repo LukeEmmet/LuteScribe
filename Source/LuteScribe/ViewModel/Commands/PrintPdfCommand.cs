@@ -81,7 +81,8 @@ namespace LuteScribe.ViewModel.Commands
             }
 
             var fileName = (_viewModel.Path != null) ? Path.GetFileNameWithoutExtension(_viewModel.Path) : "blank";
-            var previewPath = Session.Instance.SessionPath + "\\" + fileName + ".pdf";
+            var previewPath = Path.Combine(Session.Instance.SessionPath, 
+                                            fileName + ".pdf");
 
             pdfCreator.Execute(previewPath);
             navigator.Execute(previewPath);
@@ -94,6 +95,7 @@ namespace LuteScribe.ViewModel.Commands
 
             //assumes no lock is held on previous pdf file (acrobat will lock it, but we use moonpdf)
             var exec = new ExecuteProcess();
+            
             var result = exec.ExecuteCommand(gsCommand);
 
 

@@ -77,9 +77,12 @@ namespace LuteScribe.Singletons
 
         private void DestroySessionFolder()
         {
-            //assumes the pdf previwer does not retain a lock on any files therein
+            //assumes the any file viewers do not retain a lock on any files therein
             //(for example acrobat will, but we use moonpdf)
             GC.Collect();
+
+            //**TBD would be nice to handle this gracefully by marking
+            //any files or folder for deletion on reboot...
             Directory.Delete(_sessionPath, true);
 
         }
