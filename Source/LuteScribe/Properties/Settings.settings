@@ -21,5 +21,11 @@
     <Setting Name="CharStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">robinson</Value>
     </Setting>
+    <Setting Name="PlaybackPatch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">025</Value>
+    </Setting>
+    <Setting Name="PlaybackSpeed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Faster</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

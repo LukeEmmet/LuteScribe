@@ -43,6 +43,44 @@ namespace LuteScribe.Serialization.Commandline
             }
         }
 
+
+        public Tuple<int, string, string> ExecuteCommand(string fileName, bool captureStdOut, bool captureStdErr)
+        {
+            // Start the child process.
+            Process p = new Process();
+            // Redirect the output stream of the child process.
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = captureStdOut;
+            p.StartInfo.RedirectStandardError = captureStdErr;
+            p.StartInfo.FileName = fileName;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            p.Start();
+            // Do not wait for the child process to exit before
+            // reading to the end of its redirected stream.
+            // p.WaitForExit();
+            // Read the output stream first and then wait.
+            p.WaitForExit();
+
+            string stdErr = "";
+            string stdOut = "";
+            if (captureStdErr)
+            {
+                stdErr = p.StandardError.ReadToEnd();
+            }
+            if (captureStdOut)
+            {
+                stdOut = p.StandardOutput.ReadToEnd();
+            }
+
+            //string errors = p.StandardError.ReadToEnd();
+            int exitCode = p.ExitCode;
+
+
+            return new Tuple<int, string, string>(exitCode, stdOut, stdErr);
+
+
+        }
         /// <summary>
         /// Execute Command line and return results as a tuple: (exitCode,stdout,stderr)
         /// based on https://msdn.microsoft.com/en-us/library/system.diagnostics.process.standardoutput.aspx

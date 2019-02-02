@@ -23,6 +23,7 @@ to object.IsSelected might not work for virtualised data grids...
 
 v1.0.2
 
+ - added option to play piece using midi (default speed 1.5)
  - can only now delete all but the last stave in a piece
  - new command to delete the current Stave
  - added Edit->Cut to allow moving chords more easily

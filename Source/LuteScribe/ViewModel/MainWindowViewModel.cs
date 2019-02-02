@@ -311,17 +311,47 @@ namespace LuteScribe
             }
         }
 
-        public string FlagStyle {
-            get {
+        public string FlagStyle
+        {
+            get
+            {
                 return _settings.FlagStyle;
             }
-            internal set {
+            internal set
+            {
                 _settings.FlagStyle = value;
                 _settings.Save();
                 base.RaisePropertyChangedEvent("FlagStyle");
             }
         }
 
+        public string PlaybackPatch
+        {
+            get
+            {
+                return _settings.PlaybackPatch;
+            }
+            internal set
+            {
+                _settings.PlaybackPatch = value;
+                _settings.Save();
+                base.RaisePropertyChangedEvent("PlaybackPatch");
+            }
+        }
+
+        public string PlaybackSpeed
+        {
+            get
+            {
+                return _settings.PlaybackSpeed;
+            }
+            internal set
+            {
+                _settings.PlaybackSpeed = value;
+                _settings.Save();
+                base.RaisePropertyChangedEvent("PlaybackSpeed");
+            }
+        }
         public string CharStyle
         {
             get

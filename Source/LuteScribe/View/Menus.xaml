@@ -81,11 +81,14 @@
                 <MenuItem Header="#N style" Command="{Binding GridStyleSwitcher}" CommandParameter="#N" />
             </MenuItem>
             <MenuItem Header="_Remove comments from staves" Command="{Binding StripComments}" />
-            <MenuItem Header="_Play piece with">
-                <MenuItem Header="_Nylon guitar " Command="{Binding PlayPiece}" CommandParameter="024"/>
-                <MenuItem Header="_Acoustic guitar " Command="{Binding PlayPiece}" CommandParameter="025"/>
-                <MenuItem Header="_Harpsichord " Command="{Binding PlayPiece}" CommandParameter="006"/>
-                <MenuItem Header="_Piano " Command="{Binding PlayPiece}" CommandParameter="001"/>
+            
+            <Separator/>
+            <MenuItem Header="_Play piece" Command="{Binding PlayPiece}" InputGestureText="F5"/>
+            <MenuItem Header="_Play at tempo">
+                <MenuItem Header="_Slower" Command="{Binding PlayPiece}" CommandParameter="Slower"/>
+                <MenuItem Header="_Normal" Command="{Binding PlayPiece}" CommandParameter="Normal"/>
+                <MenuItem Header="_Faster" Command="{Binding PlayPiece}" CommandParameter="Faster"/>
+                <MenuItem Header="_2 x faster" Command="{Binding PlayPiece}" CommandParameter="2 x faster"/>
             </MenuItem>
         </MenuItem>
 

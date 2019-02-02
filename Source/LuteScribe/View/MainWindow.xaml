@@ -32,9 +32,11 @@
         
         <KeyBinding Command="{Binding DeleteStaveEnd}" Modifiers="Ctrl+Shift" Key="E"/>
         <KeyBinding Command="{Binding InsertStaveBreak}" Modifiers="Ctrl+Shift" Key="I"/>
-        
+
+
         <KeyBinding Command="{Binding Reflow}" Modifiers="Ctrl+Shift" Key="R"/>
-        
+        <KeyBinding Command="{Binding PlayPiece}"  Key="F5"/>
+
         <KeyBinding Command="{Binding ShowHelp}"  Key="F1"/>
         
         
@@ -465,6 +467,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
@@ -498,9 +502,25 @@
                         <ComboBoxItem>standard</ComboBoxItem>
                         <ComboBoxItem>robinson</ComboBoxItem>
                     </ComboBox>
+
+                    <Label Grid.Row="5" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default playback instrument</Label>
+                    <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" Padding="5" Width="100" Name="PlaybackPatch" Text="{Binding PlaybackPatch}" HorizontalAlignment="Left">
+                        <ComboBoxItem>Piano</ComboBoxItem>
+                        <ComboBoxItem>Harpsichord</ComboBoxItem>
+                        <ComboBoxItem>Nylon guitar</ComboBoxItem>
+                        <ComboBoxItem>Acoustic guitar</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label Grid.Row="6" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default playback speed</Label>
+                    <ComboBox Grid.Row="6" Grid.Column="1" Margin="3" Padding="5" Width="100" Name="PlaybackSpeed" Text="{Binding PlaybackSpeed}" HorizontalAlignment="Left">
+                        <ComboBoxItem>Slower</ComboBoxItem>
+                        <ComboBoxItem>Normal</ComboBoxItem>
+                        <ComboBoxItem>Faster</ComboBoxItem>
+                        <ComboBoxItem>2 x faster</ComboBoxItem>
+                    </ComboBox>
                     
-                    <CheckBox Grid.Row="5" Name="ShowDebugLog" Content="Show debug log:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding DebugLog.Messages}"  
+                    <CheckBox Grid.Row="7" Name="ShowDebugLog" Content="Show debug log:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding DebugLog.Messages}"  
                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
                              ScrollViewer.VerticalScrollBarVisibility="Auto" 
                              IsReadOnly="True" Margin="0,0,0,114" Grid.RowSpan="2"

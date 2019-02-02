@@ -30,6 +30,7 @@ using LuteScribe.Domain;
 using LuteScribe.Serialization.Commandline;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -63,6 +64,57 @@ namespace LuteScribe.ViewModel.Commands
         }
 
        
+        private string LookUpPatch(string patchName)
+        {
+            var patch = "001";  //default
+
+            switch (patchName.ToLower())
+            {
+
+                case "piano":
+                    patch = "001";
+                    break;
+                case "harpsichord":
+                    patch = "006";
+                    break;
+                case "nylon guitar":
+                    patch = "024";
+                    break;
+                case "acoustic guitar":
+                    patch = "025";
+                    break;
+                default:
+                    patch = "024";
+                    break;
+            }
+
+            return patch;
+        }
+
+        private string LookUpTempo(string tempoName)
+        {
+            var speed = "1.5";  //default
+            switch (tempoName.ToLower())
+            {
+                case "slower":
+                    speed = "0.75";
+                    break;
+                case "normal":
+                    speed = "1";
+                    break;
+                case "faster":
+                    speed = "1.5";
+                    break;
+                case "2 x faster":
+                    speed = "2";
+                    break;
+                default:
+                    speed = "1.5";
+                    break;
+            }
+
+            return speed;
+        }
         public void Execute(object parameter)
         {
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
@@ -72,8 +124,15 @@ namespace LuteScribe.ViewModel.Commands
             var findErrors = "tab 4\\.3\\.89 copyright 1995-2010 by Wayne Cripps(\\r\\n.+)";
 
             var guid = Guid.NewGuid();
+            
+            var patch = LookUpPatch(_viewModel.PlaybackPatch);
 
-            var patch = (string)parameter;
+            //if no explicit speed passed in, use the user default preference
+            var speed = (string)parameter;
+            speed = LookUpTempo(speed != null ? speed : _viewModel.PlaybackSpeed);
+   
+            var headers = _viewModel.TabModel.ActivePiece.Headers;
+            var staves = _viewModel.TabModel.ActivePiece.Staves;
 
             SimpleLogger.Instance.Log("Saving MIDI of current piece");
 
@@ -83,10 +142,20 @@ namespace LuteScribe.ViewModel.Commands
             //extra headers so we can control midi patch of output
             var extraHeaders = new List<Header>();
 
+            //set the midi patch to be used, as passed in
             extraHeaders.Add(new Header("$midi-patch=" + patch));
 
-            var headerContent = TabSerialisation.GenerateTab(_viewModel.TabModel.ActivePiece.Headers, extraHeaders, options, false);     //serialise active piece only
-            var bodyContent = TabSerialisation.GenerateTab(_viewModel.TabModel.ActivePiece.Staves, options, false);     //serialise active piece only
+            //if no existing tempo setting provide one (otherwise TAB plays it too fast with 
+            //default tempo being 2)
+            var tempoCount = (from header in headers where header.Content.StartsWith("$tempo=") select header).Count();
+            if (tempoCount < 1)
+            {
+                extraHeaders.Add(new Header("$tempo=" + speed));
+            }
+            
+
+            var headerContent = TabSerialisation.GenerateTab(headers, extraHeaders, options, false);     //serialise active piece only
+            var bodyContent = TabSerialisation.GenerateTab(staves, options, false);     //serialise active piece only
 
             var tabFile = Path.Combine(Session.Instance.SessionPath, "temp.tab");
             var midiFile = Path.Combine(Session.Instance.SessionPath, guid.ToString() +  ".mid");
@@ -120,14 +189,34 @@ namespace LuteScribe.ViewModel.Commands
             }
             else
             {
-                //MessageBox.Show("Midi file created: " + midiFile);
 
-                //launch the file (generally would start Windows Media player app)
-                var launch = new LaunchFileCommand(_viewModel);
-                launch.Execute(midiFile);
+                var wildMidi = "..\\..\\..\\Utils\\WildMidi\\wildmidi-static.exe";
+                var config = "..\\..\\..\\Utils\\WildMidi\\Patches\\Freepats\\LuteScribe.cfg";
+
+                var midiPlayer = Path.GetFullPath(Path.Combine(appDir, wildMidi));
+                var configPath = Path.GetFullPath(Path.Combine(appDir, config));
+                var waveOut = Path.GetFullPath(Path.Combine(Session.Instance.SessionPath, guid.ToString() + ".wav"));
+
+                //buid command line to convert midi to wav using wildMidi
+                var midiLaunch = String.Format("\"{0}\" -c \"{1}\" -o \"{2}\" -b \"{3}\"", midiPlayer, configPath, waveOut, midiFile);
+
+                //run command -avoiding grabbing output as
+                //it is not useful, and causes exexCommand to otherwise hang
+                exec = new ExecuteProcess();
+                result = exec.ExecuteCommand(midiLaunch, false, false);
+
+                //launch in media player...
+                LaunchWindowsMP(waveOut);
+
             }
 
         }
 
+        private void LaunchWindowsMP(string midiFile)
+        {
+            //launch the file (generally would start Windows Media player app)
+            var launch = new LaunchFileCommand(_viewModel);
+            launch.Execute(midiFile);
+        }
     }
 }
