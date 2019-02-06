@@ -60,7 +60,6 @@ namespace LuteScribe.Serialization.Commandline
             // reading to the end of its redirected stream.
             // p.WaitForExit();
             // Read the output stream first and then wait.
-            p.WaitForExit();
 
             string stdErr = "";
             string stdOut = "";
@@ -72,6 +71,8 @@ namespace LuteScribe.Serialization.Commandline
             {
                 stdOut = p.StandardOutput.ReadToEnd();
             }
+
+            p.WaitForExit();
 
             //string errors = p.StandardError.ReadToEnd();
             int exitCode = p.ExitCode;
@@ -107,7 +108,7 @@ namespace LuteScribe.Serialization.Commandline
             string errors = p.StandardError.ReadToEnd();
             int exitCode = p.ExitCode;
 
-           
+
             LogCommand(fileName);
             LogCommand("exit code: " + exitCode);
             LogCommand("errors: " + errors);
@@ -139,8 +140,46 @@ namespace LuteScribe.Serialization.Commandline
 
         public Tuple<int, string, string> LoggedExecute(string command)
         {
-            return LoggedExecute(command, true, true);
+            var exec = new ExecuteProcess();
+
+            var log = SimpleLogger.Instance;
+
+            log.Log(command);
+
+            var result = ExecuteCommand(command);
+
+            var output = result.Item2;
+            var errors = result.Item3;
+            var returnCode = result.Item1;
+
+            if (returnCode != 0)
+            {
+                log.Log("  return code: " + result.Item1);
+            }
+            else
+            {
+                log.Log("  result: success.");
+            }
+
+            if (errors.Length > 0)
+            {
+                string truncatedErrors = new string(errors.Take(200).ToArray());
+                log.Log("  errors (first 100 chars): " + truncatedErrors + "...");
+            }
+
+
+            if (output.Length > 0)
+            {
+                string truncatedOut = new string(output.Take(200).ToArray());
+                log.Log("  output (first 100 chars): " + truncatedOut + "...");
+            }
+
+            log.Log("\n");
+            return result;
+
         }
+
+    
 
         public Tuple<int, string, string> LoggedExecute(string command, bool captureStdOut, bool captureStdErr)
         { 

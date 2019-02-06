@@ -21,6 +21,7 @@
 //===================================================
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
@@ -44,6 +45,41 @@ namespace LuteScribe.Domain
             }
 
         }
+
+        public void SanitiseModel()
+        {
+            var deletePieces = new List<Piece>();
+
+            foreach (var piece in this.Pieces)
+            {
+                if (piece.Staves.Count == 0)
+                {
+                    //remove this empty piece
+                    deletePieces.Add(piece);
+                }
+                else
+                {
+                    var deleteStaves = new List<Stave>();
+                    foreach (var stave in piece.Staves)
+                    {
+                        if (stave.Chords.Count == 0)
+                        {
+                            //remove this empty stave
+                            deleteStaves.Add(stave);
+                        }
+                    }
+                    foreach (var stave in deleteStaves)
+                    {
+                        piece.Staves.Remove(stave);
+                    }
+                }
+            }
+            foreach (var piece in deletePieces)
+            {
+                this.Pieces.Remove(piece);
+            }
+        }
+
 
         /// <summary>
         /// represents the version of the file format - aids file format compatibility checking

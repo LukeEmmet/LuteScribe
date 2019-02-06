@@ -30,9 +30,9 @@ namespace LuteScribe.ViewModel.Commands
     public class LaunchFileCommand : ICommand
     {
         // Member variables
-        private readonly MainWindowViewModel _viewModel;
+        private readonly ViewModelBase _viewModel;
 
-        public LaunchFileCommand(MainWindowViewModel viewModel)
+        public LaunchFileCommand(ViewModelBase viewModel)
         {
             _viewModel = viewModel;
         }

@@ -26,6 +26,7 @@ using LuteScribe.Domain;
 using LuteScribe.ViewModel.Services;
 using System.Windows;
 using System.Text;
+using LuteScribe.View;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -64,7 +65,11 @@ namespace LuteScribe.ViewModel.Commands
         public void Execute(object parameter)
         {
 
-            _viewModel.History.Undo();
+            //use a wait cursor as it might take a moment to do this
+            using (new WaitCursor())
+            {
+                _viewModel.History.Undo();
+            }
 
         }
 

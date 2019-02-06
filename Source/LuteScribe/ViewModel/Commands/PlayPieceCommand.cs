@@ -31,6 +31,7 @@ using LuteScribe.Serialization.Commandline;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Linq;
+using LuteScribe.View;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -118,6 +119,8 @@ namespace LuteScribe.ViewModel.Commands
 
         private Tuple<Chord, Chord> GetPlaybackScope(string playSelection, Piece piece)
         {
+            piece.TabModel.SanitiseModel();     //remove empty staves
+
             var firstStave = piece.Staves[0];
             var lastStave = piece.Staves[piece.Staves.Count - 1];
             var firstChord = firstStave.Chords[0];
@@ -230,33 +233,31 @@ namespace LuteScribe.ViewModel.Commands
             else
             {
 
-                var wildMidi = "..\\..\\..\\Utils\\WildMidi\\wildmidi-static.exe";
-                var config = "..\\..\\..\\Utils\\WildMidi\\Patches\\Freepats\\LuteScribe.cfg";
+                //use a wait cursor as generating the wave might take a while
+                //see https://stackoverflow.com/questions/3480966/display-hourglass-when-application-is-busy
+                using (new WaitCursor())
+                {
+                    var wildMidi = "..\\..\\..\\Utils\\WildMidi\\wildmidi-static.exe";
+                    var config = "..\\..\\..\\Utils\\WildMidi\\Patches\\Freepats\\LuteScribe.cfg";
 
-                var midiPlayer = Path.GetFullPath(Path.Combine(appDir, wildMidi));
-                var configPath = Path.GetFullPath(Path.Combine(appDir, config));
-                var waveOut = Path.GetFullPath(Path.Combine(Session.Instance.SessionPath, guid.ToString() + ".wav"));
+                    var midiPlayer = Path.GetFullPath(Path.Combine(appDir, wildMidi));
+                    var configPath = Path.GetFullPath(Path.Combine(appDir, config));
+                    var waveOut = Path.GetFullPath(Path.Combine(Session.Instance.SessionPath, guid.ToString() + ".wav"));
 
-                //buid command line to convert midi to wav using wildMidi
-                var midiLaunch = String.Format("\"{0}\" -c \"{1}\" -o \"{2}\" -b \"{3}\"", midiPlayer, configPath, waveOut, midiFile);
+                    //buid command line to convert midi to wav using wildMidi
+                    var midiLaunch = String.Format("\"{0}\" -c \"{1}\" -o \"{2}\" -b \"{3}\"", midiPlayer, configPath, waveOut, midiFile);
 
-                //run command -avoiding grabbing output as
-                //it is not useful, and causes exexCommand to otherwise hang
-                exec = new ExecuteProcess();
-                result = exec.LoggedExecute(midiLaunch, false, false);
+                    //run command -avoiding grabbing output as
+                    //it is not useful, and causes exexCommand to otherwise hang
+                    exec = new ExecuteProcess();
 
-                //launch in media player...
-                LaunchWindowsMP(waveOut);
+                    result = exec.LoggedExecute(midiLaunch, false, false);
+
+                    _viewModel.Playback(waveOut);
+                }
 
             }
 
-        }
-
-        private void LaunchWindowsMP(string midiFile)
-        {
-            //launch the file (generally would start Windows Media player app)
-            var launch = new LaunchFileCommand(_viewModel);
-            launch.Execute(midiFile);
         }
     }
 }

@@ -50,7 +50,8 @@ namespace LuteScribe.Serialization.LsmlLoader
             var result  = execProcess.LoggedExecute(command);
 
             var tabModel = XmlSerialization.LoadXML<TabModel>(result.Item2);
-
+            tabModel.SanitiseModel();
+        
             return tabModel;
 
         }

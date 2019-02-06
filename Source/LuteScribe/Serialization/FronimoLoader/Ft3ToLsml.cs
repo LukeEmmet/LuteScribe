@@ -96,6 +96,7 @@ namespace LuteScribe.Serialization.FronimoLoader
 
                 var xml = result.Item2;     //get stdout
                 var tabModel = XmlSerialization.ReadFromXmlFile<TabModel>(outPath);
+                tabModel.SanitiseModel();
 
                 return tabModel;
 

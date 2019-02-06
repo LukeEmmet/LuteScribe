@@ -34,13 +34,18 @@ using System.Diagnostics;
 using LuteScribe.Singletons;
 using LuteScribe.ViewModel.Services;
 using GenericUndoRedo;
+using LuteScribe.View;
+using System.Windows;
+using System;
 
 namespace LuteScribe
 {
-    public class MainWindowViewModel : ViewModelBase, ITabModelOwner
+    public class MainWindowViewModel : ViewModelBase, ITabModelOwner, IDisposable
     {
 
         // Property variables
+        private PlaybackWindowViewModel _playbackWindowViewModel;
+        private PlaybackWindow _playbackWindow;
         private Stave _selectedItem;
         private int _selectedTab;
         private string _path;
@@ -428,6 +433,8 @@ namespace LuteScribe
             this.LaunchFile = new LaunchFileCommand(this);
             this.ShiftStaveFocus = new ShiftStaveFocusCommand(this);
 
+            _playbackWindowViewModel = new PlaybackWindowViewModel();
+
             var MenuLoader = new TabFlagMenus(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\TabFlags.xml", this);
 
             this.History = new UndoRedoHistory<ITabModelOwner>(this);
@@ -444,6 +451,27 @@ namespace LuteScribe
 
             // Update bindings
             base.RaisePropertyChangedEvent("TabModel");
+
+        }
+
+        public void Playback(string playbackPath)
+        {
+            if (_playbackWindow == null || !_playbackWindow.IsVisible)
+            {
+                _playbackWindow = new PlaybackWindow();
+                _playbackWindow.DataContext = _playbackWindowViewModel;
+
+                //show as a floating non-modal window, owned by main window
+                _playbackWindow.Owner = Application.Current.MainWindow;
+                _playbackWindow.Show();
+
+            }
+
+            
+            
+
+            _playbackWindowViewModel.PlaybackPath = playbackPath;
+            _playbackWindowViewModel.Play();
 
         }
 
@@ -554,6 +582,42 @@ namespace LuteScribe
 
 
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    _playbackWindowViewModel.Dispose();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~MainWindowViewModel() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 
 }

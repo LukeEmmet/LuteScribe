@@ -449,34 +449,45 @@ namespace LuteScribe
                 {
                     var grid = (o as DataGrid);
 
-                    //get the bound stave
-                    var curStave = (Stave) grid.DataContext;
-
-                    //deselect any items on the grid of the deseleted stave
-                    foreach (var item in e.RemovedItems)
+                    if (grid.DataContext is Stave)
                     {
-                        if (item is Stave)
+                        //get the bound stave
+                        var curStave = (Stave)grid.DataContext;
+
+                        //deselect any items on the grid of the deseleted stave
+                        foreach (var item in e.RemovedItems)
                         {
-                            if ((Stave) item == curStave)
+                            if (item is Stave)
                             {
-                                //this was a deselected grid - deselect its cells
-                                grid.SelectedItems.Clear();
+                                if ((Stave)item == curStave)
+                                {
+                                    //this was a deselected grid - deselect its cells
+                                    grid.SelectedItems.Clear();
+                                }
                             }
                         }
-                    }
 
-                    //set the selected grid to be the newly selected one
-                    foreach (var item in e.AddedItems)
-                    {
-                        if (item is Stave)
+                        //set the selected grid to be the newly selected one
+                        foreach (var item in e.AddedItems)
                         {
-                            var listBox = (ListBox)sender;
-                            listBox.SelectedItem = (Stave)item;
+                            if (item is Stave)
+                            {
+                                var listBox = (ListBox)sender;
+                                listBox.SelectedItem = (Stave)item;
+                            }
                         }
                     }
 
                 }
             }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            //dispose of any resources - e.g. any audio player that might have
+            //a handle on a file
+            var viewModel = (MainWindowViewModel)DataContext;
+            viewModel.Dispose();
         }
     }
 }

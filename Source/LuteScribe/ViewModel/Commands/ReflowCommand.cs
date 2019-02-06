@@ -25,6 +25,7 @@ using System.Windows.Input;
 using LuteScribe.Domain;
 using System.Diagnostics;
 using LuteScribe.ViewModel.Services;
+using LuteScribe.View;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -62,33 +63,37 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public void Execute(object parameter)
         {
-            var splitPoint = _viewModel.StaveWrap;
-            var pieceIndex = _viewModel.TabModel.Pieces.IndexOf(_viewModel.TabModel.ActivePiece);
-            var modelClone = (TabModel)Cloner.GetClone(_viewModel.TabModel);
 
-            var pieceClone = modelClone.Pieces[pieceIndex];
+            using (new WaitCursor())
+            {
+                var splitPoint = _viewModel.StaveWrap;
+                var pieceIndex = _viewModel.TabModel.Pieces.IndexOf(_viewModel.TabModel.ActivePiece);
+                var modelClone = (TabModel)Cloner.GetClone(_viewModel.TabModel);
 
-            var staves = pieceClone.Staves;
+                var pieceClone = modelClone.Pieces[pieceIndex];
 
-            _viewModel.History.BeginCompoundDo();
+                var staves = pieceClone.Staves;
 
-            _viewModel.RecordUndoSnapshot();
+                _viewModel.History.BeginCompoundDo();
 
-            
-            pieceClone.ReflowStaves(_viewModel.StaveWrap);
-
-            _viewModel.History.EndCompoundDo();
+                _viewModel.RecordUndoSnapshot();
 
 
-            //apply the updated clone, and restore the active piece
-            _viewModel.TabModel = modelClone;
-            _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[pieceIndex];
+                pieceClone.ReflowStaves(_viewModel.StaveWrap);
 
-            Debug.Print("Stave count at end: " + staves.Count);
+                _viewModel.History.EndCompoundDo();
 
-            //update the pdf preview, but don't switch to it if we are not already there.
-            var previewer = new PreviewPdfCommand(_viewModel);
-            previewer.Execute(0);   
+
+                //apply the updated clone, and restore the active piece
+                _viewModel.TabModel = modelClone;
+                _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[pieceIndex];
+
+                Debug.Print("Stave count at end: " + staves.Count);
+
+                //update the pdf preview, but don't switch to it if we are not already there.
+                var previewer = new PreviewPdfCommand(_viewModel);
+                previewer.Execute(0);
+            }
 
         }
 

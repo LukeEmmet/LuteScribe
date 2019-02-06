@@ -96,6 +96,8 @@ namespace LuteScribe.Serialization
 
             builder.Append("\n");
 
+            piece.TabModel.SanitiseModel();     //remove empty pieces and staves
+
             var firstChord = piece.Staves[0].Chords[0];
             var lastStave = piece.Staves[piece.Staves.Count - 1];
             var lastChord = lastStave.Chords[lastStave.Chords.Count - 1];

@@ -29,6 +29,7 @@ using LuteScribe.Domain;
 using Microsoft.Win32;
 using System.IO;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -109,6 +110,7 @@ namespace LuteScribe.ViewModel.Commands
             {
                 //var tabModel = XmlSerialization.ReadFromXmlFile<TabModel>(lsmlPath);
                 var tabModel = XmlSerialization.LoadXML<TabModel>(GetLsml(lsmlPath).OuterXml);
+                tabModel.SanitiseModel();
 
                 _viewModel.TabModel = tabModel;
                 _viewModel.Path = Path.GetFullPath(lsmlPath);
@@ -118,6 +120,7 @@ namespace LuteScribe.ViewModel.Commands
             }
 
         }
+
 
         XmlDocument GetLsml(string lsmlPath)
         {

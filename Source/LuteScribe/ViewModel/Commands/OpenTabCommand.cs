@@ -105,6 +105,8 @@ namespace LuteScribe.ViewModel.Commands
 
                 SimpleLogger.Instance.Log("Reading LSML content extracted from TAB file");
 
+                tabModel.SanitiseModel();
+
                 _viewModel.TabModel = tabModel;
                 _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[0];
                 _viewModel.Path = Path.GetFullPath(tabPath);
