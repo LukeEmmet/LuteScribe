@@ -135,15 +135,22 @@ namespace LuteScribe.Serialization.Commandline
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
+        /// 
+
         public Tuple<int, string, string> LoggedExecute(string command)
         {
+            return LoggedExecute(command, true, true);
+        }
+
+        public Tuple<int, string, string> LoggedExecute(string command, bool captureStdOut, bool captureStdErr)
+        { 
             var exec = new ExecuteProcess();
 
             var log = SimpleLogger.Instance;
 
             log.Log(command);
 
-            var result = ExecuteCommand(command);
+            var result = ExecuteCommand(command, captureStdOut, captureStdErr);
 
             var output = result.Item2;
             var errors = result.Item3;

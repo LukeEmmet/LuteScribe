@@ -97,6 +97,8 @@ namespace LuteScribe.Domain
                 _stave = value;
                 base.RaisePropertyChangedEvent("Stave");
 
+                SequenceNumber = _stave.Chords.IndexOf(this);
+
                 //stave is set on each chord when the chords collection change
                 //so update the sequence number
                 base.RaisePropertyChangedEvent("SequenceNumber");
@@ -119,11 +121,12 @@ namespace LuteScribe.Domain
         [XmlIgnoreAttribute]
         public int SequenceNumber
         {
-            get {
+            get
+            {
 
-                return _stave.Chords.IndexOf(this);
-                //return _sequenceNumber
-                    }
+                //return _stave.Chords.IndexOf(this);
+                return _sequenceNumber;
+            }
 
             set
             {

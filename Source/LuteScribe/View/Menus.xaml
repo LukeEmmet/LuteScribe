@@ -83,13 +83,9 @@
             <MenuItem Header="_Remove comments from staves" Command="{Binding StripComments}" />
             
             <Separator/>
-            <MenuItem Header="_Play piece" Command="{Binding PlayPiece}" InputGestureText="F5"/>
-            <MenuItem Header="_Play at tempo">
-                <MenuItem Header="_Slower" Command="{Binding PlayPiece}" CommandParameter="Slower"/>
-                <MenuItem Header="_Normal" Command="{Binding PlayPiece}" CommandParameter="Normal"/>
-                <MenuItem Header="_Faster" Command="{Binding PlayPiece}" CommandParameter="Faster"/>
-                <MenuItem Header="_2 x faster" Command="{Binding PlayPiece}" CommandParameter="2 x faster"/>
-            </MenuItem>
+            <MenuItem Header="_Play piece" Command="{Binding PlayPiece}" InputGestureText="F5" CommandParameter="All"/>
+            <MenuItem Header="_Play selection" Command="{Binding PlayPiece}" InputGestureText="Shift+F5" CommandParameter="Selection"/>
+            <MenuItem Header="_Play from selection" Command="{Binding PlayPiece}" InputGestureText="Ctrl+Shift+F5" CommandParameter="FromSelection"/>
         </MenuItem>
 
         <MenuItem Header="_Section"  Visibility="{Binding Path=HasMultipleSections, Converter={StaticResource BoolToVisibilityConverter}}" >

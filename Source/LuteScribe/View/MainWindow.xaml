@@ -35,7 +35,10 @@
 
 
         <KeyBinding Command="{Binding Reflow}" Modifiers="Ctrl+Shift" Key="R"/>
-        <KeyBinding Command="{Binding PlayPiece}"  Key="F5"/>
+        <KeyBinding Command="{Binding PlayPiece}"  Key="F5"  CommandParameter="All" />
+        <KeyBinding Command="{Binding PlayPiece}"  Modifiers="Shift" Key="F5"  CommandParameter="Selection" />
+        <KeyBinding Command="{Binding PlayPiece}"  Modifiers="Ctrl+Shift" Key="F5"  CommandParameter="FromSelection" />
+
 
         <KeyBinding Command="{Binding ShowHelp}"  Key="F1"/>
         
@@ -210,9 +213,15 @@
                 <!--VirtualizingPanel.ScrollUnit="ScrollUnit" requires .NEt 4.5
         see https://msdn.microsoft.com/en-us/library/system.windows.controls.virtualizingpanel.scrollunit(v=vs.110).aspx
         -->
-                <ListBox Name="StaveGrids" ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
-                 SelectedItem="{Binding TabModel.ActivePiece.SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
-                 HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" Margin="5,5,0,0" BorderBrush="White" Background="{x:Null}">
+                <ListBox Name="StaveGrids" 
+                     ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
+                     SelectedItem="{Binding TabModel.ActivePiece.SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
+                     HorizontalContentAlignment="Stretch" 
+                     VirtualizingPanel.ScrollUnit="Pixel" 
+                     Margin="5,5,0,0" 
+                     BorderBrush="White" 
+                     SelectionChanged="OnStaveGridsSelectionChange"
+                     Background="{x:Null}">
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>

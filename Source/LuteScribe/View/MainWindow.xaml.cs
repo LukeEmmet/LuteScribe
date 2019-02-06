@@ -50,6 +50,7 @@ namespace LuteScribe
         private Chord _targetItem;
         private MainWindowViewModel _viewModel;
         private bool _cellBeingEdited;
+        
 
         public MainWindow()
         {
@@ -433,6 +434,49 @@ namespace LuteScribe
             UpdateChordSelected(e.AddedItems, true);
             UpdateChordSelected(e.RemovedItems, false);
 
+        }
+
+        private void OnStaveGridsSelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            //visually deselect any items on the last stave's grid
+            ChildControls ccChildren = new ChildControls();
+
+            //traverse down the tree to find the grids from the collection
+            //of grids - we will see if any correspond to the changed selection
+            foreach (object o in ccChildren.GetChildren(StaveGrids, 5))
+            {
+                if (o is DataGrid)
+                {
+                    var grid = (o as DataGrid);
+
+                    //get the bound stave
+                    var curStave = (Stave) grid.DataContext;
+
+                    //deselect any items on the grid of the deseleted stave
+                    foreach (var item in e.RemovedItems)
+                    {
+                        if (item is Stave)
+                        {
+                            if ((Stave) item == curStave)
+                            {
+                                //this was a deselected grid - deselect its cells
+                                grid.SelectedItems.Clear();
+                            }
+                        }
+                    }
+
+                    //set the selected grid to be the newly selected one
+                    foreach (var item in e.AddedItems)
+                    {
+                        if (item is Stave)
+                        {
+                            var listBox = (ListBox)sender;
+                            listBox.SelectedItem = (Stave)item;
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

@@ -23,6 +23,10 @@ to object.IsSelected might not work for virtualised data grids...
 
 v1.0.2
 
+
+ - selecting a new stave visually deselects elements from the previously selected stave
+ - added wait cursor for longer actions such as reflow and generate midi output
+ - new options to play selection or from selection
  - added option to play piece using midi (default speed 1.5)
  - can only now delete all but the last stave in a piece
  - new command to delete the current Stave
@@ -122,7 +126,6 @@ v1.0.1
  - user generic flags for running tab (general preferences)
  - user can turn on and off the fancy font/colours/sizes
  - some way of visually indicating line of vertical dots
- - midi generation for preview
 
 === Bugs/issues ===
 
@@ -138,7 +141,6 @@ v1.0.1
 
 === The future ===
 
- - integrated undo
  - show comments with a clickable glyph with tooltip, not full text
  - integrated raw text editor for TAB
  - detect file change and reload TAB?

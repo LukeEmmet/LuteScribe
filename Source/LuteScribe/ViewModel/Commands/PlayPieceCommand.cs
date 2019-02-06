@@ -115,6 +115,43 @@ namespace LuteScribe.ViewModel.Commands
 
             return speed;
         }
+
+        private Tuple<Chord, Chord> GetPlaybackScope(string playSelection, Piece piece)
+        {
+            var firstStave = piece.Staves[0];
+            var lastStave = piece.Staves[piece.Staves.Count - 1];
+            var firstChord = firstStave.Chords[0];
+            var lastChord = lastStave.Chords[lastStave.Chords.Count - 1];
+            var selectedChords = piece.SelectedItem.SelectedItems;
+            var startSelectedChord = selectedChords[0];
+            var endSelectedChord = selectedChords[selectedChords.Count - 1];
+
+            var startChord = firstChord;
+            var endChord = lastChord;
+
+            switch (playSelection)
+            {
+                case "All":
+                    startChord = firstChord;
+                    endChord = lastChord;
+                    break;
+                case "Selection":
+                    startChord = startSelectedChord;
+                    endChord = endSelectedChord;
+                    break;
+                case "FromSelection":
+                    startChord = startSelectedChord;
+                    endChord = lastChord;
+                    break;
+                default:
+                    startChord = firstChord;
+                    endChord = lastChord;
+                    break;
+            }
+
+            //return a pair of chords
+            return new Tuple<Chord, Chord>(startChord, endChord);
+        }
         public void Execute(object parameter)
         {
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
@@ -126,13 +163,15 @@ namespace LuteScribe.ViewModel.Commands
             var guid = Guid.NewGuid();
             
             var patch = LookUpPatch(_viewModel.PlaybackPatch);
+            var speed = LookUpTempo(_viewModel.PlaybackSpeed);
 
-            //if no explicit speed passed in, use the user default preference
-            var speed = (string)parameter;
-            speed = LookUpTempo(speed != null ? speed : _viewModel.PlaybackSpeed);
-   
-            var headers = _viewModel.TabModel.ActivePiece.Headers;
-            var staves = _viewModel.TabModel.ActivePiece.Staves;
+            //scope of playback is passed in as a parameter
+            var selection = (string) parameter;
+
+            
+            var piece = _viewModel.TabModel.ActivePiece;
+            var headers = piece.Headers;
+            var staves = piece.Staves;
 
             SimpleLogger.Instance.Log("Saving MIDI of current piece");
 
@@ -152,10 +191,11 @@ namespace LuteScribe.ViewModel.Commands
             {
                 extraHeaders.Add(new Header("$tempo=" + speed));
             }
-            
+
+            var scope = GetPlaybackScope(selection, piece);
 
             var headerContent = TabSerialisation.GenerateTab(headers, extraHeaders, options, false);     //serialise active piece only
-            var bodyContent = TabSerialisation.GenerateTab(staves, options, false);     //serialise active piece only
+            var bodyContent = TabSerialisation.GenerateTab(staves, scope.Item1, scope.Item2, options, false);     //serialise active piece only
 
             var tabFile = Path.Combine(Session.Instance.SessionPath, "temp.tab");
             var midiFile = Path.Combine(Session.Instance.SessionPath, guid.ToString() +  ".mid");
@@ -203,7 +243,7 @@ namespace LuteScribe.ViewModel.Commands
                 //run command -avoiding grabbing output as
                 //it is not useful, and causes exexCommand to otherwise hang
                 exec = new ExecuteProcess();
-                result = exec.ExecuteCommand(midiLaunch, false, false);
+                result = exec.LoggedExecute(midiLaunch, false, false);
 
                 //launch in media player...
                 LaunchWindowsMP(waveOut);

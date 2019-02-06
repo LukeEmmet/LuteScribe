@@ -42,9 +42,14 @@ namespace LuteScribe.Domain
 
         private void Chords_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            //keep the sequence numbers up to date
+            //set stave reference to cover insertions
+            int seq = 0;
             foreach (var chord in _chords)
             {
                 chord.Stave = this;
+                chord.SequenceNumber = seq; 
+                seq++;
             }
         }
 
@@ -168,6 +173,7 @@ namespace LuteScribe.Domain
                     foreach (var chord in nextStave.Chords)
                     {
                         // add to this
+                        chord.Stave = nextStave;
                         stave.Chords.Add(chord);
                     }
                 }
@@ -212,19 +218,20 @@ namespace LuteScribe.Domain
 
             }
 
-            //iterate from the next chord to the end of the stave and
-            //add to the next stave
+            //collect up the chords beyond the selected one and move onto a temporary list
+            //before removing from current stave and onto next
             for (int n = lastChords.IndexOf(selectedChord) + 1; n < lastChords.Count; n++)
             {
                 var chord = lastChords[n];
-                newStave.Chords.Add(chord);
                 removeList.Add(chord);
             }
-
             foreach (var chord in removeList.ToArray())
             {
                 Chords.Remove(chord);
+                newStave.Chords.Add(chord);
+                chord.Stave = newStave;
             }
+
 
             return newStave;
 

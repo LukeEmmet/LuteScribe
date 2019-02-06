@@ -96,12 +96,17 @@ namespace LuteScribe.Serialization
 
             builder.Append("\n");
 
+            var firstChord = piece.Staves[0].Chords[0];
+            var lastStave = piece.Staves[piece.Staves.Count - 1];
+            var lastChord = lastStave.Chords[lastStave.Chords.Count - 1];
+
             //generate body
-            builder.Append(GenerateTab(piece.Staves, prettyOptions, prettify));
+            builder.Append(GenerateTab(piece.Staves, firstChord, lastChord, prettyOptions, prettify));
 
             return builder.ToString();
         }
-        public static string GenerateTab(ObservableCollection<Stave> staves, PrettyOptions prettyOptions, bool prettify)
+
+        public static string GenerateTab(ObservableCollection<Stave> staves, Chord startChord, Chord endChord, PrettyOptions prettyOptions, bool prettify)
         {
             var builder = new StringBuilder();
             var hasFlourish = false;
@@ -109,8 +114,6 @@ namespace LuteScribe.Serialization
             var lastStavePad = 35;  //default when there is only one stave
 
             
-
-
             if (prettify)
             {
                 if (staves.Count > 1)
@@ -165,29 +168,35 @@ namespace LuteScribe.Serialization
 
                     }
 
-                    //if chord is empty - denoting a "same as previous", output an x for TAB
-                    //which means we don't need them in our own data model
-                    chordBuilder.Append("" == chord.Flag.Trim() ? "x" : chord.Flag);
-
-                    //output notes
-                    chordBuilder.Append(TabNote(chord.C1));
-                    chordBuilder.Append(TabNote(chord.C2));
-                    chordBuilder.Append(TabNote(chord.C3));
-                    chordBuilder.Append(TabNote(chord.C4));
-                    chordBuilder.Append(TabNote(chord.C5));
-                    chordBuilder.Append(TabNote(chord.C6));
-                    chordBuilder.Append(TabNote(chord.C7));
-
-                    var chordContent = chordBuilder.ToString().TrimEnd();
-
-                    //only output non-empty lines when generating tab, otherwise 
-                    //you can get extra stave breaks
-                    if (!String.IsNullOrWhiteSpace(chordContent))
+                    //output chord if we are beyond the start chord's stave or before the end chord's stave
+                    //if the start or end chord are on the current chord, we must be between them (inclusive)
+                    if (IsBetween(chord, startChord, endChord))
                     {
-                        builder.Append(chordContent);   //end of chord
-                        builder.Append("\n");
-                    }
 
+
+                        //if chord is empty - denoting a "same as previous", output an x for TAB
+                        //which means we don't need them in our own data model
+                        chordBuilder.Append("" == chord.Flag.Trim() ? "x" : chord.Flag);
+
+                        //output notes
+                        chordBuilder.Append(TabNote(chord.C1));
+                        chordBuilder.Append(TabNote(chord.C2));
+                        chordBuilder.Append(TabNote(chord.C3));
+                        chordBuilder.Append(TabNote(chord.C4));
+                        chordBuilder.Append(TabNote(chord.C5));
+                        chordBuilder.Append(TabNote(chord.C6));
+                        chordBuilder.Append(TabNote(chord.C7));
+
+                        var chordContent = chordBuilder.ToString().TrimEnd();
+
+                        //only output non-empty lines when generating tab, otherwise 
+                        //you can get extra stave breaks
+                        if (!String.IsNullOrWhiteSpace(chordContent))
+                        {
+                            builder.Append(chordContent);   //end of chord
+                            builder.Append("\n");
+                        }
+                    }
                 }
 
                 builder.Append("\n");                //new stave
@@ -197,6 +206,67 @@ namespace LuteScribe.Serialization
             return builder.ToString();
         }
 
+        private static bool IsBetween(Chord chord,  Chord startChord, Chord endChord)
+        {
+            //assumes start and end chord always on the same stave
+            //as at present we cannot have a chord selection that spans multiple staves
+
+            var curChord = ChordIndex(chord);
+            var curStave = StaveIndex(chord);
+            var startRegionChord = ChordIndex(startChord);
+            var startRegionStave = StaveIndex(startChord);
+            var endRegionChord = ChordIndex(endChord);
+            var endRegionStave = StaveIndex(endChord);
+
+            var result = false;
+
+
+            //we iterate through something like this
+            //0...[....
+            //1........
+            //2....]...
+            //3........
+
+            if (startRegionStave == endRegionStave)
+            {
+                result = (curStave == startRegionStave &
+                          curChord >= startRegionChord &
+                          curChord <= endRegionChord);
+
+            }
+            else if (curStave == startRegionStave)
+            {
+                result = (curChord >= startRegionChord);
+            }
+
+            else if (curStave == endRegionStave)
+            {
+                result = (curChord <= endRegionChord);
+            }
+
+            else
+            {
+                result = (curStave > startRegionStave &
+                          curStave < endRegionStave);
+            }
+            
+
+
+          
+            return result;
+            
+
+        }
+
+        private static int StaveIndex(Chord chord)
+        {
+            return chord.Stave.Staves.IndexOf(chord.Stave);
+        }
+
+        private static int ChordIndex(Chord chord)
+        {
+            return chord.Stave.Chords.IndexOf(chord);
+        }
         private static bool HeaderCharStyleSet(ObservableCollection<Header> headers)
         {
             var result = false;
