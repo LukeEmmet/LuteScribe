@@ -20,6 +20,7 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
+using LuteScribe.ViewModel.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,14 +44,47 @@ namespace LuteScribe.Domain
         private void Chords_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             //keep the sequence numbers up to date
-            //set stave reference to cover insertions
-            int seq = 0;
-            foreach (var chord in _chords)
+            //set stave reference to cover insertions so they have the correct
+            //stave reference
+            //this is much faster than using list.IndexOf(item) on each item
+
+            //only index beyond the point of change (earlier ones are fine)
+            var indexFrom = 0;
+            if (e.NewStartingIndex > -1) {
+                indexFrom = e.NewStartingIndex;
+            } else if (e.OldStartingIndex < e.NewStartingIndex & e.OldStartingIndex > -1) {
+                indexFrom = e.OldStartingIndex;
+            } else
             {
-                chord.Stave = this;
-                chord.SequenceNumber = seq; 
-                seq++;
+                indexFrom = 0;
             }
+            
+            if (indexFrom > _chords.Count - 1)
+            {
+                indexFrom = _chords.Count - 1;
+            }
+
+            //if we deleted the last chord, just return
+            if (_chords.Count == 0 )
+            {
+                return;
+            }
+            for (var n = indexFrom; n < _chords.Count; n++)
+            {
+                var chord = _chords[n];
+                chord.Stave = this;
+                chord.SequenceNumber = n;
+            }
+
+            //this is the simpler way to do it - do all on the stave
+            //maybe this is fine really...
+            //int seq = 0;
+            //foreach (var chord in _chords)
+            //{
+            //    chord.Stave = this;
+            //    chord.SequenceNumber = seq;
+            //    seq = seq + 1;
+            //}
         }
 
         public ObservableCollection<Chord> Chords
@@ -198,7 +232,6 @@ namespace LuteScribe.Domain
             var lastChords = Chords;
             var removeList = new List<Chord>();
             var selectedIndex = lastChords.IndexOf(selectedChord);
-            var previousChord = Chords[selectedIndex - 1];
 
 
             if (selectedChord.Flag == "b")
@@ -208,14 +241,19 @@ namespace LuteScribe.Domain
                 newStave.Chords.Add(newBar);
 
             }
-            else if (previousChord.Flag == "b")
+            else if (selectedIndex > 0)
             {
-                selectedChord = previousChord;
+               //only examine previous if there is one..
+               var previousChord = Chords[selectedIndex - 1];
+               if (previousChord.Flag == "b")
+                {
+                    selectedChord = previousChord;
 
-                var newBar = new Chord();
-                newBar.Flag = "b";
-                newStave.Chords.Add(newBar);
+                    var newBar = new Chord();
+                    newBar.Flag = "b";
+                    newStave.Chords.Add(newBar);
 
+                }
             }
 
             //collect up the chords beyond the selected one and move onto a temporary list

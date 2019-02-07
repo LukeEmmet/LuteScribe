@@ -52,7 +52,30 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            return true;
+            var selection = (String)parameter;
+            var result = false;
+
+            //determine if there is a selection
+            var selectedItems = _viewModel?.TabModel?.ActivePiece?.SelectedItem?.SelectedItems;
+            var selectionCount = (selectedItems == null) ? 0 : selectedItems.Count;
+            
+            switch (selection)
+            {
+                case "All":
+                    result = true;
+                    break;
+                case "FromSelection":
+                    result = selectionCount > 0;
+                    break;
+                case "Selection":
+                    result = selectionCount > 0;
+                    break;
+                default:
+                    result = false;
+                    break;
+
+            }
+            return result;
         }
 
         /// <summary>
@@ -117,6 +140,14 @@ namespace LuteScribe.ViewModel.Commands
             return speed;
         }
 
+        private Tuple<Chord, Chord> SelectedChordRange(Piece piece)
+        {
+            var selectedChords = piece.SelectedItem.SelectedItems;
+            var startSelectedChord = selectedChords[0];
+            var endSelectedChord = selectedChords[selectedChords.Count - 1];
+
+            return new Tuple<Chord, Chord>(startSelectedChord, endSelectedChord);
+        }
         private Tuple<Chord, Chord> GetPlaybackScope(string playSelection, Piece piece)
         {
             piece.TabModel.SanitiseModel();     //remove empty staves
@@ -125,9 +156,6 @@ namespace LuteScribe.ViewModel.Commands
             var lastStave = piece.Staves[piece.Staves.Count - 1];
             var firstChord = firstStave.Chords[0];
             var lastChord = lastStave.Chords[lastStave.Chords.Count - 1];
-            var selectedChords = piece.SelectedItem.SelectedItems;
-            var startSelectedChord = selectedChords[0];
-            var endSelectedChord = selectedChords[selectedChords.Count - 1];
 
             var startChord = firstChord;
             var endChord = lastChord;
@@ -139,11 +167,13 @@ namespace LuteScribe.ViewModel.Commands
                     endChord = lastChord;
                     break;
                 case "Selection":
-                    startChord = startSelectedChord;
-                    endChord = endSelectedChord;
+                    //only try to get a selection in this mode
+                    startChord = SelectedChordRange(piece).Item1;
+                    endChord = SelectedChordRange(piece).Item2;
                     break;
                 case "FromSelection":
-                    startChord = startSelectedChord;
+                    //only try to get a selection in this mode
+                    startChord = SelectedChordRange(piece).Item1;
                     endChord = lastChord;
                     break;
                 default:

@@ -24,7 +24,7 @@ using System.Xml.Serialization;
 
 namespace LuteScribe.Domain
 {
-    public class Chord : ObservableObject, ISequencedObject
+    public class Chord : ObservableObject
     {
 
         // Property variables
@@ -96,15 +96,9 @@ namespace LuteScribe.Domain
             {
                 _stave = value;
                 base.RaisePropertyChangedEvent("Stave");
-
-                SequenceNumber = _stave.Chords.IndexOf(this);
-
-                //stave is set on each chord when the chords collection change
-                //so update the sequence number
-                base.RaisePropertyChangedEvent("SequenceNumber");
             }
         }
-
+        
         [XmlIgnoreAttribute]
         public bool IsSelected {
             get { return _isSelected; }
@@ -123,8 +117,6 @@ namespace LuteScribe.Domain
         {
             get
             {
-
-                //return _stave.Chords.IndexOf(this);
                 return _sequenceNumber;
             }
 
@@ -132,6 +124,7 @@ namespace LuteScribe.Domain
             {
                 _sequenceNumber = value;
                 base.RaisePropertyChangedEvent("SequenceNumber");
+                base.RaisePropertyChangedEvent("Flag");     //as how the flag is painted depends on sequence number (e.g. first bar line treated differently)
             }
         }
 

@@ -15,7 +15,7 @@
     <ROW Property="ProductCode" Value="1033:{43EEEC5D-DD3F-4C6A-BB81-44B4BBD08721} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="LuteScribe 1.0"/>
-    <ROW Property="ProductVersion" Value="1.0.3.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.3.2" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{2A9E2BC3-5251-46AE-9C54-9743C74B4CED}"/>

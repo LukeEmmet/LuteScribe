@@ -76,19 +76,15 @@ namespace LuteScribe.ViewModel.Commands
             stave.Chords.Add(chord);
             chord.SequenceNumber = stave.Chords.Count;
 
-            if (stave.Chords.IndexOf(selectedChord) > 0)
-            {
-                stave.Chords.Move(stave.Chords.IndexOf(chord), stave.Chords.IndexOf(selectedChord));
-            }
-
+            //move the chord to where the current one is...
+            stave.Chords.Move(stave.Chords.IndexOf(chord), stave.Chords.IndexOf(selectedChord));
+            
             if (parameter != null)
             {
                 var flag = (string)parameter;
                 chord.Flag = flag;
             }
-            //not sure why this is necessary...
-            stave.Chords = SequencingService.SetCollectionSequence(stave.Chords);
-
+            
             //TBD - selection doesnt quite work correctly
             //if we wanted to select another chord
             //stave.SelectedItem = chord; 

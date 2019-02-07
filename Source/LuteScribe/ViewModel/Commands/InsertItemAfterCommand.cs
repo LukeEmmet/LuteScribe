@@ -83,9 +83,7 @@ namespace LuteScribe.ViewModel.Commands
                 var flag = (string)parameter;
                 chord.Flag = flag;
             }
-            //not sure why this is necessary...
-            stave.Chords = SequencingService.SetCollectionSequence(stave.Chords);
-
+            
             //TBD - selection doesnt quite work correctly
             //if we wanted to select another chord
             //stave.SelectedItem = chord; 

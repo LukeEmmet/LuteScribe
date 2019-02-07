@@ -196,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Chord.cs" />
-    <Compile Include="UtilityClasses\ISequencedObject.cs" />
     <Compile Include="ViewModel\Commands\DeleteItemsCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UtilityClasses\ObservableObject.cs" />
@@ -214,7 +213,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UtilityClasses\ViewModelBase.cs" />
-    <Compile Include="ViewModel\Services\SequencingService.cs" />
     <Compile Include="ViewModel\ValueConverters\IgnoreNewItemPlaceHolderConverter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
