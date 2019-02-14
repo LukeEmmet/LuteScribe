@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CommandMenus>
+<!-- a useful list of TAB headers offered by LuteScribe -->
+    <Section name="Tabulature style">
+        <Command flag="-B" name="Baroque style tabulature"/>
+        <Command flag="-i" name="Italian style tabulature"/>
+        <Command flag="-h" name="Convert French to Italian automatically (6 courses only)"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="-guitar" name="Guitar notation output (very basic)"/>
+        <Command flag="-m" name="Piano notation output (very basic)"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="$line=b" name="Note characters between the lines (default)"/>
+        <Command flag="$line=o" name="Note characters on the line"/>
+
+
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+    </Section>
+
+    <!-- Page Layout-->
+    <Section name="Page layout">
+
+        <Command flag="-a4" name="Use A4 paper size"/>
+        <Command flag="-p" name="Number the pages automatically"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+        
+    </Section>
+
+    <!--Tuning-->
+    <Section name="Playback">
+    
+        <Command flag="" name="N.B. default tuning is Renaissance 6c"/>
+        <Command flag="-tuning D4G4c3f3a2d2g2" name="Renaissance 7c lute tuning (7th at D)"/>
+        <Command flag="-tuning F4G4c3f3a2d2g2" name="Renaissance 7c lute tuning (7th at F)"/>
+        <Command flag="-tuning C4D4E4F4G4c3f3a2d2g2" name="Renaissance 10c lute tuning"/>        
+        
+        <Command flag="" name="-"/>
+        <Command flag="-tuning c4d4e4f4g4a3d3f3a2d2f2" name="Baroque lute 11c D Minor time"/>
+        
+
+        <Command flag="" name="-"/>
+        <Command flag="$tempo=0.75" name="Slower"/>
+        <Command flag="$tempo=1" name="Normal tempo"/>
+        <Command flag="$tempo=1.5" name="Faster tempo"/>
+        <Command flag="$tempo=2" name="2 x tempo"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+        
+    </Section>
+
+    <!--Flag and note style-->
+    <Section name="Flag and note styles">
+    
+        <!--Flags-->
+        <Command flag="$flagstyle=board" name="English manuscript style flags"/>
+        <Command flag="$flagstyle=capirola" name="Capriola style flags"/>
+        <Command flag="$flagstyle=contemporary" name="Contemporary notes"/>
+        <Command flag="$flagstyle=italian" name="Long italian flag style"/>
+        <Command flag="$flagstyle=smallitalian" name="Basic italian flag style"/>
+        <Command flag="$flagstyle=standard" name="Standard flag style"/>
+
+        <Command flag="" name="-"/>
+
+        <!--Notes-->
+        <Command flag="$charstyle=board" name="Mary Board notes"/>
+        <Command flag="$charstyle=Mace" name="Mace notes"/>
+        <Command flag="$charstyle=standard" name="Regular English notes"/>
+        <Command flag="$charstyle=robinson" name="Robinson notes"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="$numstyle=standard" name="Standard numeric note style"/>
+        <Command flag="$numstyle=italian" name="Italian numeric note style"/>
+        
+        <Command flag="" name="-"/>
+        <Command flag="" name="N.B. For more examples see the TAB manual..."/>
+    </Section>
+
+</CommandMenus>

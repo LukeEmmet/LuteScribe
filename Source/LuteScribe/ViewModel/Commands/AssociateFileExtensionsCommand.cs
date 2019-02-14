@@ -33,9 +33,9 @@ namespace LuteScribe.ViewModel.Commands
     {
 
         // Member variables
-        private readonly MainWindowViewModel _viewModel;
+        private readonly FileAssociateViewModel _viewModel;
 
-        public AssociateFileExtensionsCommand(MainWindowViewModel viewModel)
+        public AssociateFileExtensionsCommand(FileAssociateViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -66,20 +66,53 @@ namespace LuteScribe.ViewModel.Commands
             var ExecPath = appDir + "LuteScribe.exe";
             var iconPath = Path.GetFullPath(appDir + "Resources\\ringtones.ico");
 
+            var confirmMessage = "";
+            var count = 0;
+            foreach (var ext in _viewModel.FileAssociations)
+            {
+                if (ext.Checked)
+                {
+                    //build a friendly message of the file extensions for the user to confirm
+                    switch (count)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            confirmMessage = " and " + confirmMessage;
+                            break;
+                        default:
+                        confirmMessage = ", " + confirmMessage;
+                            break;
+                        
+                    }
 
-            var userPress = MessageBox.Show("Associate LSML, FT3 and TAB files with LuteScribe?", "File association", MessageBoxButton.YesNo);
+                    confirmMessage = ext.Extension.ToUpper() + confirmMessage;
+
+                    count++;
+
+                }
+            }
+
+            if (confirmMessage.Length == 0 ) {
+                MessageBox.Show("No extensions were selected to be newly associated with LuteScribe");
+                return;
+            }
+
+            var userPress = MessageBox.Show("Associate " + confirmMessage + " files with LuteScribe?", "File association", MessageBoxButton.YesNo);
             if (userPress == MessageBoxResult.Yes)
             {
-                CreateFileAssociation(ExecPath, ".lsml", "LuteScribe.XML", iconPath);
-                CreateFileAssociation(ExecPath, ".ft3", "Fronimo.FT3", iconPath);
-                CreateFileAssociation(ExecPath, ".tab", "TAB.TabFile", iconPath);
+                foreach (var ext in _viewModel.FileAssociations)
+                {
+                    CreateFileAssociation(ExecPath, "." + ext.Extension.ToLower(), ext.FileType, iconPath);
+                }
 
                 // Tell explorer the file association has been changed
                 SHChangeNotify(0x08000000, 0x0000, IntPtr.Zero, IntPtr.Zero);
 
-                MessageBox.Show("File associations LSML, TF3 and TAB will now open with LuteScribe.");
+                MessageBox.Show("File types " + confirmMessage + " will now open with LuteScribe.");
             }
 
+            _viewModel.CloseWindow();
 
         }
 
@@ -141,7 +174,7 @@ namespace LuteScribe.ViewModel.Commands
             key3.Close();
         }
 
-
+        
         [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
     }

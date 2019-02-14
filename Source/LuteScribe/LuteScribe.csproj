@@ -97,6 +97,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Audio\AudioPlayback.cs" />
+    <Compile Include="ViewModel\Commands\InsertHeaderCommand.cs" />
+    <Compile Include="ViewModel\Commands\ShowFileAssociateWindowCommand.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="Audio\SampleAggregator.cs" />
     <Compile Include="Domain\Piece.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
     <Compile Include="ViewModel\Commands\SaveTabPieceCommand.cs" />
     <Compile Include="ViewModel\Commands\ShowHelpAboutCommand.cs" />
+    <Compile Include="ViewModel\FileAssociateViewModel.cs" />
     <Compile Include="ViewModel\PlaybackWindowViewModel.cs" />
     <Compile Include="ViewModel\Services\Cloner.cs" />
     <Compile Include="ViewModel\Services\TabModelMemento.cs" />
@@ -131,6 +134,9 @@
       <DependentUpon>Menus.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PdfView\PdfViewSettings.cs" />
+    <Compile Include="View\FileAssociateWindow.xaml.cs">
+      <DependentUpon>FileAssociateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PlaybackWindow.xaml.cs">
       <DependentUpon>PlaybackWindow.xaml</DependentUpon>
     </Compile>
@@ -152,7 +158,6 @@
     <Compile Include="Serialization\XmlSerialisation.cs" />
     <Compile Include="ViewModel\Commands\LaunchFileCommand.cs" />
     <Compile Include="ViewModel\Commands\ShowHelpCommand.cs" />
-    <Compile Include="ViewModel\Commands\RevertFile.cs" />
     <Compile Include="ViewModel\Commands\GridStyleSwitcherCommand.cs" />
     <Compile Include="ViewModel\Commands\SaveFileCommand.cs" />
     <Compile Include="ViewModel\Commands\SaveTabModelCommand.cs" />
@@ -172,7 +177,7 @@
     <Compile Include="ViewModel\Commands\CreatePsCommand.cs" />
     <Compile Include="ViewModel\Commands\SaveXmlCommand.cs" />
     <Compile Include="ViewModel\Services\ClipboardHelper.cs" />
-    <Compile Include="ViewModel\TabFlagMenus.cs" />
+    <Compile Include="ViewModel\CommandMenuLoader.cs" />
     <Compile Include="ViewModel\ValueConverters\FlagBackgroundColourConverter.cs" />
     <Compile Include="ViewModel\ValueConverters\FlagBorderColourConverter.cs" />
     <Compile Include="ViewModel\ValueConverters\FlagColourConverter.cs" />
@@ -188,6 +193,10 @@
     <Page Include="View\Menus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FileAssociateWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PlaybackWindow.xaml">
       <SubType>Designer</SubType>
@@ -214,6 +223,10 @@
     </Compile>
     <Compile Include="UtilityClasses\ViewModelBase.cs" />
     <Compile Include="ViewModel\ValueConverters\IgnoreNewItemPlaceHolderConverter.cs" />
+    <Content Include="Resources\TabHeaders.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

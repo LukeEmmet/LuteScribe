@@ -21,13 +21,15 @@
 //===================================================
 
 using LuteScribe.ViewModel.Commands;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml;
 
 namespace LuteScribe.ViewModel
 {
-    class TabFlagMenus : ObservableObject
+    class CommandMenuLoader : ObservableObject
     {
         private ObservableCollection<Control> _menuitems;
 
@@ -45,14 +47,14 @@ namespace LuteScribe.ViewModel
             }
         }
 
-        public TabFlagMenus(string menuPath, MainWindowViewModel viewModel)
+        public CommandMenuLoader(string menuPath, MainWindowViewModel viewModel,  Func<MainWindowViewModel, ICommand> commandGenerator)
         {
             var dom = new XmlDocument();
             dom.Load(menuPath);
 
             var menuItems = new ObservableCollection<Control>();
 
-            foreach (XmlElement xSection in dom.DocumentElement.SelectNodes("//TabFlags/Section"))
+            foreach (XmlElement xSection in dom.DocumentElement.SelectNodes("//CommandMenus/Section"))
             {
                 var sectionMenu = new MenuItem();
                 
@@ -73,7 +75,7 @@ namespace LuteScribe.ViewModel
                         if (el.GetAttribute("flag").Length > 0)
                         {
                             menuItem.Header = el.GetAttribute("flag") + "\t" + el.GetAttribute("name");
-                            menuItem.Command = new InsertItemAfterCommand(viewModel);
+                            menuItem.Command = commandGenerator(viewModel);
                             menuItem.CommandParameter = el.GetAttribute("flag");
                         } else
                         {

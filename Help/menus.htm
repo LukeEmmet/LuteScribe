@@ -47,7 +47,8 @@
 			<dt>Exit</dt>
 			<dd>Exits LuteScribe</dd>
 		</dl>
-		<h3>Edit</h3>
+		
+        <h3>Edit</h3>
 		<dl>
 			<dt>Undo</dt>
 			<dd>Reverts back to a recent snapshot of the content, created when 
@@ -55,16 +56,18 @@
 			<dt>Redo</dt>
 			<dd>Reverts the most recent undo.</dd>
 			<dt>Cut</dt>
-			<dd>Moves the content onto the clipboard for pasting.</dd>
+			<dd>Moves the selected chords onto the clipboard for pasting.</dd>
 			<dt>Copy</dt>
 			<dd>Copies the currently selected chords onto the clipboard. </dd>
 			<dt>Paste</dt>
-			<dd>Paste the content of the clipboard before the currently selected 
+			<dd>Paste the chords on the clipboard before the currently selected 
 			chord.</dd>
 			<dt>Select all</dt>
 			<dd>Selects all the chords on the current stave.</dd>
 		</dl>
-		<h3>Chord</h3>
+		
+        <h3>Chord</h3>
+        <p><i>Only visible when Staves tab is selected</i></p>
 		<dl>
 			<dt>Insert blank chord</dt>
 			<dd>Inserts an empty chord before or after the current selection</dd>
@@ -75,15 +78,14 @@
 			<dt>Delete chord</dt>
 			<dd>Deletes the currently selected chord. You can also delete 
 			selected items using [DEL] on your keyboard.</dd>
-		</dl>
-		<h3>Insert</h3>
-		<dl>
-			<dt><i>&lt;Various items&gt;</i></dt>
-			<dd>Insert the chosen item after the current selection. Each item is 
+			<dt>Insert item</dt>
+			<dd><i>&lt;Various items&gt;</i> - Insert the chosen item after the current selection. Each item is 
 			a shortcut to a common <a href="tab-commands.htm">TAB command</a>. 
 			These and any other TAB commands can be inserted manually since you can also edit the current chord directly as needed.</dd>
 		</dl>
-		<h3>Stave </h3>
+
+        <h3>Stave </h3>
+        <p><i>Only visible when Staves tab is selected</i></p>
 		<dl>
 			<dt>Insert stave break</dt>
 			<dd>Inserts a new stave after the current selection. This new stave 
@@ -99,6 +101,17 @@
 			<dd>Deletes the currently selected stave. You cannot delete the last remaining 
                     stave in a piece - there must be at least one.</dd>
 		</dl>
+        
+		<h3>Headers</h3>
+        <p><i>Only visible when Headers tab is selected</i></p>
+		<dl>
+            <dt><i>Various items</i></dt>
+            <dd>Inserts a new header to the headers collection. These typically affect general aspects of 
+            how the tabulature will be printed. Each item is 
+			a shortcut to a common <a href="tab-commands.htm">TAB command</a>. 
+			These and any other TAB commands can be inserted manually since you can also edit the headers directly as needed
+		</dl>
+        
 		<h3><a name="tools"></a>Tools</h3>
 		<dl>
 			<dt>Reflow all</dt>
@@ -115,6 +128,13 @@
 			<dd>Removes any chords that are comments, namely begin &quot;%&quot; on the 
 			flag line. This can result in simpler files. Comments in
 			<a href="editing-headers.htm">headers</a> are not affected.</dd>
+            <dt>Play piece</dt>
+            <dd>Plays the current piece from its start. See <a href=playback.htm>playback window</a></dd>
+            <dt>Play selection</dt>
+            <dd>Plays the selected chords only. See <a href=playback.htm>playback window</a></dd>
+            <dt>Play from selection</dt>
+            <dd>Play from the selected chords to the end of the piece. See <a href=playback.htm>playback window</a></dd>
+            
 			
 		</dl>
 		

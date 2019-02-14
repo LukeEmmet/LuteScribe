@@ -20,20 +20,23 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
-using System;
-using System.Windows.Input;
 using LuteScribe.Domain;
+using LuteScribe.ViewModel.Services;
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class RevertFileCommand : ICommand
+    public class InsertHeaderCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public RevertFileCommand(MainWindowViewModel viewModel)
+        public InsertHeaderCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -43,7 +46,8 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public bool CanExecute(object parameter)
         {
-            return (_viewModel.Path != null);
+            return (_viewModel.TabModel?.ActivePiece != null);
+            //return true;
         }
 
         /// <summary>
@@ -60,11 +64,36 @@ namespace LuteScribe.ViewModel.Commands
         /// </summary>
         public void Execute(object parameter)
         {
-            //just reloads the current file - a very simple undo
-            var path = _viewModel.Path;
 
-            var openFile = new OpenFileCommand(_viewModel);
-            openFile.Execute(path);
+            if (_viewModel.TabModel.ActivePiece == null) { return; }
+
+            var piece = _viewModel.TabModel.ActivePiece;
+            var headers = piece.Headers;
+            var header = new Header();
+            header.SetPiece(piece);
+
+            const int headersTab = 1;
+
+
+            if (parameter != null)
+            {
+                var headerCommand = (string)parameter;
+
+                //switch to headers tab
+                _viewModel.SelectedTab = headersTab;
+
+                //only add header if it is not already there
+                var count = (from h in headers where h.Content == headerCommand select h).Count();
+                if (count == 0) {
+                    headers.Add(header);
+                    header.Content = headerCommand;
+                } else
+                {
+                    MessageBox.Show("That header '" + headerCommand + "' has already been added. No action required.");
+                }
+            }
+            
+
         }
 
     }

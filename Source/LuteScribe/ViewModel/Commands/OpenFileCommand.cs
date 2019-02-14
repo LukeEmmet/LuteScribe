@@ -157,18 +157,15 @@ namespace LuteScribe.ViewModel.Commands
                     _viewModel.ShowSections(0);
                     _viewModel.UpdateLastFiles(path);
 
-                    const int pdfTab = 2;
-                    const int stavesTab = 0;
+                  
 
-                 
-
-                    if (_viewModel.SelectedTab == stavesTab)
+                    if (_viewModel.TabStavesSelected)
                     {
                         //leave view on staves tab
                     } else
                     {
                         //switch to pdf view tab
-                        _viewModel.SelectedTab = pdfTab;
+                        _viewModel.TabPDFSelected = true;
                         _viewModel.PreviewPdf.Execute(null);
                         
                     }

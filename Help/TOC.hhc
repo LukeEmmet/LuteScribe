@@ -37,6 +37,10 @@
 			<param name="Local" value="options.htm">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Audio playback">
+			<param name="Local" value="playback.htm">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
 			<param name="Name" value="Import tabulature">
 			<param name="Local" value="import.htm">
 			</OBJECT>
@@ -86,10 +90,18 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="MoonPdf, Gzip - GPL3">
+				<param name="Name" value="MoonPdf, Gzip, WildMidi - GPL3">
 				<param name="Local" value="gnu-gpl3.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FreePats - GPL2">
+				<param name="Local" value="gnu-gpl2.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="NAudio - MS-PL">
+				<param name="Local" value="ms-pl.htm">
+				</OBJECT>
+            <LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Ghostscript - AGPL">
 				<param name="Local" value="gnu-agpl.htm">
 				</OBJECT>

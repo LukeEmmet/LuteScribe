@@ -22,20 +22,27 @@
 
 using System;
 using System.Windows.Input;
+using LuteScribe.Serialization;
+using System.IO;
+using LuteScribe.Singletons;
+using System.Collections.Generic;
 using LuteScribe.Domain;
-using System.Windows;
-using System.Windows.Controls;
+using LuteScribe.Serialization.Commandline;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Linq;
+using LuteScribe.View;
 
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class NewFileCommand : ICommand
+    public class ShowFileAssociateWindowCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public NewFileCommand(MainWindowViewModel viewModel)
+        public ShowFileAssociateWindowCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -46,6 +53,7 @@ namespace LuteScribe.ViewModel.Commands
         public bool CanExecute(object parameter)
         {
             return true;
+            
         }
 
         /// <summary>
@@ -57,45 +65,10 @@ namespace LuteScribe.ViewModel.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        /// <summary>
-        /// Invokes this command to perform its intended task.
-        /// </summary>
+       
         public void Execute(object parameter)
         {
-            var model = new TabModel();
-
-            _viewModel.TabModel = model;
-            _viewModel.Path = null;
-
-            var newSection = new Piece();
-            model.Pieces.Add(newSection);
-            model.ActivePiece = newSection;
-
-            var section = model.ActivePiece;
-            var stave = new Stave();
-            var chords = stave.Chords;
-            section.Staves.Add(stave);
-
-            for (int n = 0; n < _viewModel.StaveWrap - 1; n++)
-            {
-                chords.Add(new Chord(" , , , , , , , ".Split(',')));
-            }
-            chords.Add(new Chord("e, , , , , , , ".Split(',')));
-
-            section.Headers.Add(new Header("{Untitled}"));
-
-
-            //show first section
-            _viewModel.ShowSections(0);
-
-            //show the staves edit tab
-            _viewModel.TabStavesSelected = true;
-
-            //reset history on this file
-            _viewModel.History.Clear();
-            _viewModel.RecordUndoSnapshot();
-
+            _viewModel.PopupFileAssociateWindow();
         }
-
     }
 }

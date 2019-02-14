@@ -483,14 +483,14 @@
                     </Grid.RowDefinitions>
 
                       
-                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Stave wrap:</Label>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Stave wrap</Label>
                     <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Padding="5" Text="{Binding StaveWrap}" HorizontalAlignment="Left" MinWidth="80"/>
 
                     <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Pad last stave with flourish</Label>
                     <CheckBox Grid.Row="1" Grid.Column="1" Margin="3" Padding="5" IsChecked="{Binding PadEndAndFlourish}" HorizontalAlignment="Left" MinWidth="80"/>
 
-                    <Label Grid.Row="2" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Associate file extensions (FT3, TAB, LSML):</Label>
-                    <Button Grid.Row="2" Grid.Column="1" Margin="3" Padding="5" Content="Set file association" Command="{Binding AssociateFileExtensions}" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="2" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Associate file extensions</Label>
+                    <Button Grid.Row="2" Grid.Column="1" Margin="3" Padding="5" Content="Set file association" Command="{Binding ShowFileAssociateWindow}" HorizontalAlignment="Left"/>
 
 
                     <Label Grid.Row="3" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default flag style</Label>

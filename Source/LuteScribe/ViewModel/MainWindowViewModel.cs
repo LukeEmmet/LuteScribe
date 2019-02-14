@@ -46,11 +46,14 @@ namespace LuteScribe
         // Property variables
         private PlaybackWindowViewModel _playbackWindowViewModel;
         private PlaybackWindow _playbackWindow;
+        private FileAssociateViewModel _fileAssociateViewModel;
+        private FileAssociateWindow _fileAssociateWindow;
         private Stave _selectedItem;
         private int _selectedTab;
         private string _path;
         private TabModel _tabModel;
         private ObservableCollection<Control> _tabFlagMenus;
+        private ObservableCollection<Control> _tabHeaderMenus;
         private Settings _settings;
         private string _previewPath;
         private PdfViewSettings _pdfViewSettings;
@@ -80,7 +83,6 @@ namespace LuteScribe
         public ICommand OpenTab { get; set; }
         public ICommand OpenFronimo { get; set; }
         public ICommand OpenFandango { get; set; }
-        public ICommand RevertFile { get; set; }
         public ICommand CreatePs { get; set; }
         public ICommand CreatePdf { get; set; }
         public ICommand PreviewPdf { get; set; }
@@ -88,7 +90,7 @@ namespace LuteScribe
         public ICommand PdfViewerNavigate { get; set; }
         public ICommand NavigateSection { get; set; }
         public ICommand NavigatePdfPage { get; set; }
-        public ICommand AssociateFileExtensions { get; set; }
+        public ICommand ShowFileAssociateWindow { get; set; }
         public ICommand DeleteItem { get; set; }
         public ICommand CopyItems { get; set; }
         public ICommand CutItems { get; set; }
@@ -162,6 +164,40 @@ namespace LuteScribe
                 _tabFlagMenus = value;
                 base.RaisePropertyChangedEvent("TabFlagMenus");
             }
+        }
+
+        public ObservableCollection<Control> TabHeaderMenus
+        {
+            get { return _tabHeaderMenus; }
+            set
+            {
+                _tabHeaderMenus = value;
+                base.RaisePropertyChangedEvent("TabHeaderMenus");
+            }
+        }
+
+        public bool TabStavesSelected
+        {
+            get { return SelectedTab == 0; }
+            set { SelectedTab = value ? 0 : SelectedTab; }
+        }
+
+        public bool TabHeadersSelected
+        {
+            get { return SelectedTab == 1; }
+            set { SelectedTab = value ? 1 : SelectedTab; }
+        }
+
+        public bool TabPDFSelected
+        {
+            get { return SelectedTab == 2; }
+            set { SelectedTab = value ? 2 : SelectedTab; }
+        }
+
+        public bool TabOptionsSelected
+        {
+            get { return SelectedTab == 3; }
+            set { SelectedTab = value ? 3 : SelectedTab; }
         }
 
         public bool HasMultipleSections
@@ -254,6 +290,12 @@ namespace LuteScribe
             {
                 _selectedTab = value;
                 base.RaisePropertyChangedEvent("SelectedTab");
+
+                //notify related properties...
+                base.RaisePropertyChangedEvent("TabStavesSelected");
+                base.RaisePropertyChangedEvent("TabHeadersSelected");
+                base.RaisePropertyChangedEvent("TabPDFSelected");
+                base.RaisePropertyChangedEvent("TabOptionsSelected");
             }
         }
         public string Path
@@ -395,7 +437,6 @@ namespace LuteScribe
             this.NavigatePdfPage = new NavigatePdfPageCommand(this);
             this.NavigateSection = new NavigateSectionCommand(this);
             this.PrintPdf = new PrintPdfCommand(this);
-            this.RevertFile = new RevertFileCommand(this);
             this.PdfViewerNavigate = new PdfViewerNavigate(this);
             this.ApplicationQuit = new ApplicationQuitCommand(this);
 
@@ -426,7 +467,7 @@ namespace LuteScribe
             this.ShowHelpAbout = new ShowHelpAboutCommand(this);
 
             //on options tab
-            this.AssociateFileExtensions = new AssociateFileExtensionsCommand(this);
+            this.ShowFileAssociateWindow = new ShowFileAssociateWindowCommand(this);
 
 
             //misc/other commands
@@ -434,11 +475,18 @@ namespace LuteScribe
             this.ShiftStaveFocus = new ShiftStaveFocusCommand(this);
 
             _playbackWindowViewModel = new PlaybackWindowViewModel();
+            _fileAssociateViewModel = new FileAssociateViewModel();
 
-            var MenuLoader = new TabFlagMenus(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\TabFlags.xml", this);
+            //create anon functions that return commands for inserting into menus...
+            Func<MainWindowViewModel, InsertItemAfterCommand> NewInsertAfter = (vm) => { return new InsertItemAfterCommand(vm); };
+            Func<MainWindowViewModel, InsertHeaderCommand> NewInsertHeader = (vm) => { return new InsertHeaderCommand(vm); };
+
+            var FlagMenuLoader = new CommandMenuLoader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\TabFlags.xml", this, NewInsertAfter);
+            var HeaderMenuLoader = new CommandMenuLoader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\TabHeaders.xml", this, NewInsertHeader);
 
             this.History = new UndoRedoHistory<ITabModelOwner>(this);
-            this.TabFlagMenus = MenuLoader.MenuItems;
+            this.TabFlagMenus = FlagMenuLoader.MenuItems;
+            this.TabHeaderMenus = HeaderMenuLoader.MenuItems;
 
             _pdfViewSettings = new PdfViewSettings();
             _settings = new Settings();
@@ -452,6 +500,20 @@ namespace LuteScribe
             // Update bindings
             base.RaisePropertyChangedEvent("TabModel");
 
+        }
+        public void PopupFileAssociateWindow()
+        {
+            _fileAssociateWindow = new FileAssociateWindow();
+            _fileAssociateWindow.DataContext = _fileAssociateViewModel;
+            _fileAssociateViewModel.MainWindowViewModel = this;
+            _fileAssociateViewModel.LoadFileTypes();
+            _fileAssociateWindow.Owner = App.Current.MainWindow;
+            _fileAssociateWindow.ShowDialog();
+        }
+
+        public void CloseFileAssociateWindow()
+        {
+            _fileAssociateWindow.Close();
         }
 
         public void Playback(string playbackPath)

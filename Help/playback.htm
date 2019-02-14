@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+	<style type="text/css">
+	.auto-style1 {
+		border-collapse: collapse;
+		font-size: 11.0pt;
+		font-family: Calibri, sans-serif;
+		border: 1px solid #000080;
+	}
+	.auto-style2 {
+		font-family: LuteScribeFlagSymbols;
+	}
+	.auto-style3 {
+		color: #456B45;
+	}
+	.auto-style4 {
+		color: #439043;
+	}
+	.auto-style5 {
+		font-family: LeRoy;
+	}
+	.auto-style6 {
+		font-size: large;
+	}
+	.auto-style7 {
+		font-family: LuteScribeFlagSymbols;
+		font-size: large;
+	}
+	</style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Audio playback</h1>
+
+        <p>LuteScribe provides a simple playback feature to preview the piece being edited. To hear the current piece, choose the
+        relevant option from the <i>Tools</i> menu. This feature makes use of TAB's inherent midi creation facility, and the audio
+        is then rendered using a high quality, sample based software synthesizer.</p>
+        
+        <ul>
+            <li>Play current piece - plays the whole piece from its start.</li>
+            <li>Play selection - playback the currently selected chords. For example if you want to hear a couple of bars or similar.</li>
+            <li>Play from selection - plays the piece from the selected chord.</li>
+        </ul>
+        
+        <h3>Playback window</h3>
+        
+        <p>The following window will be shown. While the playback window is shown you can continue to edit the piece or page through its rendered 
+        output. To hear any updates following your edits, simply regenerate the playback piece from the relevant item on the <i>Tools</i> menu.</p>
+        
+        <p class="text-center">
+		<a href="images/playback.png">
+		<img  width=200px src="images/playback.png"></a></p>
+		<p>&nbsp;</p>
+        
+        <p>The buttons on the playback window are the typical ones for audio playback of a single piece, namely:<p>
+        <ul>
+            <li>Stop - stops the playback and resets to the beginning of the output</li>
+            <li>Pause - pauses the plaback</li>
+            <li>Play - plays after the output has been stopped or paused.</li>
+        </ul>        
+
+        <h3>Playback tempo and instrument</h3>
+        
+        <p>By default the playback speed will any tempo set in the piece's headers, otherwise the user default playback preferences from the <a href=options.htm>options tab</a>. </p>
+        
+        <p>Four different playback instruments and playback speed are available. You may find different pieces sound better at different speeds</p>.
+    </div>
+
+</body>
+</html>

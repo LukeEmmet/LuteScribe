@@ -140,6 +140,7 @@
     <ROW File="README_2" Component_="COPYING_1" FileName="README" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\README" SelfReg="false" NextFile="_Acoustic_Brite_Piano.pat"/>
     <ROW File="StavesToXML.r" Component_="FronimoToTab.r" FileName="STAVES~1.R|StavesToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\StavesToXML.r" SelfReg="false" NextFile="TabToXML.r"/>
     <ROW File="TabFlags.xml" Component_="application_edit.ico" FileName="TabFlags.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabFlags.xml" SelfReg="false" NextFile="libmupdf.dll"/>
+    <ROW File="TabHeaders.xml" Component_="application_edit.ico" FileName="TABHEA~1.XML|TabHeaders.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabHeaders.xml" SelfReg="false"/>
     <ROW File="TabManual.pdf" Component_="TabManual.pdf" FileName="TABMAN~1.PDF|TabManual.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManual.pdf" SelfReg="false" NextFile="TabManualAppendix.pdf"/>
     <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="AboutTab.txt"/>
     <ROW File="TabToXML.r" Component_="FronimoToTab.r" FileName="TabToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\TabToXML.r" SelfReg="false" NextFile="LuteScribe.exe"/>
@@ -428,7 +429,7 @@
     <ROW File="viewrgb.ps" Component_="acctest.ps" FileName="viewrgb.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\viewrgb.ps" SelfReg="false" NextFile="wftopfa"/>
     <ROW File="wftopfa" Component_="acctest.ps" FileName="wftopfa" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wftopfa" SelfReg="false" NextFile="wftopfa.ps"/>
     <ROW File="wftopfa.ps" Component_="acctest.ps" FileName="wftopfa.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wftopfa.ps" SelfReg="false" NextFile="winmaps.ps"/>
-    <ROW File="wildmidistatic.exe" Component_="wildmidistatic.exe" FileName="WILDMI~1.EXE|wildmidi-static.exe" Attributes="0" SourcePath="..\Source\Utils\WildMidi\wildmidi-static.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="wildmidistatic.exe" Component_="wildmidistatic.exe" FileName="WILDMI~1.EXE|wildmidi-static.exe" Attributes="0" SourcePath="..\Source\Utils\WildMidi\wildmidi-static.exe" SelfReg="false" NextFile="TabHeaders.xml" DigSign="true"/>
     <ROW File="winmaps.ps" Component_="acctest.ps" FileName="winmaps.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\winmaps.ps" SelfReg="false" NextFile="wmakebat.bat"/>
     <ROW File="wmakebat.bat" Component_="acctest.ps" FileName="wmakebat.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wmakebat.bat" SelfReg="false" NextFile="wrfont.ps"/>
     <ROW File="wrfont.ps" Component_="acctest.ps" FileName="wrfont.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wrfont.ps" SelfReg="false" NextFile="zeroline.ps"/>

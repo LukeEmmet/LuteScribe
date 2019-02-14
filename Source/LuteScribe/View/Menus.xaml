@@ -42,7 +42,8 @@
             <MenuItem Command="SelectAll" />
         </MenuItem>
 
-        <MenuItem Header="_Chord">
+        <MenuItem Header="_Chord"
+                  Visibility="{Binding Path=TabStavesSelected, Converter={StaticResource BoolToVisibilityConverter}}" >
             <MenuItem Header="_Insert blank chord">
                 <MenuItem Header="_Before" Command="{Binding InsertItemBefore}" InputGestureText="Ctrl+Alt+I" />
                 <MenuItem Header="_After" Command="{Binding InsertItemAfter}" InputGestureText="Ctrl+I" />
@@ -52,16 +53,24 @@
                 <MenuItem Header="_After" Command="{Binding InsertItemAfter}" CommandParameter="b" InputGestureText="Ctrl+B" />
             </MenuItem>
             
+            <MenuItem Header="Insert" ItemsSource="{Binding TabFlagMenus}"
+                      Visibility="{Binding Path=TabStavesSelected, Converter={StaticResource BoolToVisibilityConverter}}" >
+            </MenuItem>
+            
             <Separator/>
             
             <MenuItem Header="_Delete chord" Command="{Binding DeleteItem}" InputGestureText="Ctrl+-" />
 
         </MenuItem>
 
-        <MenuItem Header="Insert" ItemsSource="{Binding TabFlagMenus}">
+
+        <MenuItem Header="Headers" ItemsSource="{Binding TabHeaderMenus}"
+                  Visibility="{Binding Path=TabHeadersSelected, Converter={StaticResource BoolToVisibilityConverter}}">
         </MenuItem>
-        
-        <MenuItem Header="_Stave">
+
+        <MenuItem Header="_Stave" 
+                  Visibility="{Binding Path=TabStavesSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+            
             <MenuItem Header="_Insert stave break" Command="{Binding InsertStaveBreak}" InputGestureText="Ctrl+Shift+I" />
             <MenuItem Header="_Join with next stave" Command="{Binding DeleteStaveEnd}" InputGestureText="Ctrl+Shift+E" />
 
@@ -74,6 +83,7 @@
             <MenuItem Header="_Delete stave" Command="{Binding DeleteStave}"/>
 
         </MenuItem>
+        
         <MenuItem Header="_Tools">
             <MenuItem Header="_Reflow all" Command="{Binding Reflow}" InputGestureText="Ctrl+Shift+R" />
             <MenuItem Header="_Set grid flag styles">

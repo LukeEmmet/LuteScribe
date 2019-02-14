@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabFlags>
+<CommandMenus>
 <!-- a useful list of TAB commands offered by LuteScribe -->
     <Section name="Bars and breaks">
         <Command flag="b" name="Bar line"/>
@@ -98,4 +98,4 @@
         <Command flag="" name="N.B. For more examples see the TAB manual..."/>
     </Section>
 
-</TabFlags>
+</CommandMenus>

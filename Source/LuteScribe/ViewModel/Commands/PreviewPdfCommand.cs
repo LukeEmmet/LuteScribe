@@ -86,7 +86,7 @@ namespace LuteScribe.ViewModel.Commands
             _viewModel.PreviewPath = previewPath;
 
             //preview pdf viewer tab if requested
-            if (switchTo) { _viewModel.SelectedTab = 2; }//2 is pdf viewer
+            if (switchTo) { _viewModel.TabPDFSelected = true; }
             
         }
 

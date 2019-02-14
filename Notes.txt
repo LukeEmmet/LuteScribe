@@ -15,14 +15,20 @@ Bind to Selected items so user can delete a selection of chords (current build y
 https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm. But suggests binding
 to object.IsSelected might not work for virtualised data grids...
 
- - file association for ft3 (zipped version) doesnt quite work when double clicking on file (ok for other formats)
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
 
 === CHANGES ===
 
 
-v1.0.2
+v1.0.3
 
+ - new popup window for user to choose which file extensions to associate with LuteScribe
+ - added audio playback with WildMidi, NAudio and FreePats
+ - added menu of common header commands
+ - added default instrument option for playback
+ - added default tempo option for playback
+
+v1.0.2
 
  - selecting a new stave visually deselects elements from the previously selected stave
  - added wait cursor for longer actions such as reflow and generate midi output
