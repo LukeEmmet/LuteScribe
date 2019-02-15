@@ -6,7 +6,7 @@
         xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
         Title="{Binding Path=WindowTitle}"
         WindowState="Maximized"
-        Icon="/LuteScribe;component/Resources/ringtones.ico"
+        Icon="/LuteScribe;component/Resources/logo.ico"
         Closing="Window_Closing"    
         Height="500" Width="800" WindowStartupLocation="CenterScreen">
  

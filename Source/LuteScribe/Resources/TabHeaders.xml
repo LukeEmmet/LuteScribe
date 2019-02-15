@@ -33,13 +33,14 @@
     <!--Tuning-->
     <Section name="Playback">
     
-        <Command flag="" name="N.B. default tuning is Renaissance 6c"/>
+        <Command flag="" name="N.B. default tuning is Renaissance 10c"/>
         <Command flag="-tuning D4G4c3f3a2d2g2" name="Renaissance 7c lute tuning (7th at D)"/>
         <Command flag="-tuning F4G4c3f3a2d2g2" name="Renaissance 7c lute tuning (7th at F)"/>
+        <Command flag="-tuning D4F4G4c3f3a2d2g2" name="Renaissance 8c lute tuning"/>
         <Command flag="-tuning C4D4E4F4G4c3f3a2d2g2" name="Renaissance 10c lute tuning"/>        
         
         <Command flag="" name="-"/>
-        <Command flag="-tuning c4d4e4f4g4a3d3f3a2d2f2" name="Baroque lute 11c D Minor time"/>
+        <Command flag="-tuning c4d4e4f4g4a3d3f3a2d2f2" name="Baroque lute 11c D Minor tuning"/>
         
 
         <Command flag="" name="-"/>

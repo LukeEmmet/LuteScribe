@@ -20,6 +20,11 @@ to object.IsSelected might not work for virtualised data grids...
 === CHANGES ===
 
 
+v1.0.4
+
+ - minor UI improvements
+ - new icon for application and associated files
+
 v1.0.3
 
  - new popup window for user to choose which file extensions to associate with LuteScribe

@@ -223,6 +223,9 @@
     </Compile>
     <Compile Include="UtilityClasses\ViewModelBase.cs" />
     <Compile Include="ViewModel\ValueConverters\IgnoreNewItemPlaceHolderConverter.cs" />
+    <Content Include="Resources\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\TabHeaders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>

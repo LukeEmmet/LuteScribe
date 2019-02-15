@@ -75,8 +75,8 @@
             <MenuItem Header="_Join with next stave" Command="{Binding DeleteStaveEnd}" InputGestureText="Ctrl+Shift+E" />
 
             <MenuItem Header="_Insert new stave">
-                <MenuItem Header="_Before current" Command="{Binding NewStave}" CommandParameter="-1"  />
-                <MenuItem Header="_After current" Command="{Binding NewStave}" CommandParameter="1"  />
+                <MenuItem Header="_Before" Command="{Binding NewStave}" CommandParameter="-1"  />
+                <MenuItem Header="_After" Command="{Binding NewStave}" CommandParameter="1"  />
             </MenuItem>
             
             <Separator/>

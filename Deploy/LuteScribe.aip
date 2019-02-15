@@ -15,7 +15,7 @@
     <ROW Property="ProductCode" Value="1033:{43EEEC5D-DD3F-4C6A-BB81-44B4BBD08721} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="LuteScribe 1.0"/>
-    <ROW Property="ProductVersion" Value="1.0.3.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.4.2" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{2A9E2BC3-5251-46AE-9C54-9743C74B4CED}"/>
@@ -140,7 +140,7 @@
     <ROW File="README_2" Component_="COPYING_1" FileName="README" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\README" SelfReg="false" NextFile="_Acoustic_Brite_Piano.pat"/>
     <ROW File="StavesToXML.r" Component_="FronimoToTab.r" FileName="STAVES~1.R|StavesToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\StavesToXML.r" SelfReg="false" NextFile="TabToXML.r"/>
     <ROW File="TabFlags.xml" Component_="application_edit.ico" FileName="TabFlags.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabFlags.xml" SelfReg="false" NextFile="libmupdf.dll"/>
-    <ROW File="TabHeaders.xml" Component_="application_edit.ico" FileName="TABHEA~1.XML|TabHeaders.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabHeaders.xml" SelfReg="false"/>
+    <ROW File="TabHeaders.xml" Component_="application_edit.ico" FileName="TABHEA~1.XML|TabHeaders.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabHeaders.xml" SelfReg="false" NextFile="logo.ico"/>
     <ROW File="TabManual.pdf" Component_="TabManual.pdf" FileName="TABMAN~1.PDF|TabManual.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManual.pdf" SelfReg="false" NextFile="TabManualAppendix.pdf"/>
     <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="AboutTab.txt"/>
     <ROW File="TabToXML.r" Component_="FronimoToTab.r" FileName="TabToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\TabToXML.r" SelfReg="false" NextFile="LuteScribe.exe"/>
@@ -277,6 +277,7 @@
     <ROW File="level1.ps" Component_="acctest.ps" FileName="level1.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\level1.ps" SelfReg="false" NextFile="lines.ps"/>
     <ROW File="libmupdf.dll" Component_="libmupdf.dll" FileName="libmupdf.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\libmupdf.dll" SelfReg="false" NextFile="MoonPdfLib.dll"/>
     <ROW File="lines.ps" Component_="acctest.ps" FileName="lines.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lines.ps" SelfReg="false" NextFile="lp386.bat"/>
+    <ROW File="logo.ico" Component_="application_edit.ico" FileName="logo.ico" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\logo.ico" SelfReg="false"/>
     <ROW File="lp386.bat" Component_="acctest.ps" FileName="lp386.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lp386.bat" SelfReg="false" NextFile="lp386r2.bat"/>
     <ROW File="lp386r2.bat" Component_="acctest.ps" FileName="lp386r2.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lp386r2.bat" SelfReg="false" NextFile="lpgs.bat"/>
     <ROW File="lpgs.bat" Component_="acctest.ps" FileName="lpgs.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lpgs.bat" SelfReg="false" NextFile="lpr2.bat"/>
@@ -373,7 +374,6 @@
     <ROW File="ras4.upp" Component_="acctest.ps" FileName="ras4.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras4.upp" SelfReg="false" NextFile="ras8m.upp"/>
     <ROW File="ras8m.upp" Component_="acctest.ps" FileName="ras8m.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras8m.upp" SelfReg="false" NextFile="rinkj2200setup"/>
     <ROW File="rebol.exe" Component_="rebol.exe" FileName="rebol.exe" Attributes="0" SourcePath="..\Source\Utils\Rebol\rebol.exe" SelfReg="false" NextFile="LeRoy.ttf" DigSign="true"/>
-    <ROW File="ringtones.ico" Component_="application_edit.ico" FileName="RINGTO~1.ICO|ringtones.ico" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\ringtones.ico" SelfReg="false" NextFile="TabFlags.xml"/>
     <ROW File="rinkj2200setup" Component_="acctest.ps" FileName="RINKJ-~1|rinkj-2200-setup" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\rinkj-2200-setup" SelfReg="false" NextFile="rollconv.ps"/>
     <ROW File="rollconv.ps" Component_="acctest.ps" FileName="rollconv.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\rollconv.ps" SelfReg="false" NextFile="showchar.ps"/>
     <ROW File="sample.tab" Component_="AboutTab.txt" FileName="sample.tab" Attributes="0" SourcePath="..\Source\Tab\bin\sample.tab" SelfReg="false" NextFile="tab.exe"/>
@@ -433,7 +433,7 @@
     <ROW File="winmaps.ps" Component_="acctest.ps" FileName="winmaps.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\winmaps.ps" SelfReg="false" NextFile="wmakebat.bat"/>
     <ROW File="wmakebat.bat" Component_="acctest.ps" FileName="wmakebat.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wmakebat.bat" SelfReg="false" NextFile="wrfont.ps"/>
     <ROW File="wrfont.ps" Component_="acctest.ps" FileName="wrfont.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\wrfont.ps" SelfReg="false" NextFile="zeroline.ps"/>
-    <ROW File="zeroline.ps" Component_="acctest.ps" FileName="zeroline.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\zeroline.ps" SelfReg="false" NextFile="ringtones.ico"/>
+    <ROW File="zeroline.ps" Component_="acctest.ps" FileName="zeroline.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\zeroline.ps" SelfReg="false" NextFile="TabFlags.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="101"/>
@@ -512,8 +512,7 @@
     <ROW File_="LuteScribeFlagSymbols.ttf"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="LuteScribe.exe" SourcePath="..\Source\LuteScribe\Resources\ringtones.ico" Index="0"/>
-    <ROW Name="LuteScribe_1.exe" SourcePath="..\Source\LuteScribe\bin\Release\Resources\ringtones.ico" Index="0"/>
+    <ROW Name="LuteScribe_2.exe" SourcePath="..\Source\LuteScribe\Resources\logo.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -543,9 +542,9 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="LuteScribe" Directory_="LuteScribe_1_Dir" Name="LUTESC~1|LuteScribe" Component_="LuteScribe.exe" Target="[#LuteScribe.exe]" Hotkey="0" Icon_="LuteScribe.exe" IconIndex="0" ShowCmd="1" WkDir="Release_Dir"/>
+    <ROW Shortcut="LuteScribe" Directory_="LuteScribe_1_Dir" Name="LUTESC~1|LuteScribe" Component_="LuteScribe.exe" Target="[#LuteScribe.exe]" Hotkey="0" Icon_="LuteScribe_2.exe" IconIndex="0" ShowCmd="1" WkDir="Release_Dir"/>
     <ROW Shortcut="LuteScribeHelp" Directory_="LuteScribe_1_Dir" Name="LUTESC~2|LuteScribe Help" Component_="LuteScribeHelp.chm_1" Target="[#LuteScribeHelp.chm_1]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Help_Dir"/>
-    <ROW Shortcut="LuteScribe_1" Directory_="DesktopFolder" Name="LUTESC~1|LuteScribe" Component_="LuteScribe.exe" Target="[#LuteScribe.exe]" Hotkey="0" Icon_="LuteScribe_1.exe" IconIndex="0" ShowCmd="1" WkDir="Release_Dir"/>
+    <ROW Shortcut="LuteScribe_1" Directory_="DesktopFolder" Name="LUTESC~1|LuteScribe" Component_="LuteScribe.exe" Target="[#LuteScribe.exe]" Hotkey="0" Icon_="LuteScribe_2.exe" IconIndex="0" ShowCmd="1" WkDir="Release_Dir"/>
     <ROW Shortcut="TabManual" Directory_="LuteScribe_1_Dir" Name="TABMAN~3|Tab Manual" Component_="TabManual.pdf" Target="[#TabManual.pdf]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Tab_Dir"/>
     <ROW Shortcut="TabManualAppendix" Directory_="LuteScribe_1_Dir" Name="TABMAN~1|Tab Manual Appendix" Component_="TabManualAppendix.pdf" Target="[#TabManualAppendix.pdf]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="Tab_Dir"/>
   </COMPONENT>

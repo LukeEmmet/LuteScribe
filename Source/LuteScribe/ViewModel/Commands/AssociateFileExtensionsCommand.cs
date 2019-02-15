@@ -64,7 +64,7 @@ namespace LuteScribe.ViewModel.Commands
         {
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
             var ExecPath = appDir + "LuteScribe.exe";
-            var iconPath = Path.GetFullPath(appDir + "Resources\\ringtones.ico");
+            var iconPath = Path.GetFullPath(appDir + "Resources\\logo.ico");
 
             var confirmMessage = "";
             var count = 0;

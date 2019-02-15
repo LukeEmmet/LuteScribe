@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LuteScribe.View"
         mc:Ignorable="d"
-        Icon="/LuteScribe;component/Resources/ringtones.ico"
+        Icon="/LuteScribe;component/Resources/logo.ico"
         Title="Set file associations" Height="320" Width="238.626" 
         ShowInTaskbar="False" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
