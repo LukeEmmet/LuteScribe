@@ -238,7 +238,8 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <DataGrid x:Name="MainGrid" GridLinesVisibility="None"
+                                <DataGrid x:Name="MainGrid" 
+                                    GridLinesVisibility="None"
                                     ItemsSource="{Binding Chords}" 
                                     SelectedItem="{Binding SelectedItem,Converter={StaticResource ignoreNewItemPlaceHolderConverter}}" 
                                     AutoGenerateColumns="False" 
@@ -251,13 +252,16 @@
                                     DragOver="OnMainGridCheckDropTarget"
                                     PreparingCellForEdit="OnMainGridPreparingCellForEdit"
                                     CellEditEnding="OnMainGridCellEditEnding"
-                                          LostFocus="OnMainGridLostFocus"
+                                    LostFocus="OnMainGridLostFocus"
                                     KeyDown="OnMainGridKeyDown"
                                     Background="White"
                                     BorderBrush="White"
                                     BorderThickness="0"           
                                     MinRowHeight="12"
-                                    Drop="OnMainGridDrop" DataContextChanged="OnMainGridDataContextChanged" HeadersVisibility="None" >
+                                    CanUserAddRows="False"
+                                    Drop="OnMainGridDrop" 
+                                    DataContextChanged="OnMainGridDataContextChanged" 
+                                    HeadersVisibility="None" >
 
                                     <DataGrid.RowStyle>
                                         <Style TargetType="{x:Type DataGridRow}">

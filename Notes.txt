@@ -17,11 +17,23 @@ to object.IsSelected might not work for virtualised data grids...
 
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
 
+=== Feedback as user:
+
+ - implement play current stave
+ - do we really need e at end?
+ - crashes on reflow all when empty chords at end of stave followed by empty stave of about 30 chords...
+ - popup music window - probably it should not get the focus
+ - popup window - implement same keyboard shortcuts?
+ - file save should show wait cursot to indicate activity
+ - help file needs fixed screenshots
+
 === CHANGES ===
 
 
-v1.0.4
+v1.1.0
 
+ - new version number 1.1 to reflect scope of changes since 1.0
+ - removed Datagrid final special column to insert new item, simplifies UI and assumptions
  - minor UI improvements
  - new icon for application and associated files
 
