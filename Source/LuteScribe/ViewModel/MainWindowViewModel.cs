@@ -260,7 +260,14 @@ namespace LuteScribe
             }
             set
             {
-                _settings.StaveWrap = value;
+                //bound stave wrap between 20 and 80
+                const int min = 20;
+                const int max = 80;
+                int result = value;
+                if (value < min) { result = min; }
+                if (value > max) { result = max; }
+
+                _settings.StaveWrap = result;
                 _settings.Save();
                 base.RaisePropertyChangedEvent("StaveWrap");
             }

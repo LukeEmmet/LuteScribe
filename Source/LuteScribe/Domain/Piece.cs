@@ -126,7 +126,14 @@ namespace LuteScribe.Domain
                     chordIndex++;
 
                 }
+                //if after getting to the end of the stave there are no more 
+                //to go we can stop
+                if (staveIndex == (staves.Count - 1)) {
+                    break;
+                }
+
                 staveIndex++;
+
             }
         }
 

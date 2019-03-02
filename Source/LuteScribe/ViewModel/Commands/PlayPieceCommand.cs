@@ -56,6 +56,7 @@ namespace LuteScribe.ViewModel.Commands
             var result = false;
 
             //determine if there is a selection
+            var selectedStave = _viewModel?.TabModel?.ActivePiece?.SelectedItem;
             var selectedItems = _viewModel?.TabModel?.ActivePiece?.SelectedItem?.SelectedItems;
             var selectionCount = (selectedItems == null) ? 0 : selectedItems.Count;
             
@@ -69,6 +70,9 @@ namespace LuteScribe.ViewModel.Commands
                     break;
                 case "Selection":
                     result = selectionCount > 0;
+                    break;
+                case "Stave":
+                    result = (selectedStave != null);
                     break;
                 default:
                     result = false;
@@ -175,6 +179,12 @@ namespace LuteScribe.ViewModel.Commands
                     //only try to get a selection in this mode
                     startChord = SelectedChordRange(piece).Item1;
                     endChord = lastChord;
+                    break;
+                case "Stave":
+                    //get the chords in the currently selected stave
+                    var stave = piece.SelectedItem;
+                    startChord = stave.Chords[0];
+                    endChord = stave.Chords[stave.Chords.Count - 1];
                     break;
                 default:
                     startChord = firstChord;

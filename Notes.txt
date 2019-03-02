@@ -17,18 +17,18 @@ to object.IsSelected might not work for virtualised data grids...
 
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
 
-=== Feedback as user:
 
- - implement play current stave
- - do we really need e at end?
- - crashes on reflow all when empty chords at end of stave followed by empty stave of about 30 chords...
- - popup music window - probably it should not get the focus
- - popup window - implement same keyboard shortcuts?
- - file save should show wait cursot to indicate activity
- - help file needs fixed screenshots
 
 === CHANGES ===
 
+
+v1.1.1
+
+ - new audio option - play current stave
+ - file save now uses wait cursor
+ - stave wrap now bounded between min/max of 20 and 80
+ - bugfix: fixed bug whereby reflow would not always terminate
+ - popup audio playback window does not automatically get focus so you can continue editing
 
 v1.1.0
 
@@ -135,16 +135,16 @@ v1.0.1
 === Maybe ===
 
  - offer to save changes when doing file/open/import if active session
- - cut (as it copy/paste)
  - better tools to organise headers (insert before after current)
  - navigate between staves using the keyboard and focus shifting
+ - do we really need e at end?
+ - popup window - implement same keyboard shortcuts?
 
 === Nice to have
 
  - on opening TAB that is not fully supported (e.g. with mensural staves plus tab) would be nice to give a warning, 
  - user options to control font selection and colours for each type of item
  - user can specify default settings for new project
- - nested menus by category
  - apply flag to current chord as well as insert new chord
  - user generic flags for running tab (general preferences)
  - user can turn on and off the fancy font/colours/sizes

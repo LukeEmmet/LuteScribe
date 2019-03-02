@@ -39,6 +39,7 @@
         <KeyBinding Command="{Binding PlayPiece}"  Key="F5"  CommandParameter="All" />
         <KeyBinding Command="{Binding PlayPiece}"  Modifiers="Shift" Key="F5"  CommandParameter="Selection" />
         <KeyBinding Command="{Binding PlayPiece}"  Modifiers="Ctrl+Shift" Key="F5"  CommandParameter="FromSelection" />
+        <KeyBinding Command="{Binding PlayPiece}"  Modifiers="Alt" Key="F5"  CommandParameter="Stave" />
 
 
         <KeyBinding Command="{Binding ShowHelp}"  Key="F1"/>

@@ -96,6 +96,7 @@
             <MenuItem Header="_Play piece" Command="{Binding PlayPiece}" InputGestureText="F5" CommandParameter="All"/>
             <MenuItem Header="_Play selection" Command="{Binding PlayPiece}" InputGestureText="Shift+F5" CommandParameter="Selection"/>
             <MenuItem Header="_Play from selection" Command="{Binding PlayPiece}" InputGestureText="Ctrl+Shift+F5" CommandParameter="FromSelection"/>
+            <MenuItem Header="_Play current stave" Command="{Binding PlayPiece}" InputGestureText="Alt+F5" CommandParameter="Stave"/>
         </MenuItem>
 
         <MenuItem Header="_Section"  Visibility="{Binding Path=HasMultipleSections, Converter={StaticResource BoolToVisibilityConverter}}" >

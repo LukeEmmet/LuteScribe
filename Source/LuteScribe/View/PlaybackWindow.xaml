@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LuteScribe.View"
         mc:Ignorable="d"
-        Title="Play current piece" Height="82.031" Width="187.5" 
+        Title="Audio playback" Height="82.031" Width="187.5" 
         ShowInTaskbar="False" WindowStyle="ToolWindow" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" Closing="Window_Closing">
     <Grid Margin="2" HorizontalAlignment="Center" >

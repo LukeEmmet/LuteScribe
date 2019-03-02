@@ -25,6 +25,7 @@ using System.Windows.Input;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows;
+using LuteScribe.View;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -109,20 +110,23 @@ namespace LuteScribe.ViewModel.Commands
                 var ext = Path.GetExtension(path).ToLower();
                 try
                 {
-                    switch (ext)
+                    using (new WaitCursor())
                     {
-                        case ".lsml":
-                            _viewModel.SaveXml.Execute(path);
-                            _viewModel.Path = path; //update path on successful save
-                            break;
-                        case ".tab":
-                            _viewModel.SaveTabModel.Execute(path);
-                            _viewModel.Path = path; //update path on successful save
-                            break;
-                        default:
-                            MessageBox.Show("Cannot save file of format: " + ext + " " + path);
-                            break;
+                        switch (ext)
+                        {
+                            case ".lsml":
+                                _viewModel.SaveXml.Execute(path);
+                                _viewModel.Path = path; //update path on successful save
+                                break;
+                            case ".tab":
+                                _viewModel.SaveTabModel.Execute(path);
+                                _viewModel.Path = path; //update path on successful save
+                                break;
+                            default:
+                                MessageBox.Show("Cannot save file of format: " + ext + " " + path);
+                                break;
 
+                        }
                     }
 
                 }
