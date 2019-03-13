@@ -11,9 +11,7 @@ This document contains list of changes, bugs and thoughts for the future, and to
 === bugs to fix soon ===
 
 === TBD ==
-Bind to Selected items so user can delete a selection of chords (current build you can only delete one)
-https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm. But suggests binding
-to object.IsSelected might not work for virtualised data grids...
+
 
  - check for fretted bourdons on 9th course and below - e.g. //c //e etc. (rare?)
 
@@ -24,6 +22,7 @@ to object.IsSelected might not work for virtualised data grids...
 
 v1.1.1
 
+ - minor UI improvements to header editing grid
  - new audio option - play current stave
  - file save now uses wait cursor
  - stave wrap now bounded between min/max of 20 and 80
@@ -160,7 +159,7 @@ v1.0.1
   relative paths including ..\ are ok
   FIXED - use relative path for rebol2 script.
  - REBOL exe cannot seem to open file from UNC drive at present, but this is OK as we copy to temp folder before opening
-
+ 
 
 === The future ===
 

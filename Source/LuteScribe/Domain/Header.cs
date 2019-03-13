@@ -36,6 +36,7 @@ namespace LuteScribe.Domain
         public Header()
         {
             //0 param constructor must exist for xml serialisation
+            _content = "";  //default
         }
 
         public Header(string content)
@@ -51,7 +52,8 @@ namespace LuteScribe.Domain
             }
             set
             {
-                _content = value;
+                _content = (value != null) ? value : "";  //if null set to empty string
+
                 base.RaisePropertyChangedEvent("Content");      //not sure this really does anything useful at this stage
 
                 if (_piece != null) { _piece.RescanTitle(); }   //notify piece it needs to update the title

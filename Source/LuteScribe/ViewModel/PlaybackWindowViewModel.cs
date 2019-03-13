@@ -20,22 +20,9 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
-using System.Collections.ObjectModel;
 using System.Windows.Input;
-using LuteScribe.ViewModel.Commands;
-using System.Linq;
-using System.Collections.Generic;
-using LuteScribe.Domain;
 using LuteScribe.ViewModel;
-using System.Windows.Controls;
-using LuteScribe.Properties;
-using LuteScribe.View.PdfView;
-using System.Diagnostics;
-using LuteScribe.Singletons;
-using LuteScribe.ViewModel.Services;
-using GenericUndoRedo;
 using LuteScribe.Audio;
-using LuteScribe.ViewModel;
 
 namespace LuteScribe
 {
@@ -66,16 +53,11 @@ namespace LuteScribe
         internal void Play()
         {
             
-
             if (_playbackPath != null)
             {
                 _audioPlayback.Play();
             }
-
-
-            ////launch the file (generally would start Windows Media player app)
-            //var launch = new LaunchFileCommand(this);
-            //launch.Execute(_playbackPath);
+            
         }
 
         internal void Stop()
@@ -123,19 +105,7 @@ namespace LuteScribe
         /// </summary>
         private void Initialize()
         {
-            //// Initialize commands
-            ////on file Menu
-            //this.NewFile = new NewFileCommand(this);
-            //this.SaveFile = new SaveFileCommand(this);
-
-            //SelectedTab = 0;   //staves tab
-
-            //NewFile.Execute(this);
-
-            //RefreshLastFilesMenu();
-
-            //// Update bindings
-            //base.RaisePropertyChangedEvent("TabModel");
+            
 
         }
 

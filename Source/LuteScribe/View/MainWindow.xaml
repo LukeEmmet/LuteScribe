@@ -359,12 +359,28 @@
                 
             </TabItem>
             <TabItem Name="headersTab" Header="Headers">
-                <DataGrid ItemsSource="{Binding TabModel.ActivePiece.Headers}">
+                <DataGrid 
+                    Margin="10"
+                    AutoGenerateColumns="False" 
+                    CanUserSortColumns="False"
+                    CanUserResizeColumns="False"
+                    CanUserResizeRows="False"
+                    SelectionMode="Single"
+                    
+                    ItemsSource="{Binding TabModel.ActivePiece.Headers}" 
+                    HorizontalGridLinesBrush="LightGray" 
+                    VerticalGridLinesBrush="LightGray" 
+                    HeadersVisibility="None">
                     <DataGrid.RowStyle>
                         <Style TargetType="{x:Type DataGridRow}">
                             <Setter Property="FontSize" Value="14"/>
+
                         </Style>
                     </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Header" Width="*" Binding="{Binding Content}" IsReadOnly="false"/>
+                        
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             

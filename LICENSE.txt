@@ -4,7 +4,7 @@
     LuteScribe, a GUI tool to view and edit lute tabulature 
     (and for related plucked instruments).
 
-    Copyright (C) 2018, Luke Emmet 
+    Copyright (C) 2017-2019, Luke Emmet 
 
     Email: luke [dot] emmet [at] orlando-lutes [dot] com
 

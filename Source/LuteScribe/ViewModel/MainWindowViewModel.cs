@@ -536,8 +536,10 @@ namespace LuteScribe
 
             }
 
-            
-            
+
+            //retain focus on main window so user can continue editing
+            //this allows you to make a text selection and play using keyboard only
+            Application.Current.MainWindow.Focus();
 
             _playbackWindowViewModel.PlaybackPath = playbackPath;
             _playbackWindowViewModel.Play();
