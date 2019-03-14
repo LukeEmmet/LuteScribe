@@ -9,7 +9,7 @@
         Icon="/LuteScribe;component/Resources/logo.ico"
         Closing="Window_Closing"    
         Height="500" Width="800" WindowStartupLocation="CenterScreen">
- 
+
     <Window.InputBindings>
         <KeyBinding Command="{Binding NewFile}" Modifiers="Ctrl+Shift" Key="N"/>
         <KeyBinding Command="{Binding SaveFile}" Modifiers="Ctrl" Key="S"/>
@@ -30,7 +30,7 @@
         <KeyBinding Command="{Binding InsertItemAfter}" CommandParameter="b" Modifiers="Ctrl" Key="B"/>
         <KeyBinding Command="{Binding InsertItemBefore}" CommandParameter="b" Modifiers="Ctrl+Alt" Key="B"/>
         <KeyBinding Command="{Binding DeleteItem}" Modifiers="Ctrl" Key="OemMinus"/>
-        
+
         <KeyBinding Command="{Binding DeleteStaveEnd}" Modifiers="Ctrl+Shift" Key="E"/>
         <KeyBinding Command="{Binding InsertStaveBreak}" Modifiers="Ctrl+Shift" Key="I"/>
 
@@ -43,13 +43,13 @@
 
 
         <KeyBinding Command="{Binding ShowHelp}"  Key="F1"/>
-        
-        
+
+
         <!-- stave shifting not working yet, as shifting focus not yet implemented
         <KeyBinding Command="{Binding ShiftStaveFocus}" CommandParameter="1" Modifiers="Ctrl+Shift" Key="D"/>
         <KeyBinding Command="{Binding ShiftStaveFocus}" CommandParameter="-1" Modifiers="Ctrl+Shift" Key="U"/>
         -->
-        
+
     </Window.InputBindings>
 
     <Window.Resources>
@@ -78,12 +78,13 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="-2" StrokeThickness="2" Stroke="DarkGray" StrokeDashArray="1 1"/>
+                        <Rectangle Margin="-2" StrokeThickness="2" Stroke="Black" StrokeDashArray="1 1"/>
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style x:Key="RotatedCell" TargetType="DataGridCell">
 
             <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusedCellStyle}"/>
@@ -97,27 +98,29 @@
                 </Setter.Value>
             </Setter>
 
-            
+
             <Style.Triggers>
+                <!-- make selected cells distinct-->
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="AliceBlue"/>
+                    <Setter Property="Background" Value="Honeydew"/>
                     <Setter Property="Foreground" Value="Navy"/>
-                    <Setter Property="BorderBrush" Value="AliceBlue"/>
+                    <Setter Property="BorderBrush" Value="Gray"/>
                 </Trigger>
             </Style.Triggers>
-            
+
         </Style>
 
         <Style x:Key="FlagLine" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}" >
             <Setter Property="Margin" Value="0,0,0,0"/>
-            
-            
+            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+
+
             <Setter Property="FontSize" 
                     Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
                     Path =Item.Flag, 
                     Converter={StaticResource FlagFontSizeConverter}}" />
-            
-            
+
+
             <!-- programatically setting the font doesnt work on Wine - not sure why...
             see also corresponding option to hardwire the font below on the 
             -->
@@ -135,7 +138,14 @@
             -->
 
 
-
+            <Style.Triggers>
+                <!-- make selected cells distinct, with slightly different background colour 
+                to distinguish top flag line from courses-->
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="AliceBlue" /> 
+                </Trigger>
+            </Style.Triggers>
+            
         </Style>
 
         <Style x:Key="TopStave" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
@@ -158,24 +168,25 @@
         https://stackoverflow.com/questions/15309008/binding-converterparameter
         -->
         <Style x:Key="LowerStaves" TargetType="DataGridCell" BasedOn="{StaticResource TopStave}">
-            
+
             <Setter Property="BorderBrush" 
                     Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
                     Path =Item.Flag, 
                     Converter={StaticResource FlagBorderColourConverter}}" />
-            
+
             <Setter Property="BorderThickness">
                 <Setter.Value>
                     <MultiBinding Converter="{StaticResource FlagBorderThicknessConverter}" ConverterParameter="lower">
                         <Binding Path="Item.Flag" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
                         <Binding Path="Item.SequenceNumber" RelativeSource="{RelativeSource AncestorType={x:Type DataGridRow}}"/>
-                        
+
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
         </Style>
 
         <Style x:Key="BottomStave" TargetType="DataGridCell" BasedOn="{StaticResource RotatedCell}">
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
 
@@ -192,7 +203,7 @@
     </Window.Resources>
 
     <DockPanel>
-        
+
         <!--include Menus control-->
         <DockPanel DockPanel.Dock="Top">
             <View:Menus/>
@@ -200,11 +211,11 @@
 
 
         <DockPanel LastChildFill="False" DockPanel.Dock="Top" Margin="5,0,5,0">
-            
+
             <TextBlock Text="{Binding TabModel.ActivePiece.Title}"  Margin="0,10,0,10" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Cambria" FontSize="21.333">
-        		<TextBlock.Foreground>
-        			<SolidColorBrush Color="#FF437CA6"/>
-        		</TextBlock.Foreground>
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="#FF437CA6"/>
+                </TextBlock.Foreground>
             </TextBlock>
         </DockPanel>
 
@@ -285,14 +296,14 @@
                                             Header="" Width="Auto" Binding="{Binding Flag}" IsReadOnly="false" 
                                             CellStyle="{StaticResource FlagLine}" 
                                             ElementStyle="{StaticResource FlagStyle}">
-                                            
+
                                             <!--explicit setting of font this works on Wine, whereas
                                             setting the font via a valueconverter seems to crash on Wine (fine on Windows 
                                             who knew...-->
                                             <!--
                                             <DataGridTextColumn.FontFamily>LuteScribeFlagSymbols</DataGridTextColumn.FontFamily>
                                             -->
-                                            
+
                                         </DataGridTextColumn>
 
 
@@ -356,7 +367,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
+
             </TabItem>
             <TabItem Name="headersTab" Header="Headers">
                 <DataGrid 
@@ -379,11 +390,11 @@
                     </DataGrid.RowStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Header" Width="*" Binding="{Binding Content}" IsReadOnly="false"/>
-                        
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            
+
             <!-- print view-->
             <TabItem Name="PdfViewerTab" Header="Print view" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" >
                 <Grid Background="LightGray" Margin="0,0,0,0">
@@ -446,8 +457,8 @@
                                   IsChecked="{Binding ViewTwoPages}"/>
 
                     </Grid>
-                    
-                    
+
+
 
                     <!--PageRowDisplay="ContinuousPageRows" is buggy - avoid-->
                     <!--IsManipulationEnabled=True is buggy, makes setting pages not work I think - avoid-->
@@ -467,7 +478,7 @@
                                 <MenuItem Header="_Print" Command="{Binding PrintPdf}" InputGestureText="Ctrl+P"/>
                                 <MenuItem Header="_Export PDF" Command="{Binding CreatePdf}" CommandParameter="."/>
 
-                                
+
                             </ContextMenu>
                         </mpp:MoonPdfPanel.ContextMenu>
 
@@ -503,7 +514,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                      
+
                     <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right">Stave wrap</Label>
                     <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Padding="5" Text="{Binding StaveWrap}" HorizontalAlignment="Left" MinWidth="80"/>
 
@@ -549,7 +560,7 @@
                         <ComboBoxItem>Faster</ComboBoxItem>
                         <ComboBoxItem>2 x faster</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <CheckBox Grid.Row="7" Name="ShowDebugLog" Content="Show debug log:" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                     <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding DebugLog.Messages}"  
                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -558,7 +569,7 @@
                              Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}"
                            
                              >
-                       
+
                         <TextBox.Style>
                             <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="Visibility" Value="Hidden"/>
@@ -569,7 +580,7 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
-                       
+
                     </TextBox>
                 </Grid>
             </TabItem>

@@ -19,6 +19,9 @@ This document contains list of changes, bugs and thoughts for the future, and to
 
 === CHANGES ===
 
+v1.1.3
+
+ - UI tweak - selected chords show lines, and indicate flag line from courses
 
 v1.1.1
 
