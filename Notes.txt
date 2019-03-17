@@ -19,6 +19,11 @@ This document contains list of changes, bugs and thoughts for the future, and to
 
 === CHANGES ===
 
+v1.1.4
+
+ - UI tweak - selected chords show text in normal colour (e.g. "b" for barlines not grey)
+ - FT2 files automatically reflowed on load - results in  better layout given FT2 loader is only partially working
+
 v1.1.3
 
  - UI tweak - selected chords show lines, and indicate flag line from courses

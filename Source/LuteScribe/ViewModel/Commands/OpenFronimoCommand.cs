@@ -110,13 +110,13 @@ namespace LuteScribe.ViewModel.Commands
                     _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[0];
                     _viewModel.Path = Path.GetFullPath(tabPath);
                     
-                    //need to clean up any temporary path
-                    if (loader.IsFt3(tabPath))
-                    {
-                        //ft3 we reflow incoming content according to user preferences
-                        var reflow = new ReflowCommand(_viewModel);
-                        reflow.Execute(this);
-                    }
+                    //unwrap the content
+                    //ft2 - because the loader is partial so there might be gaps
+                    //ft3 - because the content comes in as a single streamed list of elements
+                    //we reflow incoming content according to user preferences
+                    var reflow = new ReflowCommand(_viewModel);
+                    reflow.Execute(this);
+                    
                 }
                 else
                 {

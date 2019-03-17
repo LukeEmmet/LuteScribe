@@ -104,7 +104,7 @@
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="Honeydew"/>
                     <Setter Property="Foreground" Value="Navy"/>
-                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderBrush" Value="Navy"/>
                 </Trigger>
             </Style.Triggers>
 
@@ -129,6 +129,11 @@
                     Path =Item.Flag, 
                     Converter={StaticResource FlagFontFamilyConverter}}" />
 
+            <Setter Property="Foreground" 
+                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                    Path =Item.Flag, 
+                    Converter={StaticResource FlagColourConverter}}" />
+            
             <!--need to test if this option works in Wine or not s an alternative to inlining
             it below on DataGridTextColumn or not-->
             <!--<Setter Property="FontFamily" Value="LuteScribeFlagSymbols"/>
@@ -193,10 +198,6 @@
         <Style x:Key="FlagStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="0,0,0,0" />
-            <Setter Property="Foreground" 
-                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
-                    Path =Item.Flag, 
-                    Converter={StaticResource FlagColourConverter}}" />
         </Style>
 
 
