@@ -10,6 +10,8 @@ This document contains list of changes, bugs and thoughts for the future, and to
 
 === bugs to fix soon ===
 
+Bug: Allow stave text as well as piece title - currently gets agregated into headers
+
 === TBD ==
 
 

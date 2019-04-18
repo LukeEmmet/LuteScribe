@@ -1,0 +1,431 @@
+-R9
+-e
+-b
+-i
+$tempo=3
+-tuning c4d4e4f4g4a3d3f3a2d2f2
+
+{Chaconne, La Com\`ete/J Gallot}
+{Leip 14 f 52-54/D minor tuning}
+
+S3
+i
+0ca  c
+1  d
+xc
+0cad c
+b
+xaad a
+1  c&,
+xa.
+0aac a
+b
+1 a  c
+2  d
+x a
+1 c
+x cd
+0 cd d
+b
+x adc|
+1      a
+x  c
+0  d   4
+.
+b
+b
+.
+0  dcc 4
+x  c&, d ///a
+x  dc  //a
+b
+x  aad /a
+1  aa
+x a
+0  ccd a
+b
+
+% line 2
+
+b
+0c d c
+xaad a
+1  c&,
+x a
+b
+0 cdc d
+x      4
+x    a
+b
+xca  c
+1  d
+xc
+0cad b
+b
+x Ed a
+1      ///a
+x  f
+x  d&,
+2   f.
+x  d
+b
+1   f
+x f
+0E   \3fa
+1    E
+x a
+b
+0fa    a
+x    f
+x    d&,
+.
+b
+b
+.
+x cdc d
+1 cd
+x c
+0 cd  b&,
+b
+
+% line 3
+
+b
+0add  a
+1ad
+xa
+0cc&,    a
+b
+xEc    /a
+1 a&,
+xh
+xg
+x h
+b
+0 f&,    //a
+1    f
+x   \3h|
+x  f
+x  \4h
+b
+0a a   ///a
+1    a
+x  c
+xc
+x d
+b
+0 c&,dc  //a
+1 cd
+x c
+0 cdcc
+b
+x caa  /a
+1 a&,
+x  d
+0  cca a
+b
+x  dcc 4
+w     d
+.
+b
+b
+
+% line 4
+
+b
+b
+.
+1  d  d
+x a
+x c
+xa
+xc
+x    a|
+b
+0c !/ c
+1a&,  a|
+x c
+x a c|
+x   a&,|
+b
+0  d!/c
+x  c!/a
+x  a!/ d
+b
+x a !/ c
+1   c
+x  d
+x     a
+x   b&,
+b
+0.  c&,c!/ a
+1  d
+x a
+x    d
+b
+x    c&,
+x  d
+x c
+xa
+0c d   //a
+b
+xEc    /a
+1 a&,
+xg
+0-_h h   a
+b
+
+% line 5
+
+b
+0h h f
+1  f&,
+xg
+0_h     4
+.
+b
+b
+.
+xc d c
+x a!/c!/c
+xa
+b
+x cdc d
+1 cdc
+x c
+0a c&, a
+b
+xc d c
+xa aa|
+1a&,
+x c
+b
+0 acc|
+x      a
+x    d
+b
+x  dcc
+x  b&,c  //a
+1     d
+x  b
+b
+0  aad /a
+1  aa
+x  a
+x a
+x  d
+b
+
+p
+
+% line 6
+
+b
+1  c - a
+x    d
+x    c&,
+x  d
+x    a
+x  c
+b
+0  _d  d
+w      4
+.
+b
+b
+.
+1     d
+x    a
+x    c
+x   a
+x   c
+x     c&,
+b
+x  a  a
+x  c
+x  d
+x   c|
+x   b&,|
+x a
+b
+0  cca a
+1  cc
+x  c
+0  cc d
+b
+x  aca
+1      ///a
+x   b
+0   _ca a
+b
+.
+x acc|
+0. a a&,|
+1 c  c
+b
+
+% line 7
+
+b
+0ada a
+1ad
+xa
+0c d c
+b
+1a aa
+2 c
+xa
+1 a
+x  d
+x  cc|
+x    d
+b
+0  dcc
+w      4
+.
+b
+b
+.
+0hfh|
+1hf
+xh
+0g f|
+b
+xg hh|
+x h
+x ffg|
+b
+xEE E|
+0.E&, f|
+1g
+b
+0ga |  a
+0.    \2f
+1    \3E
+b
+
+% line 8
+
+b
+1    c&,
+xE.
+xc&,
+x E.
+xc
+x c.
+b
+0b   b
+1 b{
+x  \2c}
+0-\3_c c a
+b
+x cc  d
+1   E|
+x E
+0 b&,c  a
+b
+x c !/  b
+1  c
+x    c
+x  c
+x a
+b
+0  dE a
+1   c&,
+2    E|
+x   c
+1    E|
+x a
+b
+x  c   a
+x  d
+x a
+x   c
+x   a&,
+2    c
+x   a
+b
+0  d c
+x  d c a
+1    a&,
+x  c
+b
+
+% line 9
+
+b
+0  d  d
+w      4
+.
+b
+b
+.
+0  d  d
+0.  c/a/a
+1  a
+b
+0   c. //a
+1     d
+x   c
+x  a
+x    c
+b
+x   a  ///a
+x     d
+x     c&,
+x    a
+x   c
+x    d
+b
+0    c&,d
+1      4
+x    a
+x    c
+x   a
+b
+0   c!/d
+x   c c&,
+x  db a
+b
+x  c&, - a
+1   c
+xc
+xa
+x c
+b
+
+% line 10
+
+b
+0 a c|
+0. a a&,|
+1 c  c
+b
+0ada a
+1ad
+x  c
+0 c&,d c
+b
+x caa|
+x a&,
+1    a
+x  d
+b
+0  c&,c|
+1      a
+x  d
+x a
+x    d
+b
+0  d!/c&,
+0.  c&, a a
+2  a
+x  c
+b
+0  d
+w      4
+.
+b
+Q
+e
+

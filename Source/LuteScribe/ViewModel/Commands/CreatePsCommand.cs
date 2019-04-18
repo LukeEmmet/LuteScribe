@@ -70,11 +70,11 @@ namespace LuteScribe.ViewModel.Commands
 
             var userFile = _viewModel.Path;
 
-            var findErrors = "tab 4\\.3\\.89 copyright 1995-2010 by Wayne Cripps(\\r\\n.+)";
+            var findErrors = "tab 4\\.3\\.94 copyright 1995-2018 by Wayne Cripps(\\r\\n.+)";
 
             var guid = Guid.NewGuid();
 
-            //Note that the current version of TAB (4.3.89) requires files to have an explicit .tab extension :-/
+            //Note that the current version of TAB (4.3.94) requires files to have an explicit .tab extension :-/
             //N.B. this path must not be too long, otherwise TAB will die
             var temp = Session.Instance.SessionPath + "\\" + "temp.tab";
 

@@ -201,7 +201,7 @@ namespace LuteScribe.ViewModel.Commands
             var tabPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Tab\\bin\\tab.exe"));
             var fontPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Tab\\bin"));
 
-            var findErrors = "tab 4\\.3\\.89 copyright 1995-2010 by Wayne Cripps(\\r\\n.+)";
+            var findErrors = "tab 4\\.3\\.94 copyright 1995-2018 by Wayne Cripps(\\r\\n.+)";
 
             var guid = Guid.NewGuid();
             

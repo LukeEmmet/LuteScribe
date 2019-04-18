@@ -15,7 +15,7 @@
     <ROW Property="ProductCode" Value="1033:{43EEEC5D-DD3F-4C6A-BB81-44B4BBD08721} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="LuteScribe 1.1"/>
-    <ROW Property="ProductVersion" Value="1.1.4.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.5.1" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{2A9E2BC3-5251-46AE-9C54-9743C74B4CED}"/>
@@ -57,7 +57,7 @@
     <ROW Directory="source_Dir" Directory_Parent="Tab_Dir" DefaultDir="source"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AboutTab.txt" ComponentId="{34E83D06-3954-40CA-9F8E-24BE86657161}" Directory_="bin_1_Dir" Attributes="0" KeyPath="AboutTab.txt" Type="0"/>
+    <ROW Component="AboutTab.txt" ComponentId="{34E83D06-3954-40CA-9F8E-24BE86657161}" Directory_="bin_1_Dir" Attributes="0" KeyPath="blute6.tfm" Type="0"/>
     <ROW Component="COPYING" ComponentId="{5C78EE09-E658-4FB2-8711-3F0DFEAB31A3}" Directory_="gzip124xN_Dir" Attributes="0" KeyPath="COPYING" Type="0"/>
     <ROW Component="COPYING_1" ComponentId="{DAE98B1B-AF23-4686-B39F-288A49EA4543}" Directory_="Freepats_Dir" Attributes="0" KeyPath="COPYING_1" Type="0"/>
     <ROW Component="FontsReadme.txt" ComponentId="{DEA7734E-451D-415C-82DE-68864563A269}" Directory_="Fonts_Dir" Attributes="0" KeyPath="FontsReadme.txt" Type="0"/>
@@ -96,7 +96,6 @@
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="AboutTab.txt" Component_="AboutTab.txt" FileName="AboutTab.txt" Attributes="0" SourcePath="..\Source\Tab\bin\AboutTab.txt" SelfReg="false" NextFile="blute6.300pk"/>
     <ROW File="COPYING" Component_="COPYING" FileName="COPYING" Attributes="0" SourcePath="..\Source\Utils\gzip124xN\COPYING" SelfReg="false" NextFile="gzip.doc"/>
     <ROW File="COPYING_1" Component_="COPYING_1" FileName="COPYING" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\COPYING" SelfReg="false" NextFile="LuteScribe.cfg"/>
     <ROW File="EndOfTask.ps" Component_="acctest.ps" FileName="ENDOFT~1.PS|EndOfTask.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\EndOfTask.ps" SelfReg="false" NextFile="eps2eps"/>
@@ -134,15 +133,13 @@
     <ROW File="MouseKeyboardActivityMonitor.dll" Component_="MouseKeyboardActivityMonitor.dll" FileName="MOUSEK~1.DLL|MouseKeyboardActivityMonitor.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\MouseKeyboardActivityMonitor.dll" SelfReg="false" NextFile="JtxmlParserLib.dll"/>
     <ROW File="NAudio.dll" Component_="NAudio.dll" FileName="NAudio.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\NAudio.dll" SelfReg="false" NextFile="NAudio.xml"/>
     <ROW File="NAudio.xml" Component_="LuteScribe.exe.config" FileName="NAudio.xml" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\NAudio.xml" SelfReg="false" NextFile="COPYING_1"/>
-    <ROW File="README" Component_="AboutTab.txt" FileName="README" Attributes="0" SourcePath="..\Source\Tab\bin\README" SelfReg="false" NextFile="README.txt"/>
-    <ROW File="README.txt" Component_="AboutTab.txt" FileName="README.txt" Attributes="0" SourcePath="..\Source\Tab\bin\README.txt" SelfReg="false" NextFile="sample.tab"/>
     <ROW File="README_1" Component_="COPYING" FileName="README" Attributes="0" SourcePath="..\Source\Utils\gzip124xN\README" SelfReg="false" NextFile="r3core.exe"/>
     <ROW File="README_2" Component_="COPYING_1" FileName="README" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\README" SelfReg="false" NextFile="_Acoustic_Brite_Piano.pat"/>
     <ROW File="StavesToXML.r" Component_="FronimoToTab.r" FileName="STAVES~1.R|StavesToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\StavesToXML.r" SelfReg="false" NextFile="TabToXML.r"/>
     <ROW File="TabFlags.xml" Component_="application_edit.ico" FileName="TabFlags.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabFlags.xml" SelfReg="false" NextFile="libmupdf.dll"/>
     <ROW File="TabHeaders.xml" Component_="application_edit.ico" FileName="TABHEA~1.XML|TabHeaders.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabHeaders.xml" SelfReg="false" NextFile="logo.ico"/>
     <ROW File="TabManual.pdf" Component_="TabManual.pdf" FileName="TABMAN~1.PDF|TabManual.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManual.pdf" SelfReg="false" NextFile="TabManualAppendix.pdf"/>
-    <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="AboutTab.txt"/>
+    <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="blute6.tfm"/>
     <ROW File="TabToXML.r" Component_="FronimoToTab.r" FileName="TabToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\TabToXML.r" SelfReg="false" NextFile="LuteScribe.exe"/>
     <ROW File="_Acoustic_Brite_Piano.pat" Component_="_Acoustic_Brite_Piano.pat" FileName="001_AC~1.PAT|001_Acoustic_Brite_Piano.pat" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\Tone_000\001_Acoustic_Brite_Piano.pat" SelfReg="false" NextFile="_Harpsichord.pat"/>
     <ROW File="_Harpsichord.pat" Component_="_Acoustic_Brite_Piano.pat" FileName="006_HA~1.PAT|006_Harpsichord.pat" Attributes="0" SourcePath="..\Source\Utils\WildMidi\Patches\Freepats\Tone_000\006_Harpsichord.pat" SelfReg="false" NextFile="_Nylon_Guitar.pat"/>
@@ -175,21 +172,13 @@
     <ROW File="bjc610b6.upp" Component_="acctest.ps" FileName="bjc610b6.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b6.upp" SelfReg="false" NextFile="bjc610b7.upp"/>
     <ROW File="bjc610b7.upp" Component_="acctest.ps" FileName="bjc610b7.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b7.upp" SelfReg="false" NextFile="bjc610b8.upp"/>
     <ROW File="bjc610b8.upp" Component_="acctest.ps" FileName="bjc610b8.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b8.upp" SelfReg="false" NextFile="caption.ps"/>
-    <ROW File="blute6.300pk" Component_="AboutTab.txt" FileName="BLUTE6~1.300|blute6.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.300pk" SelfReg="false" NextFile="blute6.600pk"/>
-    <ROW File="blute6.600pk" Component_="AboutTab.txt" FileName="BLUTE6~1.600|blute6.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.600pk" SelfReg="false" NextFile="blute6.tfm"/>
-    <ROW File="blute6.tfm" Component_="AboutTab.txt" FileName="blute6.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.tfm" SelfReg="false" NextFile="blute7.300pk"/>
-    <ROW File="blute7.300pk" Component_="AboutTab.txt" FileName="BLUTE7~1.300|blute7.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.300pk" SelfReg="false" NextFile="blute7.600pk"/>
+    <ROW File="blute6.tfm" Component_="AboutTab.txt" FileName="blute6.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.tfm" SelfReg="false" NextFile="blute7.600pk"/>
     <ROW File="blute7.600pk" Component_="AboutTab.txt" FileName="BLUTE7~1.600|blute7.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.600pk" SelfReg="false" NextFile="blute7.tfm"/>
-    <ROW File="blute7.tfm" Component_="AboutTab.txt" FileName="blute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.tfm" SelfReg="false" NextFile="blute8.300pk"/>
-    <ROW File="blute8.300pk" Component_="AboutTab.txt" FileName="BLUTE8~1.300|blute8.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.300pk" SelfReg="false" NextFile="blute8.600pk"/>
+    <ROW File="blute7.tfm" Component_="AboutTab.txt" FileName="blute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.tfm" SelfReg="false" NextFile="blute8.600pk"/>
     <ROW File="blute8.600pk" Component_="AboutTab.txt" FileName="BLUTE8~1.600|blute8.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.600pk" SelfReg="false" NextFile="blute8.tfm"/>
-    <ROW File="blute8.tfm" Component_="AboutTab.txt" FileName="blute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.tfm" SelfReg="false" NextFile="blute85.300pk"/>
-    <ROW File="blute85.300pk" Component_="AboutTab.txt" FileName="BLUTE8~2.300|blute85.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute85.300pk" SelfReg="false" NextFile="blute85.tfm"/>
-    <ROW File="blute85.tfm" Component_="AboutTab.txt" FileName="blute85.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute85.tfm" SelfReg="false" NextFile="blute9.300pk"/>
-    <ROW File="blute9.300pk" Component_="AboutTab.txt" FileName="BLUTE9~1.300|blute9.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.300pk" SelfReg="false" NextFile="blute9.600pk"/>
+    <ROW File="blute8.tfm" Component_="AboutTab.txt" FileName="blute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.tfm" SelfReg="false" NextFile="blute9.600pk"/>
     <ROW File="blute9.600pk" Component_="AboutTab.txt" FileName="BLUTE9~1.600|blute9.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.600pk" SelfReg="false" NextFile="blute9.tfm"/>
-    <ROW File="blute9.tfm" Component_="AboutTab.txt" FileName="blute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.tfm" SelfReg="false" NextFile="c.tab"/>
-    <ROW File="c.tab" Component_="AboutTab.txt" FileName="c.tab" Attributes="0" SourcePath="..\Source\Tab\bin\c.tab" SelfReg="false" NextFile="cmr10.tfm"/>
+    <ROW File="blute9.tfm" Component_="AboutTab.txt" FileName="blute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.tfm" SelfReg="false" NextFile="cmr10.tfm"/>
     <ROW File="caption.ps" Component_="acctest.ps" FileName="caption.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\caption.ps" SelfReg="false" NextFile="cat.ps"/>
     <ROW File="cat.ps" Component_="acctest.ps" FileName="cat.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cat.ps" SelfReg="false" NextFile="cbjc600.ppd"/>
     <ROW File="cbjc600.ppd" Component_="acctest.ps" FileName="cbjc600.ppd" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cbjc600.ppd" SelfReg="false" NextFile="cbjc800.ppd"/>
@@ -201,8 +190,7 @@
     <ROW File="cidfmap" Component_="acctest.ps" FileName="cidfmap" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cidfmap" SelfReg="false" NextFile="decrypt.ps"/>
     <ROW File="cmr10.tfm" Component_="AboutTab.txt" FileName="cmr10.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmr10.tfm" SelfReg="false" NextFile="cmr12.tfm"/>
     <ROW File="cmr12.tfm" Component_="AboutTab.txt" FileName="cmr12.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmr12.tfm" SelfReg="false" NextFile="cmti10.tfm"/>
-    <ROW File="cmti10.tfm" Component_="AboutTab.txt" FileName="cmti10.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmti10.tfm" SelfReg="false" NextFile="cmti12.tfm"/>
-    <ROW File="cmti12.tfm" Component_="AboutTab.txt" FileName="cmti12.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmti12.tfm" SelfReg="false" NextFile="lute6.300pk"/>
+    <ROW File="cmti10.tfm" Component_="AboutTab.txt" FileName="cmti10.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmti10.tfm" SelfReg="false" NextFile="lute7.600pk"/>
     <ROW File="decrypt.ps" Component_="acctest.ps" FileName="decrypt.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\decrypt.ps" SelfReg="false" NextFile="dnj750c.upp"/>
     <ROW File="dnj750c.upp" Component_="acctest.ps" FileName="dnj750c.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\dnj750c.upp" SelfReg="false" NextFile="dnj750m.upp"/>
     <ROW File="dnj750m.upp" Component_="acctest.ps" FileName="dnj750m.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\dnj750m.upp" SelfReg="false" NextFile="docie.ps"/>
@@ -283,18 +271,12 @@
     <ROW File="lpgs.bat" Component_="acctest.ps" FileName="lpgs.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lpgs.bat" SelfReg="false" NextFile="lpr2.bat"/>
     <ROW File="lpr2.bat" Component_="acctest.ps" FileName="lpr2.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lpr2.bat" SelfReg="false" NextFile="lprsetup.sh"/>
     <ROW File="lprsetup.sh" Component_="acctest.ps" FileName="lprsetup.sh" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lprsetup.sh" SelfReg="false" NextFile="markhint.ps"/>
-    <ROW File="lute6.300pk" Component_="AboutTab.txt" FileName="LUTE6~1.300|lute6.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute6.300pk" SelfReg="false" NextFile="lute6.600pk"/>
-    <ROW File="lute6.600pk" Component_="AboutTab.txt" FileName="LUTE6~1.600|lute6.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute6.600pk" SelfReg="false" NextFile="lute6.tfm"/>
-    <ROW File="lute6.tfm" Component_="AboutTab.txt" FileName="lute6.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute6.tfm" SelfReg="false" NextFile="lute7.300pk"/>
-    <ROW File="lute7.300pk" Component_="AboutTab.txt" FileName="LUTE7~1.300|lute7.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.300pk" SelfReg="false" NextFile="lute7.600pk"/>
     <ROW File="lute7.600pk" Component_="AboutTab.txt" FileName="LUTE7~1.600|lute7.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.600pk" SelfReg="false" NextFile="lute7.tfm"/>
-    <ROW File="lute7.tfm" Component_="AboutTab.txt" FileName="lute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.tfm" SelfReg="false" NextFile="lute8.300pk"/>
-    <ROW File="lute8.300pk" Component_="AboutTab.txt" FileName="LUTE8~1.300|lute8.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.300pk" SelfReg="false" NextFile="lute8.600pk"/>
+    <ROW File="lute7.tfm" Component_="AboutTab.txt" FileName="lute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.tfm" SelfReg="false" NextFile="lute8.600pk"/>
     <ROW File="lute8.600pk" Component_="AboutTab.txt" FileName="LUTE8~1.600|lute8.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.600pk" SelfReg="false" NextFile="lute8.tfm"/>
-    <ROW File="lute8.tfm" Component_="AboutTab.txt" FileName="lute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.tfm" SelfReg="false" NextFile="lute9.300pk"/>
-    <ROW File="lute9.300pk" Component_="AboutTab.txt" FileName="LUTE9~1.300|lute9.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.300pk" SelfReg="false" NextFile="lute9.600pk"/>
+    <ROW File="lute8.tfm" Component_="AboutTab.txt" FileName="lute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.tfm" SelfReg="false" NextFile="lute9.600pk"/>
     <ROW File="lute9.600pk" Component_="AboutTab.txt" FileName="LUTE9~1.600|lute9.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.600pk" SelfReg="false" NextFile="lute9.tfm"/>
-    <ROW File="lute9.tfm" Component_="AboutTab.txt" FileName="lute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.tfm" SelfReg="false" NextFile="out.log"/>
+    <ROW File="lute9.tfm" Component_="AboutTab.txt" FileName="lute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.tfm" SelfReg="false" NextFile="pncr.tfm"/>
     <ROW File="lute_tab4.3.89.zip" Component_="lute_tab4.3.89.zip" FileName="LUTE_T~1.ZIP|lute_tab4.3.89.zip" Attributes="0" SourcePath="..\Source\Tab\source\lute_tab4.3.89.zip" SelfReg="false" NextFile="gsdll32.dll"/>
     <ROW File="markhint.ps" Component_="acctest.ps" FileName="markhint.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\markhint.ps" SelfReg="false" NextFile="markpath.ps"/>
     <ROW File="markpath.ps" Component_="acctest.ps" FileName="markpath.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\markpath.ps" SelfReg="false" NextFile="mkcidfm.ps"/>
@@ -302,8 +284,6 @@
     <ROW File="necp2x.upp" Component_="acctest.ps" FileName="necp2x.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\necp2x.upp" SelfReg="false" NextFile="necp2x6.upp"/>
     <ROW File="necp2x6.upp" Component_="acctest.ps" FileName="necp2x6.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\necp2x6.upp" SelfReg="false" NextFile="opdfread.ps"/>
     <ROW File="opdfread.ps" Component_="acctest.ps" FileName="opdfread.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\opdfread.ps" SelfReg="false" NextFile="packfile.ps"/>
-    <ROW File="out.log" Component_="AboutTab.txt" FileName="out.log" Attributes="0" SourcePath="..\Source\Tab\bin\out.log" SelfReg="false" NextFile="out.pdf"/>
-    <ROW File="out.pdf" Component_="AboutTab.txt" FileName="out.pdf" Attributes="0" SourcePath="..\Source\Tab\bin\out.pdf" SelfReg="false" NextFile="pncb.tfm"/>
     <ROW File="packfile.ps" Component_="acctest.ps" FileName="packfile.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\packfile.ps" SelfReg="false" NextFile="pcharstr.ps"/>
     <ROW File="parseft2lib.r" Component_="FronimoToTab.r" FileName="PARSE-~1.R|parse-ft2-lib.r" Attributes="0" SourcePath="..\Source\FileConverters\parse-ft2-lib.r" SelfReg="false" NextFile="parseft3lib.r"/>
     <ROW File="parseft3lib.r" Component_="FronimoToTab.r" FileName="PARSE-~2.R|parse-ft3-lib.r" Attributes="0" SourcePath="..\Source\FileConverters\parse-ft3-lib.r" SelfReg="false" NextFile="parsetablib.r"/>
@@ -324,10 +304,8 @@
     <ROW File="pfbtopfa.bat" Component_="acctest.ps" FileName="pfbtopfa.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pfbtopfa.bat" SelfReg="false" NextFile="pfbtopfa.ps"/>
     <ROW File="pfbtopfa.ps" Component_="acctest.ps" FileName="pfbtopfa.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pfbtopfa.ps" SelfReg="false" NextFile="pftogsf.bat"/>
     <ROW File="pftogsf.bat" Component_="acctest.ps" FileName="pftogsf.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pftogsf.bat" SelfReg="false" NextFile="ppath.ps"/>
-    <ROW File="pncb.tfm" Component_="AboutTab.txt" FileName="pncb.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncb.tfm" SelfReg="false" NextFile="pncbi.tfm"/>
-    <ROW File="pncbi.tfm" Component_="AboutTab.txt" FileName="pncbi.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncbi.tfm" SelfReg="false" NextFile="pncr.tfm"/>
     <ROW File="pncr.tfm" Component_="AboutTab.txt" FileName="pncr.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncr.tfm" SelfReg="false" NextFile="pncri.tfm"/>
-    <ROW File="pncri.tfm" Component_="AboutTab.txt" FileName="pncri.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncri.tfm" SelfReg="false" NextFile="psyr.tfm"/>
+    <ROW File="pncri.tfm" Component_="AboutTab.txt" FileName="pncri.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncri.tfm" SelfReg="false" NextFile="sample.tab"/>
     <ROW File="ppath.ps" Component_="acctest.ps" FileName="ppath.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ppath.ps" SelfReg="false" NextFile="pphs"/>
     <ROW File="pphs" Component_="acctest.ps" FileName="pphs" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pphs" SelfReg="false" NextFile="pphs.ps"/>
     <ROW File="pphs.ps" Component_="acctest.ps" FileName="pphs.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pphs.ps" SelfReg="false" NextFile="prfont.ps"/>
@@ -363,8 +341,6 @@
     <ROW File="ps2ps2" Component_="acctest.ps" FileName="ps2ps2" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2" SelfReg="false" NextFile="ps2ps2.bat"/>
     <ROW File="ps2ps2.bat" Component_="acctest.ps" FileName="ps2ps2.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2.bat" SelfReg="false" NextFile="ps2ps2.cmd"/>
     <ROW File="ps2ps2.cmd" Component_="acctest.ps" FileName="ps2ps2.cmd" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2.cmd" SelfReg="false" NextFile="quit.ps"/>
-    <ROW File="psyr.tfm" Component_="AboutTab.txt" FileName="psyr.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\psyr.tfm" SelfReg="false" NextFile="ptmr.tfm"/>
-    <ROW File="ptmr.tfm" Component_="AboutTab.txt" FileName="ptmr.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\ptmr.tfm" SelfReg="false" NextFile="README"/>
     <ROW File="quit.ps" Component_="acctest.ps" FileName="quit.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\quit.ps" SelfReg="false" NextFile="ras1.upp"/>
     <ROW File="r3core.exe" Component_="r3core.exe" FileName="r3-core.exe" Attributes="0" SourcePath="..\Source\Utils\Rebol\r3-core.exe" SelfReg="false" NextFile="rebol.exe" DigSign="true"/>
     <ROW File="ras1.upp" Component_="acctest.ps" FileName="ras1.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras1.upp" SelfReg="false" NextFile="ras24.upp"/>
