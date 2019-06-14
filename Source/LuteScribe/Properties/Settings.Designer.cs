@@ -98,7 +98,7 @@ namespace LuteScribe.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Nylon guitar")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lute")]
         public string PlaybackPatch {
             get {
                 return ((string)(this["PlaybackPatch"]));

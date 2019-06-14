@@ -548,10 +548,8 @@
 
                     <Label Grid.Row="5" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default playback instrument</Label>
                     <ComboBox Grid.Row="5" Grid.Column="1" Margin="3" Padding="5" Width="100" Name="PlaybackPatch" Text="{Binding PlaybackPatch}" HorizontalAlignment="Left">
+                        <ComboBoxItem>Lute</ComboBoxItem>
                         <ComboBoxItem>Piano</ComboBoxItem>
-                        <ComboBoxItem>Harpsichord</ComboBoxItem>
-                        <ComboBoxItem>Nylon guitar</ComboBoxItem>
-                        <ComboBoxItem>Acoustic guitar</ComboBoxItem>
                     </ComboBox>
 
                     <Label Grid.Row="6" Grid.Column="0" Margin="3" Padding="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right">Default playback speed</Label>

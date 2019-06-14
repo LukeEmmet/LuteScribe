@@ -90,8 +90,12 @@
 			</OBJECT>
 		<UL>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="MoonPdf, Gzip, WildMidi - GPL3">
+				<param name="Name" value="MoonPdf, Gzip - GPL3">
 				<param name="Local" value="gnu-gpl3.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="FluidSynth - LGPL 2.1">
+				<param name="Local" value="gnu-lgpl-21.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="FreePats - GPL2">

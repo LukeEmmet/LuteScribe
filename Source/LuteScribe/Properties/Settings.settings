@@ -22,7 +22,7 @@
       <Value Profile="(Default)">robinson</Value>
     </Setting>
     <Setting Name="PlaybackPatch" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Nylon guitar</Value>
+      <Value Profile="(Default)">Lute</Value>
     </Setting>
     <Setting Name="PlaybackSpeed" Type="System.String" Scope="User">
       <Value Profile="(Default)">Faster</Value>

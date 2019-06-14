@@ -277,15 +277,26 @@ namespace LuteScribe.ViewModel.Commands
                 //see https://stackoverflow.com/questions/3480966/display-hourglass-when-application-is-busy
                 using (new WaitCursor())
                 {
-                    var wildMidi = "..\\..\\..\\Utils\\WildMidi\\wildmidi-static.exe";
-                    var config = "..\\..\\..\\Utils\\WildMidi\\Patches\\Freepats\\LuteScribe.cfg";
 
-                    var midiPlayer = Path.GetFullPath(Path.Combine(appDir, wildMidi));
-                    var configPath = Path.GetFullPath(Path.Combine(appDir, config));
+                    var fluidSynth = "..\\..\\..\\Utils\\FluidSynth\\bin\\fluidsynth.exe";
+
+                    //lookup the playback instrument...
+                    var soundFont = String.Format("..\\..\\..\\Utils\\FluidSynth\\soundfonts\\{0}\\{0}.sf2", _viewModel.PlaybackPatch);
+
+                    var midiPlayer = Path.GetFullPath(Path.Combine(appDir, fluidSynth));
                     var waveOut = Path.GetFullPath(Path.Combine(Session.Instance.SessionPath, guid.ToString() + ".wav"));
+                    //n.b. min-note-length cannot be passed using config file, so we inline the options
+                    //to save as a wave file and a tweak to synth to compensate for fact that some notes
+                    //in midi from TAB can be short.
+                    var fluidOptions = String.Format("-o synth.gain=1 " + 
+                                                    "-o synth.min-note-length=700 " + 
+                                                    "-T wav " + 
+                                                    "-F \"{0}\" ", waveOut);       
+                    var soundFontPath = Path.GetFullPath(Path.Combine(appDir, soundFont));
 
-                    //buid command line to convert midi to wav using wildMidi
-                    var midiLaunch = String.Format("\"{0}\" -c \"{1}\" -o \"{2}\" -b \"{3}\"", midiPlayer, configPath, waveOut, midiFile);
+
+                    //buid command line to convert midi to wav using fluidsynth
+                    var midiLaunch = String.Format("\"{0}\" {1} \"{2}\" \"{3}\" ", midiPlayer, fluidOptions, soundFontPath, midiFile);
 
                     //run command -avoiding grabbing output as
                     //it is not useful, and causes exexCommand to otherwise hang
