@@ -37,6 +37,12 @@ using GenericUndoRedo;
 using LuteScribe.View;
 using System.Windows;
 using System;
+using LuteScribe.Audio;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+using ToastNotifications.Messages;
+
 
 namespace LuteScribe
 {
@@ -44,8 +50,6 @@ namespace LuteScribe
     {
 
         // Property variables
-        private PlaybackWindowViewModel _playbackWindowViewModel;
-        private PlaybackWindow _playbackWindow;
         private FileAssociateViewModel _fileAssociateViewModel;
         private FileAssociateWindow _fileAssociateWindow;
         private Stave _selectedItem;
@@ -62,10 +66,36 @@ namespace LuteScribe
         private ObservableCollection<Control> _lastFileMenus;
         private bool _hasSections;
         private UndoRedoHistory<ITabModelOwner> _history;
+        private Notifier _notifier;
 
+        private string _playbackPath;
+        private readonly AudioPlayback _audioPlayback;
+        private bool _playbackVisible;
+
+
+        public enum ToastMessageStyles
+        {
+            Information, Warning, Error,
+            Success
+        }
         public MainWindowViewModel()
         {
             this.Initialize();
+
+            //TODO - move these out of this method if possible to be in initialize with others
+            //but seems not possible whilst readonly
+            PlayCommand = new DelegateCommand(Play);
+            StopCommand = new DelegateCommand(Stop);
+            PauseCommand = new DelegateCommand(Pause);
+
+            (PlayCommand as DelegateCommand).IsEnabled = false;
+            (StopCommand as DelegateCommand).IsEnabled = false;
+            (PauseCommand as DelegateCommand).IsEnabled = false;
+            PlaybackVisible = false;
+
+            _audioPlayback = new AudioPlayback();
+
+
         }
 
 
@@ -112,6 +142,10 @@ namespace LuteScribe
         public ICommand GridStyleSwitcher { get; set; }
         public ICommand PlayPiece { get; set; }
 
+        public ICommand PlayCommand { get; }
+        public ICommand PauseCommand { get; }
+        public ICommand StopCommand { get; }
+
         public ICommand ShowHelp { get; set; }
         public ICommand ShowHelpAbout { get; set; }
         public ICommand LaunchFile { get; set; }
@@ -120,6 +154,22 @@ namespace LuteScribe
         {
             get { return _history; }
             set { _history = value; }
+        }
+
+        public void ToastNofify( string message, ToastMessageStyles style)
+        {
+            try
+            {
+                if (style == ToastMessageStyles.Information) { _notifier.ShowInformation(message); }
+                if (style == ToastMessageStyles.Error) { _notifier.ShowError(message); }
+                if (style == ToastMessageStyles.Success) { _notifier.ShowSuccess(message); }
+                if (style == ToastMessageStyles.Warning) { _notifier.ShowWarning(message); }
+
+            }
+            catch
+            {
+                //for example main window might not be visible yet, so just ignore those.
+            }
         }
 
         /// <summary>
@@ -421,11 +471,67 @@ namespace LuteScribe
         }
 
 
+        internal void Play()
+        {
+
+            if (_playbackPath != null)
+            {
+                _audioPlayback.Play();
+            }
+
+        }
+
+        internal void Stop()
+        {
+            _audioPlayback.Stop();
+        }
+
+
+        internal void Pause()
+        {
+            _audioPlayback.Pause();
+
+        }
+
+        public bool PlaybackVisible
+        {
+            get { return _playbackVisible; }
+            set {
+                _playbackVisible = value;
+                RaisePropertyChangedEvent("PlaybackVisible");
+            }
+        }
+
+
+        public string PlaybackPath
+        {
+            get
+            {
+                return _playbackPath;
+            }
+
+            set
+            {
+                _playbackPath = value;
+
+                _audioPlayback.Load(_playbackPath);
+
+                (PlayCommand as DelegateCommand).IsEnabled = true;
+                (PauseCommand as DelegateCommand).IsEnabled = true;
+                (StopCommand as DelegateCommand).IsEnabled = true;
+                PlaybackVisible = true;
+
+                RaisePropertyChangedEvent("PlaybackPath");
+            }
+        }
         /// <summary>
         /// Initializes this application.
         /// </summary>
         private void Initialize()
         {
+
+
+
             // Initialize commands
             //on file Menu
             this.NewFile = new NewFileCommand(this);
@@ -478,10 +584,11 @@ namespace LuteScribe
 
 
             //misc/other commands
+
+
             this.LaunchFile = new LaunchFileCommand(this);
             this.ShiftStaveFocus = new ShiftStaveFocusCommand(this);
 
-            _playbackWindowViewModel = new PlaybackWindowViewModel();
             _fileAssociateViewModel = new FileAssociateViewModel();
 
             //create anon functions that return commands for inserting into menus...
@@ -497,6 +604,24 @@ namespace LuteScribe
 
             _pdfViewSettings = new PdfViewSettings();
             _settings = new Settings();
+
+            _notifier = new Notifier(cfg =>
+            {
+                //place the notifications approximately inside the main editing area
+                //(not over the toolbar area) on the top-right hand side
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.TopRight,
+                    offsetX: 15,
+                    offsetY: 90);
+
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(5),
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                cfg.Dispatcher = Application.Current.Dispatcher;
+            });
+
 
             SelectedTab = 0;   //staves tab
 
@@ -525,24 +650,9 @@ namespace LuteScribe
 
         public void Playback(string playbackPath)
         {
-            if (_playbackWindow == null || !_playbackWindow.IsVisible)
-            {
-                _playbackWindow = new PlaybackWindow();
-                _playbackWindow.DataContext = _playbackWindowViewModel;
 
-                //show as a floating non-modal window, owned by main window
-                _playbackWindow.Owner = Application.Current.MainWindow;
-                _playbackWindow.Show();
-
-            }
-
-
-            //retain focus on main window so user can continue editing
-            //this allows you to make a text selection and play using keyboard only
-            Application.Current.MainWindow.Focus();
-
-            _playbackWindowViewModel.PlaybackPath = playbackPath;
-            _playbackWindowViewModel.Play();
+            PlaybackPath = playbackPath;
+            Play();
 
         }
 
@@ -664,7 +774,8 @@ namespace LuteScribe
                 if (disposing)
                 {
                     // TODO: dispose managed state (managed objects).
-                    _playbackWindowViewModel.Dispose();
+                    _audioPlayback.Dispose();
+                    _notifier.Dispose();
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
@@ -687,6 +798,7 @@ namespace LuteScribe
             Dispose(true);
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
+
         }
         #endregion
     }

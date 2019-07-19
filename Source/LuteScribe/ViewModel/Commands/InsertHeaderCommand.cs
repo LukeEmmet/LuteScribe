@@ -21,10 +21,8 @@
 //===================================================
 
 using LuteScribe.Domain;
-using LuteScribe.ViewModel.Services;
 using System;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 
 namespace LuteScribe.ViewModel.Commands
@@ -89,7 +87,9 @@ namespace LuteScribe.ViewModel.Commands
                     header.Content = headerCommand;
                 } else
                 {
-                    MessageBox.Show("That header '" + headerCommand + "' has already been added. No action required.");
+                    _viewModel.ToastNofify(
+                        "That header '" + headerCommand + "' has already been added. No action required."
+                        , MainWindowViewModel.ToastMessageStyles.Information);
                 }
             }
             

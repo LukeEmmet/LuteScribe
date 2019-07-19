@@ -21,6 +21,20 @@ Bug: Allow stave text as well as piece title - currently gets agregated into hea
 
 === CHANGES ===
 
+v1.1.6
+
+ - bugfix: workaround for tab which cannot accept long full paths for fontpath, so
+   use relative path instead when calling tab
+ - moved midi playback buttons back into toolbar for better usability
+ - use fluidsynth for midi playback as it is more modern and supports soundfonts
+ - updated TAB to 4.3.95
+ - title field now directly editable
+ - added popup toast style notifications for certain feedback rather than modal message boxes
+
+v1.1.5
+
+ - updated TAB to 4.3.94
+
 v1.1.4
 
  - UI tweak - selected chords show text in normal colour (e.g. "b" for barlines not grey)

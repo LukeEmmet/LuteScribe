@@ -56,7 +56,7 @@ namespace LuteScribe.Domain
 
                 base.RaisePropertyChangedEvent("Content");      //not sure this really does anything useful at this stage
 
-                if (_piece != null) { _piece.RescanTitle(); }   //notify piece it needs to update the title
+                if (_piece != null) { _piece.SetTitleFromHeaders(); }   //notify piece it needs to update the title
             }
 
         }

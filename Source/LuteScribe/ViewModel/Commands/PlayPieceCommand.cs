@@ -28,8 +28,6 @@ using LuteScribe.Singletons;
 using System.Collections.Generic;
 using LuteScribe.Domain;
 using LuteScribe.Serialization.Commandline;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using System.Linq;
 using LuteScribe.View;
 
@@ -199,9 +197,7 @@ namespace LuteScribe.ViewModel.Commands
         {
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
             var tabPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Tab\\bin\\tab.exe"));
-            var fontPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Tab\\bin"));
-
-            var findErrors = "tab 4\\.3\\.94 copyright 1995-2018 by Wayne Cripps(\\r\\n.+)";
+            var fontPath = "..\\..\\..\\Tab\\bin";      //workaround for tab 4.3.95 bug which doesnt like long font paths - use relative paths instead
 
             var guid = Guid.NewGuid();
             
@@ -246,29 +242,20 @@ namespace LuteScribe.ViewModel.Commands
             //save tab to temp path
             File.WriteAllText(tabFile, headerContent + "\n" + bodyContent);
 
-            var midiConvertCommand = String.Format("\"{0}\" \"{1}\" -fontpath \"{2}\" -midi -o \"{3}\"", tabPath, tabFile, fontPath, midiFile);
+            //use the -q flag to work correctly with taboutputparser
+            var midiConvertCommand = String.Format("\"{0}\" \"{1}\" -q -fontpath \"{2}\" -midi -o \"{3}\"", tabPath, tabFile, fontPath, midiFile);
 
 
             //convert to midi
             var exec = new ExecuteProcess();
             var result = exec.LoggedExecute(midiConvertCommand);
 
-            //if TAB has errors, they will be in the std output, 
-            //and exit code will probably be -1, or at least not 0
-            if (result.Item1 != 0)
+            var outputParser = new TabOutputParser(result.Item1, result.Item2, result.Item3);
+
+            if (outputParser.HasErrors)
             {
-                var match = (new Regex(findErrors)).Match(result.Item2);
-                if (match.Success)
-                {
-                    MessageBox.Show("Error from TAB: " + match.Groups[1].ToString());
-                }
-                else
-                {
-                    MessageBox.Show("Error from TAB: " +
-                        "exit code: " + result.Item1 +
-                        " message: + " + result.Item2 +
-                        " error: " + result.Item3);
-                }
+                //non-empty messages 
+                _viewModel.ToastNofify("TAB error creating midi: " + outputParser.Messages, MainWindowViewModel.ToastMessageStyles.Error);
             }
             else
             {
@@ -288,10 +275,10 @@ namespace LuteScribe.ViewModel.Commands
                     //n.b. min-note-length cannot be passed using config file, so we inline the options
                     //to save as a wave file and a tweak to synth to compensate for fact that some notes
                     //in midi from TAB can be short.
-                    var fluidOptions = String.Format("-o synth.gain=1 " + 
-                                                    "-o synth.min-note-length=700 " + 
-                                                    "-T wav " + 
-                                                    "-F \"{0}\" ", waveOut);       
+                    var fluidOptions = String.Format("-o synth.gain=1 " +
+                                                    "-o synth.min-note-length=700 " +
+                                                    "-T wav " +
+                                                    "-F \"{0}\" ", waveOut);
                     var soundFontPath = Path.GetFullPath(Path.Combine(appDir, soundFont));
 
 

@@ -66,15 +66,14 @@ namespace LuteScribe.ViewModel.Commands
         {
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
             var tabPath = appDir + "..\\..\\..\\Tab\\bin\\tab.exe";
-            var fontPath = appDir + "..\\..\\..\\Tab\\bin";
+            var fontPath = "..\\..\\..\\Tab\\bin";      //workaround for TAB bug - pass a relative path, longer paths for font may cause tab to fail
 
             var userFile = _viewModel.Path;
 
-            var findErrors = "tab 4\\.3\\.94 copyright 1995-2018 by Wayne Cripps(\\r\\n.+)";
 
             var guid = Guid.NewGuid();
 
-            //Note that the current version of TAB (4.3.94) requires files to have an explicit .tab extension :-/
+            //Note that the current version of TAB (4.3.*) requires files to have an explicit .tab extension :-/
             //N.B. this path must not be too long, otherwise TAB will die
             var temp = Session.Instance.SessionPath + "\\" + "temp.tab";
 
@@ -103,38 +102,31 @@ namespace LuteScribe.ViewModel.Commands
             userFile = temp;
 
             //tab can die with a malloc problem if the paths are too long
-            tabPath =  Path.GetFullPath(tabPath);
-            fontPath = Path.GetFullPath(fontPath);
+            //dont expand fontpath to full path (tab bug!)
+            tabPath = Path.GetFullPath(tabPath);
             userFile = Path.GetFullPath(userFile);
             outPath = Path.GetFullPath(outPath);
 
-            var command = String.Format("\"{0}\" \"{1}\" -fontpath \"{2}\" -o \"{3}\"", tabPath, userFile, fontPath, outPath);
+            //use the -q flag to work correctly with taboutputparser
+            var command = String.Format("\"{0}\" \"{1}\" -q -fontpath \"{2}\" -o \"{3}\"", tabPath, userFile, fontPath, outPath);
 
             var result = (new ExecuteProcess()).LoggedExecute(command);
 
-            //if TAB has errors, they will be in the std output, 
-            //and exit code will probably be -1, or at least not 0
-            if (result.Item1 != 0)
+            var outputParser = new TabOutputParser(result.Item1, result.Item2, result.Item3);
+
+            if (outputParser.HasErrors)
             {
-                var match = (new Regex(findErrors)).Match(result.Item2);
-                if (match.Success)
-                {
-                    MessageBox.Show("Error from TAB: " + match.Groups[1].ToString());
-                } else
-                {
-                    MessageBox.Show("Error from TAB: " + 
-                        "exit code: " + result.Item1 + 
-                        " message: + " + result.Item2 + 
-                        " error: " + result.Item3);
-                }
+               _viewModel.ToastNofify("TAB error creating printable output: \n" + outputParser.Messages, MainWindowViewModel.ToastMessageStyles.Error);
             }
             else
             {
+                //didnt match the regex and is zero exit code - should have worked ok
                 //if saved alongside user file give feedback of save
                 if ((string)parameter == ".")
                 {
                     MessageBox.Show("Success: content saved to: " + outPath);
                 }
+
             }
 
         }

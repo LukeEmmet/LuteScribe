@@ -109,14 +109,15 @@ namespace LuteScribe.ViewModel.Commands
             {
                 if ((string)parameter == ".")
                 {
-                    MessageBox.Show("Created PDF: " + pdfPath);
+                    _viewModel.ToastNofify("Created PDF: " + pdfPath, MainWindowViewModel.ToastMessageStyles.Success);
                 }
 
             } else
             {
                 //get std errors result
-                MessageBox.Show("Error creating PDF. Please check it is not already open in a viewer: \n\n" +
-                    result.Item3);
+                _viewModel.ToastNofify(
+                    "Error creating PDF. Please check it is not already open in a viewer: \n\n" +
+                    result.Item3, MainWindowViewModel.ToastMessageStyles.Error);
             }
         }
     }

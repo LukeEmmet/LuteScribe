@@ -174,7 +174,10 @@ namespace LuteScribe.ViewModel.Commands
                     _viewModel.History.Clear();
                     _viewModel.RecordUndoSnapshot();
 
-            }
+                    _viewModel.ToastNofify("Opened " + path, MainWindowViewModel.ToastMessageStyles.Success);
+
+
+                }
                 catch (Exception e)
             {
                 MessageBox.Show(String.Format("Cannot open file {0}, reason: {1}", path, e.Message));

@@ -43,7 +43,7 @@ namespace LuteScribe.Domain
         /// <summary>
         /// called when the headers content is udpated
         /// </summary>
-        public void RescanTitle()
+        public void SetTitleFromHeaders()
         {
             var currentTitle = Title;
             var newTitle = "(Untitled)";
@@ -65,6 +65,27 @@ namespace LuteScribe.Domain
             //update if changed
             if (newTitle != currentTitle) { Title = newTitle; }
             
+        }
+
+        public void SetHeadersFromTitle()
+        {
+            var title = Title;
+
+            foreach (var header in _headers)
+            {
+                if (header.Content != null)
+                {
+                    var regex = new Regex("^{(.*)}$");
+                    var match = regex.Match(header.Content);
+                    if (match.Success)
+                    {
+                        //only match first one...
+                        header.Content = "{" + title + "}";
+                        break;
+                    }
+                }
+            }
+
         }
         /// <summary>
         /// Updates the ItemCount Property when the Stave collection changes.
@@ -146,7 +167,7 @@ namespace LuteScribe.Domain
 
             }
 
-            RescanTitle();
+            SetTitleFromHeaders();
         }
 
         public ObservableCollection<Header> Headers
@@ -208,6 +229,7 @@ namespace LuteScribe.Domain
             set
             {
                 _title = value;
+                SetHeadersFromTitle();
                 base.RaisePropertyChangedEvent("Title");
             }
         }
