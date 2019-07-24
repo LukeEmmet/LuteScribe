@@ -98,6 +98,10 @@
 				<param name="Local" value="gnu-lgpl-21.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="ToastNotifications - LGPL 3">
+				<param name="Local" value="gnu-lgpl-3.htm">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="FreePats - GPL2">
 				<param name="Local" value="gnu-gpl2.htm">
 				</OBJECT>
