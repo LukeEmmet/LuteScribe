@@ -131,7 +131,7 @@ parse-tab: func [input-string] [
         ;---etc
     ]
     
-    ornaments: charset join ".:|-+*#x$<'`Q%?>@=_wuU(){}[]" {"}
+    ornaments: charset join ".,:|-+*#x$<'`Q%?>@=_wuU(){}[]" {"}
     insert ornaments #"^^"    ;---trying to insert "^" into ornaments bitset...
     insert ornaments #"]"
     insert ornaments #"."
