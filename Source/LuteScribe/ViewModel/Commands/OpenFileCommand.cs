@@ -71,14 +71,20 @@ namespace LuteScribe.ViewModel.Commands
 
             var suggestFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            if (passedPath != null)
-            {
-                path = passedPath;
-                openFile = true;
-            }
-            else
-            {
+            var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
+            var examplesPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\SampleFiles"));
 
+            var restoreLocation = true;
+
+            if (passedPath == "..\\..\\..\\SampleFiles")
+            {
+                //passed in a folder to the examples
+                passedPath = null;
+                suggestFolder = examplesPath;
+                restoreLocation = false;
+
+            } else
+            {
                 if (_viewModel.Path != null)
                 {
                     //user has existing content
@@ -87,11 +93,23 @@ namespace LuteScribe.ViewModel.Commands
                     suggestFolder = Path.GetDirectoryName(_viewModel.Path);
 
                 }
+            }
+
+
+            if (passedPath != null)
+            {
+                path = passedPath;
+                openFile = true;
+            }
+            else
+            {
+                
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.FileName = suggestFile;
                 openFileDialog.InitialDirectory = suggestFolder;
                 openFileDialog.Multiselect = false;
+                openFileDialog.RestoreDirectory = restoreLocation;
 
                 var allFilesFilter = "Tabulature files (*.lsml,*.tab,*.ft2,*.ft3)|*.lsml;*.tab;*.ft2;*.ft3|";
 
@@ -110,7 +128,6 @@ namespace LuteScribe.ViewModel.Commands
                 openFileDialog.Filter += "|All files (*.*)|*.*";
 
                 openFileDialog.Filter = allFilesFilter + openFileDialog.Filter;
-
 
                 if (openFileDialog.ShowDialog() == true)
                 {
@@ -157,7 +174,7 @@ namespace LuteScribe.ViewModel.Commands
                     _viewModel.ShowSections(0);
                     _viewModel.UpdateLastFiles(path);
 
-                  
+
 
                     if (_viewModel.TabStavesSelected)
                     {

@@ -15,6 +15,12 @@
         <MenuItem Header="_File">
             <MenuItem Header="_New" Command="{Binding NewFile}" InputGestureText="Ctrl+Shift+N"/>
             <MenuItem Header="_Open" Command="{Binding OpenFile}" InputGestureText="Ctrl+O" />
+            <MenuItem Header="_Samples">
+                <MenuItem Header="Open samp_le file" Command="{Binding OpenFile}" CommandParameter="..\..\..\SampleFiles" />
+                <!-- acts as link to examples folder-->
+            </MenuItem>
+            <Separator />
+
             <MenuItem Header="_Save" Command="{Binding SaveFile}" CommandParameter="0" InputGestureText="Ctrl+S" />
             <MenuItem Header="Save _As" Command="{Binding SaveFile}" CommandParameter="1" />
 
