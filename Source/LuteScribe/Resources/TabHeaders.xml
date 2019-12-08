@@ -2,7 +2,7 @@
 <CommandMenus>
 <!-- a useful list of TAB headers offered by LuteScribe -->
     <Section name="Tabulature style">
-        <Command flag="-B" name="Baroque style tabulature"/>
+        <Command flag="-b" name="Baroque style tabulature"/>
         <Command flag="-i" name="Italian style tabulature"/>
         <Command flag="-h" name="Convert French to Italian automatically (6 courses only)"/>
         
