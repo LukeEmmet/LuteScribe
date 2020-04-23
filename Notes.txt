@@ -2,7 +2,7 @@
 
 
 New data format: can parse TAB, JTZ, JTXML, FT3 well, and FT2 very rudimentary
-cannot parse: multi-piece FT3
+cannot yet parse: multi-piece FT3
 
 === General ===
 
