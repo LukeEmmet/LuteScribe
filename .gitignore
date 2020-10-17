@@ -15,3 +15,5 @@ Source/.vs/*
 Deploy/LuteScribe-SetupFiles/*
 Source/LuteScribe/bin/*
 Help/CompileError.log
+.vs/
+LuteScribe/obj/
