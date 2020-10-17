@@ -15,7 +15,7 @@
     <ROW Property="ProductCode" Value="1033:{43EEEC5D-DD3F-4C6A-BB81-44B4BBD08721} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="LuteScribe 1.2"/>
-    <ROW Property="ProductVersion" Value="1.2.1.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.2.1.3" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{2A9E2BC3-5251-46AE-9C54-9743C74B4CED}"/>
@@ -56,10 +56,8 @@
     <ROW Directory="lute_Dir" Directory_Parent="soundfonts_Dir" DefaultDir="lute"/>
     <ROW Directory="piano_Dir" Directory_Parent="soundfonts_Dir" DefaultDir="piano"/>
     <ROW Directory="soundfonts_Dir" Directory_Parent="FluidSynth_Dir" DefaultDir="SOUNDF~1|soundfonts"/>
-    <ROW Directory="source_Dir" Directory_Parent="Tab_Dir" DefaultDir="source"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AboutTab.txt" ComponentId="{34E83D06-3954-40CA-9F8E-24BE86657161}" Directory_="bin_1_Dir" Attributes="0" KeyPath="blute6.tfm" Type="0"/>
     <ROW Component="COPYING" ComponentId="{5C78EE09-E658-4FB2-8711-3F0DFEAB31A3}" Directory_="gzip124xN_Dir" Attributes="0" KeyPath="COPYING" Type="0"/>
     <ROW Component="CapriolaRicercarno2.lsml" ComponentId="{049D75F1-696F-425C-83BE-B8A77DF12C83}" Directory_="SampleFiles_Dir" Attributes="0" KeyPath="CapriolaRicercarno2.lsml" Type="0"/>
     <ROW Component="FontsReadme.txt" ComponentId="{DEA7734E-451D-415C-82DE-68864563A269}" Directory_="Fonts_Dir" Attributes="0" KeyPath="FontsReadme.txt" Type="0"/>
@@ -83,6 +81,7 @@
     <ROW Component="acctest.ps" ComponentId="{CE309706-C33C-4B47-B7E8-2E94C08D86E8}" Directory_="Lib_Dir" Attributes="0" KeyPath="acctest.ps" Type="0"/>
     <ROW Component="application_edit.ico" ComponentId="{9FD32567-B4E3-4BFD-A486-CBD1E75D5D0A}" Directory_="Resources_Dir" Attributes="0" KeyPath="TabFlags.xml" Type="0"/>
     <ROW Component="bin" ComponentId="{00F0DDB2-963A-466C-A2E2-5EE91CA0275C}" Directory_="bin_Dir" Attributes="0"/>
+    <ROW Component="blute6.1200pk" ComponentId="{AE36BCAD-CDA0-449F-99AB-A9038E97E633}" Directory_="bin_1_Dir" Attributes="0" KeyPath="blute6.1200pk" Type="0"/>
     <ROW Component="fluidsynth.exe" ComponentId="{1BA6DA36-6BEA-4D01-9482-891F3C8BD96D}" Directory_="bin_2_Dir" Attributes="0" KeyPath="fluidsynth.exe"/>
     <ROW Component="gpl.txt" ComponentId="{AE5DC253-BC5A-42AE-A2E3-98CC4F967BB9}" Directory_="piano_Dir" Attributes="0" KeyPath="gpl.txt" Type="0"/>
     <ROW Component="gsdll32.dll" ComponentId="{F7386576-A4EA-4EBF-8C38-5701AF14C8A6}" Directory_="Bin_Dir" Attributes="0" KeyPath="gsdll32.dll"/>
@@ -108,13 +107,12 @@
     <ROW Component="libvorbisenc2.dll" ComponentId="{BBACA9F3-8928-4CF9-987D-C9AC6EFBB108}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libvorbisenc2.dll"/>
     <ROW Component="libwinpthread1.dll" ComponentId="{7B358D2A-884E-43B6-B0FA-30B894D3B28E}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libwinpthread1.dll"/>
     <ROW Component="lute.sf2" ComponentId="{9BDFF5C9-CD34-488F-92F4-D2102F3637DB}" Directory_="lute_Dir" Attributes="0" KeyPath="lute.sf2" Type="0"/>
-    <ROW Component="lute_tab4.3.89.zip" ComponentId="{3A2936BB-E46D-4BEC-B0DA-34C6B0667F5B}" Directory_="source_Dir" Attributes="0" KeyPath="lute_tab4.3.89.zip" Type="0"/>
     <ROW Component="r3core.exe" ComponentId="{C609904A-7630-4847-964C-294A336FD113}" Directory_="Rebol_Dir" Attributes="0" KeyPath="r3core.exe"/>
     <ROW Component="rebol.exe" ComponentId="{83F9FA51-9B98-42DF-8328-76859587B715}" Directory_="Rebol_Dir" Attributes="0" KeyPath="rebol.exe"/>
-    <ROW Component="tab.exe" ComponentId="{C59080B7-A438-4FE2-A016-6A5D6C78530C}" Directory_="bin_1_Dir" Attributes="0" KeyPath="tab.exe"/>
+    <ROW Component="tab.exe" ComponentId="{500EEA49-CBC7-4B4B-B216-105C5C6FC354}" Directory_="bin_1_Dir" Attributes="0" KeyPath="tab.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AboutTab.txt COPYING CapriolaRicercarno2.lsml FontsReadme.txt FronimoToTab.r GenericUndoRedo.dll JtxmlParserLib.dll LICENSE.txt LeRoy.ttf LuteScribe LuteScribe.exe LuteScribe.exe.config LuteScribeHelp.chm_1 MoonPdfLib.dll MouseKeyboardActivityMonitor.dll NAudio.dll ProductInformation TabManual.pdf TabManualAppendix.pdf ToastNotifications.Messages.dll ToastNotifications.dll acctest.ps application_edit.ico bin fluidsynth.exe gpl.txt gsdll32.dll gsdll32.lib gswin32c.exe gzip.exe libFLAC8.dll libfluidsynth2.dll libgcc_s_dw21.dll libglib2.00.dll libgmodule2.00.dll libiconv2.dll libintl8.dll libmupdf.dll libogg0.dll libpcre1.dll libportaudio2.dll libreadline7.dll libsndfile1.dll libspeex1.dll libtermcap0.dll libvorbis0.dll libvorbisenc2.dll libwinpthread1.dll lute.sf2 lute_tab4.3.89.zip r3core.exe rebol.exe tab.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="COPYING CapriolaRicercarno2.lsml FontsReadme.txt FronimoToTab.r GenericUndoRedo.dll JtxmlParserLib.dll LICENSE.txt LeRoy.ttf LuteScribe LuteScribe.exe LuteScribe.exe.config LuteScribeHelp.chm_1 MoonPdfLib.dll MouseKeyboardActivityMonitor.dll NAudio.dll ProductInformation TabManual.pdf TabManualAppendix.pdf ToastNotifications.Messages.dll ToastNotifications.dll acctest.ps application_edit.ico bin blute6.1200pk fluidsynth.exe gpl.txt gsdll32.dll gsdll32.lib gswin32c.exe gzip.exe libFLAC8.dll libfluidsynth2.dll libgcc_s_dw21.dll libglib2.00.dll libgmodule2.00.dll libiconv2.dll libintl8.dll libmupdf.dll libogg0.dll libpcre1.dll libportaudio2.dll libreadline7.dll libsndfile1.dll libspeex1.dll libtermcap0.dll libvorbis0.dll libvorbisenc2.dll libwinpthread1.dll lute.sf2 r3core.exe rebol.exe tab.exe"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -138,6 +136,7 @@
     <ROW File="FontsReadme.txt" Component_="FontsReadme.txt" FileName="FONTSR~1.TXT|Fonts Readme.txt" Attributes="0" SourcePath="..\Fonts\Fonts Readme.txt" SelfReg="false" NextFile="LeRoy.ttf_1"/>
     <ROW File="FronimoToTab.r" Component_="FronimoToTab.r" FileName="FRONIM~1.R|FronimoToTab.r" Attributes="0" SourcePath="..\Source\FileConverters\FronimoToTab.r" SelfReg="false" NextFile="FronimoToXML.r"/>
     <ROW File="FronimoToXML.r" Component_="FronimoToTab.r" FileName="FRONIM~2.R|FronimoToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\FronimoToXML.r" SelfReg="false" NextFile="parseft2lib.r"/>
+    <ROW File="Gallot_Comete.tab" Component_="blute6.1200pk" FileName="GALLOT~1.TAB|Gallot_Comete.tab" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\Gallot_Comete.tab" SelfReg="false" NextFile="lute6.1200pk"/>
     <ROW File="GenericUndoRedo.dll" Component_="GenericUndoRedo.dll" FileName="GENERI~1.DLL|GenericUndoRedo.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\GenericUndoRedo.dll" SelfReg="false" NextFile="LICENSE.txt"/>
     <ROW File="Infomacos.plist" Component_="acctest.ps" FileName="INFO-M~1.PLI|Info-macos.plist" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\Info-macos.plist" SelfReg="false" NextFile="jispaper.ps"/>
     <ROW File="IsaacInsbruckichmuss.lsml" Component_="CapriolaRicercarno2.lsml" FileName="ISAACI~1.LSM|Isaac Insbruck ich muss.lsml" Attributes="0" SourcePath="..\Source\SampleFiles\Isaac Insbruck ich muss.lsml" SelfReg="false" NextFile="NarvaezMilleRegretz.lsml"/>
@@ -149,21 +148,21 @@
     <ROW File="LuteScribe.exe" Component_="LuteScribe.exe" FileName="LUTESC~1.EXE|LuteScribe.exe" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\LuteScribe.exe" SelfReg="false" NextFile="LuteScribe.exe.config" DigSign="true"/>
     <ROW File="LuteScribe.exe.config" Component_="LuteScribe.exe.config" FileName="LUTESC~1.CON|LuteScribe.exe.config" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\LuteScribe.exe.config" SelfReg="false" NextFile="TabManual.pdf"/>
     <ROW File="LuteScribeFlagSymbols.ttf" Component_="LeRoy.ttf" FileName="LUTESC~1.TTF|LuteScribeFlagSymbols.ttf" Attributes="0" SourcePath="..\Fonts\LuteScribeFlagSymbols.ttf" SelfReg="false" NextFile="LuteScribeHelp.chm_1"/>
-    <ROW File="LuteScribeFlagSymbols.ttf_1" Component_="FontsReadme.txt" FileName="LUTESC~2.TTF|LuteScribeFlagSymbols.ttf" Attributes="0" SourcePath="..\Fonts\LuteScribeFlagSymbols.ttf" SelfReg="false" NextFile="lute_tab4.3.89.zip"/>
+    <ROW File="LuteScribeFlagSymbols.ttf_1" Component_="FontsReadme.txt" FileName="LUTESC~2.TTF|LuteScribeFlagSymbols.ttf" Attributes="0" SourcePath="..\Fonts\LuteScribeFlagSymbols.ttf" SelfReg="false" NextFile="gsdll32.dll"/>
     <ROW File="LuteScribeHelp.chm_1" Component_="LuteScribeHelp.chm_1" FileName="LUTESC~1.CHM|LuteScribeHelp.chm" Attributes="0" SourcePath="..\Help\LuteScribeHelp.chm" SelfReg="false" NextFile="FontsReadme.txt"/>
     <ROW File="MoonPdfLib.dll" Component_="MoonPdfLib.dll" FileName="MOONPD~1.DLL|MoonPdfLib.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\MoonPdfLib.dll" SelfReg="false" NextFile="MouseKeyboardActivityMonitor.dll"/>
     <ROW File="MouseKeyboardActivityMonitor.dll" Component_="MouseKeyboardActivityMonitor.dll" FileName="MOUSEK~1.DLL|MouseKeyboardActivityMonitor.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\MouseKeyboardActivityMonitor.dll" SelfReg="false" NextFile="JtxmlParserLib.dll"/>
     <ROW File="NAudio.dll" Component_="NAudio.dll" FileName="NAudio.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\NAudio.dll" SelfReg="false" NextFile="NAudio.xml"/>
     <ROW File="NAudio.xml" Component_="LuteScribe.exe.config" FileName="NAudio.xml" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\NAudio.xml" SelfReg="false" NextFile="TabHeaders.xml"/>
-    <ROW File="NarvaezMilleRegretz.lsml" Component_="CapriolaRicercarno2.lsml" FileName="NARVAE~1.LSM|Narvaez Mille Regretz.lsml" Attributes="0" SourcePath="..\Source\SampleFiles\Narvaez Mille Regretz.lsml" SelfReg="false"/>
+    <ROW File="NarvaezMilleRegretz.lsml" Component_="CapriolaRicercarno2.lsml" FileName="NARVAE~1.LSM|Narvaez Mille Regretz.lsml" Attributes="0" SourcePath="..\Source\SampleFiles\Narvaez Mille Regretz.lsml" SelfReg="false" NextFile="blute6.1200pk"/>
     <ROW File="README_1" Component_="COPYING" FileName="README" Attributes="0" SourcePath="..\Source\Utils\gzip124xN\README" SelfReg="false" NextFile="r3core.exe"/>
     <ROW File="StavesToXML.r" Component_="FronimoToTab.r" FileName="STAVES~1.R|StavesToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\StavesToXML.r" SelfReg="false" NextFile="TabToXML.r"/>
     <ROW File="TabFlags.xml" Component_="application_edit.ico" FileName="TabFlags.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabFlags.xml" SelfReg="false" NextFile="libmupdf.dll"/>
     <ROW File="TabHeaders.xml" Component_="application_edit.ico" FileName="TABHEA~1.XML|TabHeaders.xml" Attributes="0" SourcePath="..\Source\LuteScribe\Resources\TabHeaders.xml" SelfReg="false" NextFile="logo.ico"/>
     <ROW File="TabManual.pdf" Component_="TabManual.pdf" FileName="TABMAN~1.PDF|TabManual.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManual.pdf" SelfReg="false" NextFile="TabManualAppendix.pdf"/>
-    <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="blute6.tfm"/>
+    <ROW File="TabManualAppendix.pdf" Component_="TabManualAppendix.pdf" FileName="TABMAN~2.PDF|TabManualAppendix.pdf" Attributes="0" SourcePath="..\Source\Tab\TabManualAppendix.pdf" SelfReg="false" NextFile="COPYING"/>
     <ROW File="TabToXML.r" Component_="FronimoToTab.r" FileName="TabToXML.r" Attributes="0" SourcePath="..\Source\FileConverters\TabToXML.r" SelfReg="false" NextFile="LuteScribe.exe"/>
-    <ROW File="ToastNotifications.Messages.dll" Component_="ToastNotifications.Messages.dll" FileName="TOASTN~2.DLL|ToastNotifications.Messages.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\ToastNotifications.Messages.dll" SelfReg="false" NextFile="lute7.300pk"/>
+    <ROW File="ToastNotifications.Messages.dll" Component_="ToastNotifications.Messages.dll" FileName="TOASTN~2.DLL|ToastNotifications.Messages.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\ToastNotifications.Messages.dll" SelfReg="false" NextFile="CapriolaRicercarno2.lsml"/>
     <ROW File="ToastNotifications.dll" Component_="ToastNotifications.dll" FileName="TOASTN~1.DLL|ToastNotifications.dll" Attributes="0" SourcePath="..\Source\LuteScribe\bin\Release\ToastNotifications.dll" SelfReg="false" NextFile="ToastNotifications.Messages.dll"/>
     <ROW File="acctest.ps" Component_="acctest.ps" FileName="acctest.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\acctest.ps" SelfReg="false" NextFile="addxchar.ps"/>
     <ROW File="addxchar.ps" Component_="acctest.ps" FileName="addxchar.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\addxchar.ps" SelfReg="false" NextFile="afmdiff.awk"/>
@@ -192,16 +191,31 @@
     <ROW File="bjc610b6.upp" Component_="acctest.ps" FileName="bjc610b6.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b6.upp" SelfReg="false" NextFile="bjc610b7.upp"/>
     <ROW File="bjc610b7.upp" Component_="acctest.ps" FileName="bjc610b7.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b7.upp" SelfReg="false" NextFile="bjc610b8.upp"/>
     <ROW File="bjc610b8.upp" Component_="acctest.ps" FileName="bjc610b8.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\bjc610b8.upp" SelfReg="false" NextFile="caption.ps"/>
-    <ROW File="blute6.600pk" Component_="AboutTab.txt" FileName="BLUTE6~1.600|blute6.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.600pk" SelfReg="false" NextFile="blute85.600pk"/>
-    <ROW File="blute6.tfm" Component_="AboutTab.txt" FileName="blute6.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute6.tfm" SelfReg="false" NextFile="blute7.600pk"/>
-    <ROW File="blute7.600pk" Component_="AboutTab.txt" FileName="BLUTE7~1.600|blute7.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.600pk" SelfReg="false" NextFile="blute7.tfm"/>
-    <ROW File="blute7.tfm" Component_="AboutTab.txt" FileName="blute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute7.tfm" SelfReg="false" NextFile="blute8.600pk"/>
-    <ROW File="blute8.600pk" Component_="AboutTab.txt" FileName="BLUTE8~1.600|blute8.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.600pk" SelfReg="false" NextFile="blute8.tfm"/>
-    <ROW File="blute8.tfm" Component_="AboutTab.txt" FileName="blute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute8.tfm" SelfReg="false" NextFile="blute9.600pk"/>
-    <ROW File="blute85.600pk" Component_="AboutTab.txt" FileName="BLUTE8~2.600|blute85.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute85.600pk" SelfReg="false" NextFile="blute85.tfm"/>
-    <ROW File="blute85.tfm" Component_="AboutTab.txt" FileName="blute85.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute85.tfm" SelfReg="false" NextFile="CapriolaRicercarno2.lsml"/>
-    <ROW File="blute9.600pk" Component_="AboutTab.txt" FileName="BLUTE9~1.600|blute9.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.600pk" SelfReg="false" NextFile="blute9.tfm"/>
-    <ROW File="blute9.tfm" Component_="AboutTab.txt" FileName="blute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\blute9.tfm" SelfReg="false" NextFile="cmr10.tfm"/>
+    <ROW File="blute6.1200pk" Component_="blute6.1200pk" FileName="BLUTE6~1.120|blute6.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute6.1200pk" SelfReg="false" NextFile="blute6.2400pk"/>
+    <ROW File="blute6.2400pk" Component_="blute6.1200pk" FileName="BLUTE6~1.240|blute6.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute6.2400pk" SelfReg="false" NextFile="blute6.300pk"/>
+    <ROW File="blute6.300pk" Component_="blute6.1200pk" FileName="BLUTE6~1.300|blute6.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute6.300pk" SelfReg="false" NextFile="blute6.600pk"/>
+    <ROW File="blute6.600pk" Component_="blute6.1200pk" FileName="BLUTE6~1.600|blute6.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute6.600pk" SelfReg="false" NextFile="blute6.tfm"/>
+    <ROW File="blute6.tfm" Component_="blute6.1200pk" FileName="blute6.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute6.tfm" SelfReg="false" NextFile="blute7.1200pk"/>
+    <ROW File="blute7.1200pk" Component_="blute6.1200pk" FileName="BLUTE7~1.120|blute7.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute7.1200pk" SelfReg="false" NextFile="blute7.2400pk"/>
+    <ROW File="blute7.2400pk" Component_="blute6.1200pk" FileName="BLUTE7~1.240|blute7.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute7.2400pk" SelfReg="false" NextFile="blute7.300pk"/>
+    <ROW File="blute7.300pk" Component_="blute6.1200pk" FileName="BLUTE7~1.300|blute7.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute7.300pk" SelfReg="false" NextFile="blute7.600pk"/>
+    <ROW File="blute7.600pk" Component_="blute6.1200pk" FileName="BLUTE7~1.600|blute7.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute7.600pk" SelfReg="false" NextFile="blute7.tfm"/>
+    <ROW File="blute7.tfm" Component_="blute6.1200pk" FileName="blute7.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute7.tfm" SelfReg="false" NextFile="blute8.1200pk"/>
+    <ROW File="blute8.1200pk" Component_="blute6.1200pk" FileName="BLUTE8~1.120|blute8.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute8.1200pk" SelfReg="false" NextFile="blute8.2400pk"/>
+    <ROW File="blute8.2400pk" Component_="blute6.1200pk" FileName="BLUTE8~1.240|blute8.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute8.2400pk" SelfReg="false" NextFile="blute8.300pk"/>
+    <ROW File="blute8.300pk" Component_="blute6.1200pk" FileName="BLUTE8~1.300|blute8.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute8.300pk" SelfReg="false" NextFile="blute8.600pk"/>
+    <ROW File="blute8.600pk" Component_="blute6.1200pk" FileName="BLUTE8~1.600|blute8.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute8.600pk" SelfReg="false" NextFile="blute8.tfm"/>
+    <ROW File="blute8.tfm" Component_="blute6.1200pk" FileName="blute8.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute8.tfm" SelfReg="false" NextFile="blute85.1200pk"/>
+    <ROW File="blute85.1200pk" Component_="blute6.1200pk" FileName="BLUTE8~2.120|blute85.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute85.1200pk" SelfReg="false" NextFile="blute85.2400pk"/>
+    <ROW File="blute85.2400pk" Component_="blute6.1200pk" FileName="BLUTE8~2.240|blute85.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute85.2400pk" SelfReg="false" NextFile="blute85.300pk"/>
+    <ROW File="blute85.300pk" Component_="blute6.1200pk" FileName="BLUTE8~2.300|blute85.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute85.300pk" SelfReg="false" NextFile="blute85.600pk"/>
+    <ROW File="blute85.600pk" Component_="blute6.1200pk" FileName="BLUTE8~2.600|blute85.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute85.600pk" SelfReg="false" NextFile="blute85.tfm"/>
+    <ROW File="blute85.tfm" Component_="blute6.1200pk" FileName="blute85.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute85.tfm" SelfReg="false" NextFile="blute9.1200pk"/>
+    <ROW File="blute9.1200pk" Component_="blute6.1200pk" FileName="BLUTE9~1.120|blute9.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute9.1200pk" SelfReg="false" NextFile="blute9.2400pk"/>
+    <ROW File="blute9.2400pk" Component_="blute6.1200pk" FileName="BLUTE9~1.240|blute9.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute9.2400pk" SelfReg="false" NextFile="blute9.300pk"/>
+    <ROW File="blute9.300pk" Component_="blute6.1200pk" FileName="BLUTE9~1.300|blute9.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute9.300pk" SelfReg="false" NextFile="blute9.600pk"/>
+    <ROW File="blute9.600pk" Component_="blute6.1200pk" FileName="BLUTE9~1.600|blute9.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute9.600pk" SelfReg="false" NextFile="blute9.tfm"/>
+    <ROW File="blute9.tfm" Component_="blute6.1200pk" FileName="blute9.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\blute9.tfm" SelfReg="false" NextFile="cmr10.tfm"/>
     <ROW File="caption.ps" Component_="acctest.ps" FileName="caption.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\caption.ps" SelfReg="false" NextFile="cat.ps"/>
     <ROW File="cat.ps" Component_="acctest.ps" FileName="cat.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cat.ps" SelfReg="false" NextFile="cbjc600.ppd"/>
     <ROW File="cbjc600.ppd" Component_="acctest.ps" FileName="cbjc600.ppd" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cbjc600.ppd" SelfReg="false" NextFile="cbjc800.ppd"/>
@@ -211,9 +225,10 @@
     <ROW File="cdj690ec.upp" Component_="acctest.ps" FileName="cdj690ec.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cdj690ec.upp" SelfReg="false" NextFile="cid2code.ps"/>
     <ROW File="cid2code.ps" Component_="acctest.ps" FileName="cid2code.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cid2code.ps" SelfReg="false" NextFile="cidfmap"/>
     <ROW File="cidfmap" Component_="acctest.ps" FileName="cidfmap" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\cidfmap" SelfReg="false" NextFile="decrypt.ps"/>
-    <ROW File="cmr10.tfm" Component_="AboutTab.txt" FileName="cmr10.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmr10.tfm" SelfReg="false" NextFile="cmr12.tfm"/>
-    <ROW File="cmr12.tfm" Component_="AboutTab.txt" FileName="cmr12.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmr12.tfm" SelfReg="false" NextFile="cmti10.tfm"/>
-    <ROW File="cmti10.tfm" Component_="AboutTab.txt" FileName="cmti10.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\cmti10.tfm" SelfReg="false" NextFile="lute7.600pk"/>
+    <ROW File="cmr10.tfm" Component_="blute6.1200pk" FileName="cmr10.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\cmr10.tfm" SelfReg="false" NextFile="cmr12.tfm"/>
+    <ROW File="cmr12.tfm" Component_="blute6.1200pk" FileName="cmr12.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\cmr12.tfm" SelfReg="false" NextFile="cmti10.tfm"/>
+    <ROW File="cmti10.tfm" Component_="blute6.1200pk" FileName="cmti10.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\cmti10.tfm" SelfReg="false" NextFile="cmti12.tfm"/>
+    <ROW File="cmti12.tfm" Component_="blute6.1200pk" FileName="cmti12.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\cmti12.tfm" SelfReg="false" NextFile="Gallot_Comete.tab"/>
     <ROW File="decrypt.ps" Component_="acctest.ps" FileName="decrypt.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\decrypt.ps" SelfReg="false" NextFile="dnj750c.upp"/>
     <ROW File="dnj750c.upp" Component_="acctest.ps" FileName="dnj750c.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\dnj750c.upp" SelfReg="false" NextFile="dnj750m.upp"/>
     <ROW File="dnj750m.upp" Component_="acctest.ps" FileName="dnj750m.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\dnj750m.upp" SelfReg="false" NextFile="docie.ps"/>
@@ -314,24 +329,45 @@
     <ROW File="lpr2.bat" Component_="acctest.ps" FileName="lpr2.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lpr2.bat" SelfReg="false" NextFile="lprsetup.sh"/>
     <ROW File="lprsetup.sh" Component_="acctest.ps" FileName="lprsetup.sh" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\lprsetup.sh" SelfReg="false" NextFile="markhint.ps"/>
     <ROW File="lute.sf2" Component_="lute.sf2" FileName="lute.sf2" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\lute\lute.sf2" SelfReg="false" NextFile="gpl.txt"/>
-    <ROW File="lute7.300pk" Component_="AboutTab.txt" FileName="LUTE7~1.300|lute7.300pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.300pk" SelfReg="false" NextFile="blute6.600pk"/>
-    <ROW File="lute7.600pk" Component_="AboutTab.txt" FileName="LUTE7~1.600|lute7.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.600pk" SelfReg="false" NextFile="lute7.tfm"/>
-    <ROW File="lute7.tfm" Component_="AboutTab.txt" FileName="lute7.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute7.tfm" SelfReg="false" NextFile="lute8.600pk"/>
-    <ROW File="lute8.600pk" Component_="AboutTab.txt" FileName="LUTE8~1.600|lute8.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.600pk" SelfReg="false" NextFile="lute8.tfm"/>
-    <ROW File="lute8.tfm" Component_="AboutTab.txt" FileName="lute8.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute8.tfm" SelfReg="false" NextFile="lute9.600pk"/>
-    <ROW File="lute9.600pk" Component_="AboutTab.txt" FileName="LUTE9~1.600|lute9.600pk" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.600pk" SelfReg="false" NextFile="lute9.tfm"/>
-    <ROW File="lute9.tfm" Component_="AboutTab.txt" FileName="lute9.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\lute9.tfm" SelfReg="false" NextFile="pncr.tfm"/>
-    <ROW File="lute_tab4.3.89.zip" Component_="lute_tab4.3.89.zip" FileName="LUTE_T~1.ZIP|lute_tab4.3.89.zip" Attributes="0" SourcePath="..\Source\Tab\source\lute_tab4.3.89.zip" SelfReg="false" NextFile="gsdll32.dll"/>
+    <ROW File="lute6.1200pk" Component_="blute6.1200pk" FileName="LUTE6~1.120|lute6.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute6.1200pk" SelfReg="false" NextFile="lute6.2400pk"/>
+    <ROW File="lute6.2400pk" Component_="blute6.1200pk" FileName="LUTE6~1.240|lute6.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute6.2400pk" SelfReg="false" NextFile="lute6.300pk"/>
+    <ROW File="lute6.300pk" Component_="blute6.1200pk" FileName="LUTE6~1.300|lute6.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute6.300pk" SelfReg="false" NextFile="lute6.600pk"/>
+    <ROW File="lute6.600pk" Component_="blute6.1200pk" FileName="LUTE6~1.600|lute6.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute6.600pk" SelfReg="false" NextFile="lute6.tfm"/>
+    <ROW File="lute6.tfm" Component_="blute6.1200pk" FileName="lute6.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute6.tfm" SelfReg="false" NextFile="lute7.1200pk"/>
+    <ROW File="lute7.1200pk" Component_="blute6.1200pk" FileName="LUTE7~1.120|lute7.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute7.1200pk" SelfReg="false" NextFile="lute7.2400pk"/>
+    <ROW File="lute7.2400pk" Component_="blute6.1200pk" FileName="LUTE7~1.240|lute7.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute7.2400pk" SelfReg="false" NextFile="lute7.300pk"/>
+    <ROW File="lute7.300pk" Component_="blute6.1200pk" FileName="LUTE7~1.300|lute7.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute7.300pk" SelfReg="false" NextFile="lute7.600pk"/>
+    <ROW File="lute7.600pk" Component_="blute6.1200pk" FileName="LUTE7~1.600|lute7.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute7.600pk" SelfReg="false" NextFile="lute7.tfm"/>
+    <ROW File="lute7.tfm" Component_="blute6.1200pk" FileName="lute7.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute7.tfm" SelfReg="false" NextFile="lute8.1200pk"/>
+    <ROW File="lute8.1200pk" Component_="blute6.1200pk" FileName="LUTE8~1.120|lute8.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute8.1200pk" SelfReg="false" NextFile="lute8.2400pk"/>
+    <ROW File="lute8.2400pk" Component_="blute6.1200pk" FileName="LUTE8~1.240|lute8.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute8.2400pk" SelfReg="false" NextFile="lute8.300pk"/>
+    <ROW File="lute8.300pk" Component_="blute6.1200pk" FileName="LUTE8~1.300|lute8.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute8.300pk" SelfReg="false" NextFile="lute8.600pk"/>
+    <ROW File="lute8.600pk" Component_="blute6.1200pk" FileName="LUTE8~1.600|lute8.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute8.600pk" SelfReg="false" NextFile="lute8.tfm"/>
+    <ROW File="lute8.tfm" Component_="blute6.1200pk" FileName="lute8.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute8.tfm" SelfReg="false" NextFile="lute85.1200pk"/>
+    <ROW File="lute85.1200pk" Component_="blute6.1200pk" FileName="LUTE85~1.120|lute85.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute85.1200pk" SelfReg="false" NextFile="lute85.2400pk"/>
+    <ROW File="lute85.2400pk" Component_="blute6.1200pk" FileName="LUTE85~1.240|lute85.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute85.2400pk" SelfReg="false" NextFile="lute85.300pk"/>
+    <ROW File="lute85.300pk" Component_="blute6.1200pk" FileName="LUTE85~1.300|lute85.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute85.300pk" SelfReg="false" NextFile="lute85.tfm"/>
+    <ROW File="lute85.tfm" Component_="blute6.1200pk" FileName="lute85.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute85.tfm" SelfReg="false" NextFile="lute9.1200pk"/>
+    <ROW File="lute9.1200pk" Component_="blute6.1200pk" FileName="LUTE9~1.120|lute9.1200pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute9.1200pk" SelfReg="false" NextFile="lute9.2400pk"/>
+    <ROW File="lute9.2400pk" Component_="blute6.1200pk" FileName="LUTE9~1.240|lute9.2400pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute9.2400pk" SelfReg="false" NextFile="lute9.300pk"/>
+    <ROW File="lute9.300pk" Component_="blute6.1200pk" FileName="LUTE9~1.300|lute9.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute9.300pk" SelfReg="false" NextFile="lute9.600pk"/>
+    <ROW File="lute9.600pk" Component_="blute6.1200pk" FileName="LUTE9~1.600|lute9.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute9.600pk" SelfReg="false" NextFile="lute9.tfm"/>
+    <ROW File="lute9.tfm" Component_="blute6.1200pk" FileName="lute9.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\lute9.tfm" SelfReg="false" NextFile="out.ps"/>
     <ROW File="markhint.ps" Component_="acctest.ps" FileName="markhint.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\markhint.ps" SelfReg="false" NextFile="markpath.ps"/>
     <ROW File="markpath.ps" Component_="acctest.ps" FileName="markpath.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\markpath.ps" SelfReg="false" NextFile="mkcidfm.ps"/>
     <ROW File="mkcidfm.ps" Component_="acctest.ps" FileName="mkcidfm.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\mkcidfm.ps" SelfReg="false" NextFile="necp2x.upp"/>
     <ROW File="necp2x.upp" Component_="acctest.ps" FileName="necp2x.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\necp2x.upp" SelfReg="false" NextFile="necp2x6.upp"/>
     <ROW File="necp2x6.upp" Component_="acctest.ps" FileName="necp2x6.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\necp2x6.upp" SelfReg="false" NextFile="opdfread.ps"/>
     <ROW File="opdfread.ps" Component_="acctest.ps" FileName="opdfread.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\opdfread.ps" SelfReg="false" NextFile="packfile.ps"/>
+    <ROW File="out.ps" Component_="blute6.1200pk" FileName="out.ps" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\out.ps" SelfReg="false" NextFile="pbkd.tfm"/>
     <ROW File="packfile.ps" Component_="acctest.ps" FileName="packfile.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\packfile.ps" SelfReg="false" NextFile="pcharstr.ps"/>
     <ROW File="parseft2lib.r" Component_="FronimoToTab.r" FileName="PARSE-~1.R|parse-ft2-lib.r" Attributes="0" SourcePath="..\Source\FileConverters\parse-ft2-lib.r" SelfReg="false" NextFile="parseft3lib.r"/>
     <ROW File="parseft3lib.r" Component_="FronimoToTab.r" FileName="PARSE-~2.R|parse-ft3-lib.r" Attributes="0" SourcePath="..\Source\FileConverters\parse-ft3-lib.r" SelfReg="false" NextFile="parsetablib.r"/>
     <ROW File="parsetablib.r" Component_="FronimoToTab.r" FileName="PARSE-~3.R|parse-tab-lib.r" Attributes="0" SourcePath="..\Source\FileConverters\parse-tab-lib.r" SelfReg="false" NextFile="StavesToXML.r"/>
+    <ROW File="pbkd.tfm" Component_="blute6.1200pk" FileName="pbkd.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pbkd.tfm" SelfReg="false" NextFile="pbkdi.tfm"/>
+    <ROW File="pbkdi.tfm" Component_="blute6.1200pk" FileName="pbkdi.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pbkdi.tfm" SelfReg="false" NextFile="pbkl.tfm"/>
+    <ROW File="pbkl.tfm" Component_="blute6.1200pk" FileName="pbkl.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pbkl.tfm" SelfReg="false" NextFile="pbkli.tfm"/>
+    <ROW File="pbkli.tfm" Component_="blute6.1200pk" FileName="pbkli.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pbkli.tfm" SelfReg="false" NextFile="pncb.tfm"/>
     <ROW File="pcharstr.ps" Component_="acctest.ps" FileName="pcharstr.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pcharstr.ps" SelfReg="false" NextFile="pdf2dsc"/>
     <ROW File="pdf2dsc" Component_="acctest.ps" FileName="pdf2dsc" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pdf2dsc" SelfReg="false" NextFile="pdf2dsc.bat"/>
     <ROW File="pdf2dsc.bat" Component_="acctest.ps" FileName="pdf2dsc.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pdf2dsc.bat" SelfReg="false" NextFile="pdf2dsc.ps"/>
@@ -350,11 +386,17 @@
     <ROW File="pftogsf.bat" Component_="acctest.ps" FileName="pftogsf.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pftogsf.bat" SelfReg="false" NextFile="ppath.ps"/>
     <ROW File="photo.jpg" Component_="gpl.txt" FileName="photo.jpg" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\photo.jpg" SelfReg="false" NextFile="piano.sf2"/>
     <ROW File="piano.sf2" Component_="gpl.txt" FileName="piano.sf2" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\piano.sf2" SelfReg="false" NextFile="readme.txt"/>
-    <ROW File="pncr.tfm" Component_="AboutTab.txt" FileName="pncr.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncr.tfm" SelfReg="false" NextFile="pncri.tfm"/>
-    <ROW File="pncri.tfm" Component_="AboutTab.txt" FileName="pncri.tfm" Attributes="0" SourcePath="..\Source\Tab\bin\pncri.tfm" SelfReg="false" NextFile="tab.exe"/>
+    <ROW File="pncb.tfm" Component_="blute6.1200pk" FileName="pncb.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pncb.tfm" SelfReg="false" NextFile="pncbi.tfm"/>
+    <ROW File="pncbi.tfm" Component_="blute6.1200pk" FileName="pncbi.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pncbi.tfm" SelfReg="false" NextFile="pncr.tfm"/>
+    <ROW File="pncr.tfm" Component_="blute6.1200pk" FileName="pncr.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pncr.tfm" SelfReg="false" NextFile="pncri.tfm"/>
+    <ROW File="pncri.tfm" Component_="blute6.1200pk" FileName="pncri.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pncri.tfm" SelfReg="false" NextFile="pplb.tfm"/>
     <ROW File="ppath.ps" Component_="acctest.ps" FileName="ppath.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ppath.ps" SelfReg="false" NextFile="pphs"/>
     <ROW File="pphs" Component_="acctest.ps" FileName="pphs" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pphs" SelfReg="false" NextFile="pphs.ps"/>
     <ROW File="pphs.ps" Component_="acctest.ps" FileName="pphs.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\pphs.ps" SelfReg="false" NextFile="prfont.ps"/>
+    <ROW File="pplb.tfm" Component_="blute6.1200pk" FileName="pplb.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pplb.tfm" SelfReg="false" NextFile="pplbi.tfm"/>
+    <ROW File="pplbi.tfm" Component_="blute6.1200pk" FileName="pplbi.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pplbi.tfm" SelfReg="false" NextFile="pplr.tfm"/>
+    <ROW File="pplr.tfm" Component_="blute6.1200pk" FileName="pplr.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pplr.tfm" SelfReg="false" NextFile="pplri.tfm"/>
+    <ROW File="pplri.tfm" Component_="blute6.1200pk" FileName="pplri.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pplri.tfm" SelfReg="false" NextFile="psyr.tfm"/>
     <ROW File="prfont.ps" Component_="acctest.ps" FileName="prfont.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\prfont.ps" SelfReg="false" NextFile="printafm"/>
     <ROW File="printafm" Component_="acctest.ps" FileName="printafm" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\printafm" SelfReg="false" NextFile="printafm.ps"/>
     <ROW File="printafm.ps" Component_="acctest.ps" FileName="printafm.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\printafm.ps" SelfReg="false" NextFile="ps2ai.ps"/>
@@ -387,6 +429,17 @@
     <ROW File="ps2ps2" Component_="acctest.ps" FileName="ps2ps2" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2" SelfReg="false" NextFile="ps2ps2.bat"/>
     <ROW File="ps2ps2.bat" Component_="acctest.ps" FileName="ps2ps2.bat" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2.bat" SelfReg="false" NextFile="ps2ps2.cmd"/>
     <ROW File="ps2ps2.cmd" Component_="acctest.ps" FileName="ps2ps2.cmd" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ps2ps2.cmd" SelfReg="false" NextFile="quit.ps"/>
+    <ROW File="psyr.tfm" Component_="blute6.1200pk" FileName="psyr.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\psyr.tfm" SelfReg="false" NextFile="ptmb.tfm"/>
+    <ROW File="ptmb.tfm" Component_="blute6.1200pk" FileName="ptmb.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmb.tfm" SelfReg="false" NextFile="ptmbi.tfm"/>
+    <ROW File="ptmbi.tfm" Component_="blute6.1200pk" FileName="ptmbi.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmbi.tfm" SelfReg="false" NextFile="ptmbo.tfm"/>
+    <ROW File="ptmbo.tfm" Component_="blute6.1200pk" FileName="ptmbo.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmbo.tfm" SelfReg="false" NextFile="ptmr.tfm"/>
+    <ROW File="ptmr.tfm" Component_="blute6.1200pk" FileName="ptmr.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmr.tfm" SelfReg="false" NextFile="ptmrc.tfm"/>
+    <ROW File="ptmrc.tfm" Component_="blute6.1200pk" FileName="ptmrc.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmrc.tfm" SelfReg="false" NextFile="ptmri.tfm"/>
+    <ROW File="ptmri.tfm" Component_="blute6.1200pk" FileName="ptmri.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmri.tfm" SelfReg="false" NextFile="ptmro.tfm"/>
+    <ROW File="ptmro.tfm" Component_="blute6.1200pk" FileName="ptmro.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmro.tfm" SelfReg="false" NextFile="ptmrre.tfm"/>
+    <ROW File="ptmrre.tfm" Component_="blute6.1200pk" FileName="ptmrre.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmrre.tfm" SelfReg="false" NextFile="ptmrrn.tfm"/>
+    <ROW File="ptmrrn.tfm" Component_="blute6.1200pk" FileName="ptmrrn.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\ptmrrn.tfm" SelfReg="false" NextFile="pzcmi.tfm"/>
+    <ROW File="pzcmi.tfm" Component_="blute6.1200pk" FileName="pzcmi.tfm" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\pzcmi.tfm" SelfReg="false" NextFile="sample.tab"/>
     <ROW File="quit.ps" Component_="acctest.ps" FileName="quit.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\quit.ps" SelfReg="false" NextFile="ras1.upp"/>
     <ROW File="r3core.exe" Component_="r3core.exe" FileName="r3-core.exe" Attributes="0" SourcePath="..\Source\Utils\Rebol\r3-core.exe" SelfReg="false" NextFile="rebol.exe" DigSign="true"/>
     <ROW File="ras1.upp" Component_="acctest.ps" FileName="ras1.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras1.upp" SelfReg="false" NextFile="ras24.upp"/>
@@ -396,9 +449,11 @@
     <ROW File="ras4.upp" Component_="acctest.ps" FileName="ras4.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras4.upp" SelfReg="false" NextFile="ras8m.upp"/>
     <ROW File="ras8m.upp" Component_="acctest.ps" FileName="ras8m.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\ras8m.upp" SelfReg="false" NextFile="rinkj2200setup"/>
     <ROW File="readme.txt" Component_="gpl.txt" FileName="readme.txt" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\readme.txt" SelfReg="false" NextFile="ToastNotifications.dll"/>
+    <ROW File="readme.txt_1" Component_="TabManual.pdf" FileName="readme.txt" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\readme.txt" SelfReg="false"/>
     <ROW File="rebol.exe" Component_="rebol.exe" FileName="rebol.exe" Attributes="0" SourcePath="..\Source\Utils\Rebol\rebol.exe" SelfReg="false" NextFile="LeRoy.ttf" DigSign="true"/>
     <ROW File="rinkj2200setup" Component_="acctest.ps" FileName="RINKJ-~1|rinkj-2200-setup" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\rinkj-2200-setup" SelfReg="false" NextFile="rollconv.ps"/>
     <ROW File="rollconv.ps" Component_="acctest.ps" FileName="rollconv.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\rollconv.ps" SelfReg="false" NextFile="showchar.ps"/>
+    <ROW File="sample.tab" Component_="blute6.1200pk" FileName="sample.tab" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\sample.tab" SelfReg="false" NextFile="tab.exe"/>
     <ROW File="showchar.ps" Component_="acctest.ps" FileName="showchar.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\showchar.ps" SelfReg="false" NextFile="showpage.ps"/>
     <ROW File="showpage.ps" Component_="acctest.ps" FileName="showpage.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\showpage.ps" SelfReg="false" NextFile="st640ih.upp"/>
     <ROW File="st640ih.upp" Component_="acctest.ps" FileName="st640ih.upp" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\st640ih.upp" SelfReg="false" NextFile="st640ihg.upp"/>
@@ -432,7 +487,15 @@
     <ROW File="stcinfo.ps" Component_="acctest.ps" FileName="stcinfo.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\stcinfo.ps" SelfReg="false" NextFile="stcolor.ps"/>
     <ROW File="stcolor.ps" Component_="acctest.ps" FileName="stcolor.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\stcolor.ps" SelfReg="false" NextFile="stc_h.upp"/>
     <ROW File="stocht.ps" Component_="acctest.ps" FileName="stocht.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\stocht.ps" SelfReg="false" NextFile="traceimg.ps"/>
-    <ROW File="tab.exe" Component_="tab.exe" FileName="tab.exe" Attributes="0" SourcePath="..\Source\Tab\bin\tab.exe" SelfReg="false" NextFile="COPYING" DigSign="true"/>
+    <ROW File="tab.exe" Component_="tab.exe" FileName="tab.exe" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tab.exe" SelfReg="false" NextFile="tlute6.300pk" DigSign="true"/>
+    <ROW File="tlute6.300pk" Component_="blute6.1200pk" FileName="TLUTE6~1.300|tlute6.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute6.300pk" SelfReg="false" NextFile="tlute6.600pk"/>
+    <ROW File="tlute6.600pk" Component_="blute6.1200pk" FileName="TLUTE6~1.600|tlute6.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute6.600pk" SelfReg="false" NextFile="tlute7.300pk"/>
+    <ROW File="tlute7.300pk" Component_="blute6.1200pk" FileName="TLUTE7~1.300|tlute7.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute7.300pk" SelfReg="false" NextFile="tlute7.600pk"/>
+    <ROW File="tlute7.600pk" Component_="blute6.1200pk" FileName="TLUTE7~1.600|tlute7.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute7.600pk" SelfReg="false" NextFile="tlute8.300pk"/>
+    <ROW File="tlute8.300pk" Component_="blute6.1200pk" FileName="TLUTE8~1.300|tlute8.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute8.300pk" SelfReg="false" NextFile="tlute8.600pk"/>
+    <ROW File="tlute8.600pk" Component_="blute6.1200pk" FileName="TLUTE8~1.600|tlute8.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute8.600pk" SelfReg="false" NextFile="tlute9.300pk"/>
+    <ROW File="tlute9.300pk" Component_="blute6.1200pk" FileName="TLUTE9~1.300|tlute9.300pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute9.300pk" SelfReg="false" NextFile="tlute9.600pk"/>
+    <ROW File="tlute9.600pk" Component_="blute6.1200pk" FileName="TLUTE9~1.600|tlute9.600pk" Attributes="0" SourcePath="C:\Users\lukee\Desktop\programming\projects\LuteScribe\Source\Tab\bin\tlute9.600pk" SelfReg="false" NextFile="readme.txt_1"/>
     <ROW File="traceimg.ps" Component_="acctest.ps" FileName="traceimg.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\traceimg.ps" SelfReg="false" NextFile="traceop.ps"/>
     <ROW File="traceop.ps" Component_="acctest.ps" FileName="traceop.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\traceop.ps" SelfReg="false" NextFile="type1enc.ps"/>
     <ROW File="type1enc.ps" Component_="acctest.ps" FileName="type1enc.ps" Attributes="0" SourcePath="..\Source\Ghostscript\Lib\type1enc.ps" SelfReg="false" NextFile="type1ops.ps"/>
