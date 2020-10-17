@@ -405,7 +405,7 @@ namespace LuteScribe
                 }
                 else
                 {
-                    return (System.IO.Directory.GetParent(_path).Name + "\\" + System.IO.Path.GetFileName(_path) + " - LuteScribe v" + version);
+                    return (System.IO.Directory.GetParent(_path).Name + "\\" + System.IO.Path.GetFileName(_path) + " - LuteScribe");
                 }
             }
             set
