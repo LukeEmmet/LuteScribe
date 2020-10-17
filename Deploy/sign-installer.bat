@@ -1,0 +1,2 @@
+
+"C:\Program Files (x86)\Windows Kits\8.1\bin\x86\signtool.exe" sign /sha1 "c48d77263de23db387de368cc9819cc23f8e7aa9" /tr http://time.certum.pl /fd sha256 /v "LuteScribe-SetupFiles\LuteScribe_v1.2.2.msi"
