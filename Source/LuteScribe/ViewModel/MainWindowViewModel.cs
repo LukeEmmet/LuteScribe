@@ -421,7 +421,7 @@ namespace LuteScribe
             {
                 return _settings.FlagStyle;
             }
-            internal set
+            set
             {
                 _settings.FlagStyle = value;
                 _settings.Save();
@@ -435,7 +435,7 @@ namespace LuteScribe
             {
                 return _settings.PlaybackPatch;
             }
-            internal set
+            set
             {
                 _settings.PlaybackPatch = value;
                 _settings.Save();
@@ -449,7 +449,7 @@ namespace LuteScribe
             {
                 return _settings.PlaybackSpeed;
             }
-            internal set
+            set
             {
                 _settings.PlaybackSpeed = value;
                 _settings.Save();
@@ -462,7 +462,7 @@ namespace LuteScribe
             {
                 return _settings.CharStyle;
             }
-            internal set
+            set
             {
                 _settings.CharStyle = value;
                 _settings.Save();

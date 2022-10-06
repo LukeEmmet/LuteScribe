@@ -29,9 +29,18 @@ namespace LuteScribe.Serialization.LsmlLoader
 {
     public class TabToLsml
     {
-
-
         public TabModel LoadTab(string path)
+        {
+            return LoadTabRebol(path);
+        }
+
+        public TabModel LoadTabLuteConv(string path)
+        {
+
+            return (new LuteScribe.Serialization.LuteConvLoader()).LoadFromFormat(path, "tab", 0);
+        }
+
+        public TabModel LoadTabRebol(string path)
         {
 
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;

@@ -489,5 +489,24 @@ namespace LuteScribe
             var viewModel = (MainWindowViewModel)DataContext;
             viewModel.Dispose();
         }
+
+
+
+        //dont handle wheelmouse events in the grids, but bubble up to the list of staves
+        //so the whole list scrolls. See
+        //https://stackoverflow.com/questions/9019304/the-mouse-wheel-event-doesnt-work-correcty-on-a-lisbox-when-it-has-scrollviewer
+        private void OnMainGridPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+                e.Handled = true;
+
+                var e2 = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta);
+                e2.RoutedEvent = ListBox.MouseWheelEvent;
+                e2.Source = e.Source;
+
+                //bubble up to parent
+                var Grid = (DataGrid)sender;
+                Grid.RaiseEvent(e2);
+            
+        }
     }
 }

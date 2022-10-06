@@ -38,6 +38,19 @@ namespace LuteScribe.Serialization.JtxmlLoader
 
         public TabModel LoadJtxml(string path)
         {
+            return LoadJtxmlOld(path);
+        }
+
+        public TabModel LoadJtxmlLuteConv(string path) { 
+
+            var format = IsJtz(path) ? "jtz" : "jtxml";
+
+            return (new LuteScribe.Serialization.LuteConvLoader()).LoadFromFormat(path, format, 0);
+            
+        }
+
+        public TabModel LoadJtxmlOld(string path) { 
+            
             var sessionPath = Session.Instance.SessionPath;
             var loader = new JtxmlLoader.JtxmlToLsml();
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;

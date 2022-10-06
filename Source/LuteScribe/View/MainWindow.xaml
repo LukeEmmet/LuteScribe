@@ -267,6 +267,9 @@
 
                 <!--VirtualizingPanel.ScrollUnit="ScrollUnit" requires .NEt 4.5
         see https://msdn.microsoft.com/en-us/library/system.windows.controls.virtualizingpanel.scrollunit(v=vs.110).aspx
+                
+                turn off IsVirtualising otherwise grid items get repainted everytime we scroll into view
+                With it off things are much faster when scrolling
         -->
                 <ListBox Name="StaveGrids" 
                      ItemsSource="{Binding TabModel.ActivePiece.Staves}" 
@@ -275,6 +278,7 @@
                      VirtualizingPanel.ScrollUnit="Pixel" 
                      Margin="5,5,0,0" 
                      BorderBrush="White" 
+                     VirtualizingPanel.IsVirtualizing="False"
                      SelectionChanged="OnStaveGridsSelectionChange"
                      Background="{x:Null}">
 
@@ -304,6 +308,7 @@
                                     DragLeave="OnMainGridCheckDropTarget"
                                     PreviewKeyDown="OnMainGridPreviewKeyDown"
                                     DragOver="OnMainGridCheckDropTarget"
+                                    PreviewMouseWheel="OnMainGridPreviewMouseWheel"
                                     PreparingCellForEdit="OnMainGridPreparingCellForEdit"
                                     CellEditEnding="OnMainGridCellEditEnding"
                                     LostFocus="OnMainGridLostFocus"
