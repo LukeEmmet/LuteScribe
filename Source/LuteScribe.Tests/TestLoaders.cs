@@ -23,8 +23,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LuteScribe.Serialization.LsmlLoader;
 using System.IO;
-using LuteScribe.Serialization.JtxmlLoader;
-using LuteScribe.Serialization.FronimoLoader;
+using LuteScribe.Serialization;
 
 namespace LuteScribe.Tests
 {
@@ -33,8 +32,8 @@ namespace LuteScribe.Tests
     {
         private string _testData;
         private TabToLsml _tabLoader;
-        private JtxmlToLsml _jtxmlLoader;
-        private Ft3ToLsml _ft3Loader;
+        private LuteConvLoader _luteconvLoader;
+
 
         [TestInitialize]
         public  void SetupTestDataFolder()
@@ -43,8 +42,8 @@ namespace LuteScribe.Tests
             //use path.combine to take care of any missing slashes etc...
             _testData = Path.GetFullPath(Path.Combine(appDir, "..\\..\\TestData"));
             _tabLoader = new TabToLsml();
-            _jtxmlLoader = new JtxmlToLsml();
-            _ft3Loader = new Ft3ToLsml();
+            _luteconvLoader = new LuteConvLoader();
+
         }
 
         [TestMethod]
@@ -94,7 +93,7 @@ namespace LuteScribe.Tests
         [TestMethod]
         public void TestFt3Loader()
         {
-            var model = _ft3Loader.LoadFt3(Path.Combine(_testData, "Simple.ft3"));
+            var model = _luteconvLoader.LoadFromFormat(Path.Combine(_testData, "Simple.ft3"), "ft3", 0);
             Assert.AreEqual(1, model.Pieces.Count);
             Assert.AreEqual("99. Mr. Dowland's Midnight/John Dowland", model.Pieces[0].Title);
 
@@ -107,7 +106,7 @@ namespace LuteScribe.Tests
         [TestMethod]
         public void TestFt37thCourseLoader()
         {
-            var model = _ft3Loader.LoadFt3(Path.Combine(_testData, "Fretted7thCourse.ft3"));
+            var model = _luteconvLoader.LoadFromFormat(Path.Combine(_testData, "Fretted7thCourse.ft3"), "ft3", 0);
             Assert.AreEqual(1, model.Pieces.Count, "number of pieces in Fretted7thCourse.ft3 should be 1");
 
             var piece = model.Pieces[0];
@@ -127,7 +126,7 @@ namespace LuteScribe.Tests
         [TestMethod]
         public void TestFt38thCourseLoader()
         {
-            var model = _ft3Loader.LoadFt3(Path.Combine(_testData, "Fretted8thCourse.ft3"));
+            var model = _luteconvLoader.LoadFromFormat(Path.Combine(_testData, "Fretted8thCourse.ft3"), "ft3", 0);
             Assert.AreEqual(1, model.Pieces.Count, "number of pieces in Fretted8thCourse.ft3 should be 1");
 
             var piece = model.Pieces[0];
@@ -147,9 +146,9 @@ namespace LuteScribe.Tests
         }
 
         [TestMethod]
-        public void TestJtxmlLoader()
+        public void TestLuteConvLoader()
         {
-            var model = _jtxmlLoader.LoadJtxml(Path.Combine(_testData, "Simple.jtxml"));
+            var model = _luteconvLoader.LoadFromFormat(Path.Combine(_testData, "Simple.jtxml"), "jtxml", 0);
             Assert.AreEqual(2, model.Pieces.Count, "number of pieces in Simple.jtxml should be 2");
 
             var piece = model.Pieces[0];
@@ -162,7 +161,7 @@ namespace LuteScribe.Tests
             Assert.AreEqual("a", firstStave.Chords[1].C1);
 
             //zipped format of the same
-            model = _jtxmlLoader.LoadJtxml(Path.Combine(_testData, "Simple.jtz"));
+            model = _luteconvLoader.LoadFromFormat(Path.Combine(_testData, "Simple.jtz"), "jtz", 0);
             Assert.AreEqual(2, model.Pieces.Count, "number of pieces in simple.jtz should be 2");
             Assert.AreEqual(2, model.Pieces[0].Staves.Count);
         }

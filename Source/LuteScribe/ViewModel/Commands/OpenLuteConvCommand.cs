@@ -24,18 +24,18 @@ using System;
 using System.Windows.Input;
 using Microsoft.Win32;
 using System.IO;
-using LuteScribe.Serialization.JtxmlLoader;
+using LuteScribe.Serialization;
 
 namespace LuteScribe.ViewModel.Commands
 {
 
-    public class OpenFandangoCommand : ICommand
+    public class OpenLuteConvCommand : ICommand
     {
 
         // Member variables
         private readonly MainWindowViewModel _viewModel;
 
-        public OpenFandangoCommand(MainWindowViewModel viewModel)
+        public OpenLuteConvCommand(MainWindowViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -66,13 +66,18 @@ namespace LuteScribe.ViewModel.Commands
         {
             var suggestFile = default(string);
             var suggestFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var passedPath = (string)parameter;
+            var pathAndIndex = (Tuple<string, string, int>)parameter;
             var openPath = false;
             var tabPath = default(string);
+            var format = "tab";     //default  
+            var index = 0;
 
-            if (passedPath != null)
+            if (pathAndIndex != null)
             {
-                tabPath = passedPath;
+                tabPath = pathAndIndex.Item1;
+                format = pathAndIndex.Item2;
+                index = pathAndIndex.Item3;
+
                 openPath = true;
             }
             else
@@ -101,12 +106,12 @@ namespace LuteScribe.ViewModel.Commands
 
             if (openPath)
             {
-                var loader = new JtxmlToLsml();
+                var loader = new LuteConvLoader();
 
-                _viewModel.TabModel = loader.LoadJtxml(tabPath);
+                _viewModel.TabModel = loader.LoadFromFormat(tabPath, format, index);
                 _viewModel.Path = Path.GetFullPath(tabPath);
 
-                _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[0];
+                _viewModel.TabModel.ActivePiece = _viewModel.TabModel.Pieces[0];        //**FIXME - there should only be one path now...
 
             }
 

@@ -62,10 +62,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JtxmlParserLib\JtxmlParserLib.csproj">
-      <Project>{9403c647-7e2f-4ef9-b789-937bbb1ba7fc}</Project>
-      <Name>JtxmlParserLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LuteScribe\LuteScribe.csproj">
       <Project>{f9098bed-1129-4b77-bbbf-4b2cbdf089c5}</Project>
       <Name>LuteScribe</Name>

@@ -52,6 +52,8 @@ namespace LuteScribe
         // Property variables
         private FileAssociateViewModel _fileAssociateViewModel;
         private FileAssociateWindow _fileAssociateWindow;
+        private ChooseSubPiecesViewModel _chooseSubPiecesViewModel;
+        private ChoosePieceWindow _chooseSubPieceWindow;
         private Stave _selectedItem;
         private int _selectedTab;
         private string _path;
@@ -111,8 +113,7 @@ namespace LuteScribe
         public ICommand OpenFile { get; set; }
         public ICommand OpenXml { get; set; }
         public ICommand OpenTab { get; set; }
-        public ICommand OpenFronimo { get; set; }
-        public ICommand OpenFandango { get; set; }
+        public ICommand OpenLuteConv { get; set; }
         public ICommand CreatePs { get; set; }
         public ICommand CreatePdf { get; set; }
         public ICommand PreviewPdf { get; set; }
@@ -542,8 +543,7 @@ namespace LuteScribe
             this.OpenFile = new OpenFileCommand(this);
             this.OpenXml = new OpenXmlCommand(this);
             this.OpenTab = new OpenTabCommand(this);
-            this.OpenFronimo = new OpenFronimoCommand(this);
-            this.OpenFandango = new OpenFandangoCommand(this);
+            this.OpenLuteConv = new OpenLuteConvCommand(this);
             this.CreatePs = new CreatePsCommand(this);
             this.CreatePdf = new CreatePdfCommand(this);
             this.PreviewPdf = new PreviewPdfCommand(this);
@@ -646,6 +646,11 @@ namespace LuteScribe
         public void CloseFileAssociateWindow()
         {
             _fileAssociateWindow.Close();
+        }
+
+        public void CloseChooseSubPieceWindow()
+        {
+            _chooseSubPieceWindow.Close();
         }
 
         public void Playback(string playbackPath)

@@ -108,13 +108,12 @@
     <Compile Include="Serialization\Commandline\TabOutputParser.cs" />
     <Compile Include="Serialization\LuteConvLoader.cs" />
     <Compile Include="ViewModel\Commands\InsertHeaderCommand.cs" />
+    <Compile Include="ViewModel\Commands\OpenLuteConvCommand.cs" />
     <Compile Include="ViewModel\Commands\ShowFileAssociateWindowCommand.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="Audio\SampleAggregator.cs" />
     <Compile Include="Domain\Piece.cs" />
     <Compile Include="Singletons\SimpleLogger.cs" />
-    <Compile Include="Serialization\FronimoLoader\Ft3ToLsml.cs" />
-    <Compile Include="Serialization\JtxmlLoader\JtxmlToLsml.cs" />
     <Compile Include="Serialization\LsmlLoader\TabToLsml.cs" />
     <Compile Include="Singletons\Session.cs" />
     <Compile Include="ViewModel\Commands\CutItemsCommand.cs" />
@@ -127,18 +126,21 @@
     <Compile Include="ViewModel\Commands\NavigateSectionCommand.cs" />
     <Compile Include="ViewModel\Commands\AssociateFileExtensionsCommand.cs" />
     <Compile Include="ViewModel\Commands\NavigatePdfPageCommand.cs" />
-    <Compile Include="ViewModel\Commands\OpenFandangoCommand.cs" />
     <Compile Include="ViewModel\Commands\PrintPdfCommand.cs" />
     <Compile Include="ViewModel\Commands\PreviewPdfCommand.cs" />
     <Compile Include="ViewModel\Commands\PdfViewerNavigate.cs" />
     <Compile Include="ViewModel\Commands\CreatePdfCommand.cs" />
     <Compile Include="ViewModel\Commands\SaveTabPieceCommand.cs" />
     <Compile Include="ViewModel\Commands\ShowHelpAboutCommand.cs" />
+    <Compile Include="ViewModel\ChooseSubPiecesViewModel.cs" />
     <Compile Include="ViewModel\FileAssociateViewModel.cs" />
     <Compile Include="ViewModel\Services\Cloner.cs" />
     <Compile Include="ViewModel\Services\TabModelMemento.cs" />
     <Compile Include="ViewModel\Services\TabModelOwner.cs" />
     <Compile Include="View\ChildControls.cs" />
+    <Compile Include="View\ChooseSubPieceWindow.xaml.cs">
+      <DependentUpon>ChooseSubPieceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Menus.xaml.cs">
       <DependentUpon>Menus.xaml</DependentUpon>
     </Compile>
@@ -147,6 +149,10 @@
       <DependentUpon>FileAssociateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WaitCursor.cs" />
+    <Page Include="View\ChooseSubPieceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,7 +183,6 @@
     <Compile Include="ViewModel\Commands\DeleteStaveEndCommand.cs" />
     <Compile Include="ViewModel\Commands\NewFileCommand.cs" />
     <Compile Include="ViewModel\Commands\ReflowCommand.cs" />
-    <Compile Include="ViewModel\Commands\OpenFronimoCommand.cs" />
     <Compile Include="ViewModel\Commands\OpenTabCommand.cs" />
     <Compile Include="ViewModel\Commands\OpenXmlCommand.cs" />
     <Compile Include="ViewModel\Commands\CreatePsCommand.cs" />
@@ -265,10 +270,6 @@
     <ProjectReference Include="..\GenericUndoRedo\GenericUndoRedo.csproj">
       <Project>{e5323f74-c017-4ad0-9fa1-e53ab85b23bf}</Project>
       <Name>GenericUndoRedo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JtxmlParserLib\JtxmlParserLib.csproj">
-      <Project>{9403c647-7e2f-4ef9-b789-937bbb1ba7fc}</Project>
-      <Name>JtxmlParserLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

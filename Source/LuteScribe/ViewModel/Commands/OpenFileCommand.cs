@@ -26,6 +26,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using LuteScribe.Serialization;
 
 namespace LuteScribe.ViewModel.Commands
 {
@@ -111,21 +112,31 @@ namespace LuteScribe.ViewModel.Commands
                 openFileDialog.Multiselect = false;
                 openFileDialog.RestoreDirectory = restoreLocation;
 
-                var allFilesFilter = "Tabulature files (*.lsml,*.tab,*.ft2,*.ft3)|*.lsml;*.tab;*.ft2;*.ft3|";
+                var allFilesFilter = "" +
+                    "Lute and guitar tabulature files" +
+                    "|" +
+                    "*.lsml;" +
+                    "*.tab;" +
+                    "*.ft2;*.ft3;" +
+                    "*.jtz;*.jtxml;" +
+                    "*.abc;" +
+                    "*.mei;" +
+                    "*.mnx;" +
+                    "*.musicxml;*.mxl;" +
+                     "*.tc" +
+                   "|";
 
                 openFileDialog.Filter = "" +
                     "LuteScribe XML files (*.lsml)|*.lsml|" +
                     "Tab files (*.tab)|*.tab|" +
-                    "Fronimo files (*.ft2,*.ft3)|*.ft2;*.ft3";
-
-                //only offer to open fandango files if converter is enabled
-                //since this is still experimental
-                if (_viewModel.OpenFandango.CanExecute(null))               {
-                    allFilesFilter = "Tabulature files (*.lsml,*.tab,*.ft2,*.ft3,*.jtz,*.jtxml)|*.lsml;*.tab;*.ft2;*.ft3;*.jtz;*.jtxml|";
-                    openFileDialog.Filter += "|Fandango files (*.jtz,*.jtxml)|*.jtz;*.jtxml";
-                }
-
-                openFileDialog.Filter += "|All files (*.*)|*.*";
+                    "Fronimo files (*.ft2,*.ft3)|*.ft2;*.ft3|" +
+                    "Fandango files (*.jtz,*.jtxml)|*.jtz;*.jtxml|" +
+                    "ABC Tab files (*.abc)|*.abc|" +
+                    "MEI files (*.mei)|*.mei|" +
+                    "MNX files (*.mnx)|*.mnx|" +
+                    "MusicXML files (*.musicxml,*.mxl)|*.musicxml;*.mxl|" + 
+                    "Tab code files (*.tc)|*.tc|" +
+                    "All files (*.*)|*.*";
 
                 openFileDialog.Filter = allFilesFilter + openFileDialog.Filter;
 
@@ -144,31 +155,37 @@ namespace LuteScribe.ViewModel.Commands
 
                 _viewModel.HasMultipleSections = false;
 
-                try
+                var loader = new LuteConvLoader();
+                var format = ext.Substring(1); //trim leading . to get type for luteconv
+                var pieces = loader.ListPieces(path, format);
+
+                var loadPieceIndex = 0;
+
+                if (pieces.Count > 1)
+                {
+                    MessageBox.Show("Choose piece here from " + pieces.Count + "...");
+                }
+               try
                 {
                     switch (ext)
                 {
-                    case ".lsml":
+
+
+
+                        
+                        case ".lsml":
                             _viewModel.OpenXml.Execute(path);
                             break;
                         case ".tab":
                             _viewModel.OpenTab.Execute(path);
                             break;
-                        case ".ft2":
-                            _viewModel.OpenFronimo.Execute(path);
-                            break;
-                        case ".ft3":
-                            _viewModel.OpenFronimo.Execute(path);
-                            break;
-                        case ".jtz":
-                            _viewModel.OpenFandango.Execute(path);
-                            break;
-                        case ".jtxml":
-                            _viewModel.OpenFandango.Execute(path);
-                            break;
+
                         default:
-                            MessageBox.Show("Cannot open file of unknown format: " + ext + " " + path);
+                            var openLuteConv = _viewModel.OpenLuteConv;
+                            openLuteConv.Execute(new Tuple<string, string, int>(path, format, loadPieceIndex));
+
                             break;
+
                     }
 
                     _viewModel.ShowSections(0);
