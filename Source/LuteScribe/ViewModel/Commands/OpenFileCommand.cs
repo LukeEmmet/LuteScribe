@@ -113,7 +113,7 @@ namespace LuteScribe.ViewModel.Commands
                 openFileDialog.RestoreDirectory = restoreLocation;
 
                 var allFilesFilter = "" +
-                    "Lute and guitar tabulature files" +
+                    "Lute and guitar tabulature" +
                     "|" +
                     "*.lsml;" +
                     "*.tab;" +
@@ -121,7 +121,7 @@ namespace LuteScribe.ViewModel.Commands
                     "*.jtz;*.jtxml;" +
                     "*.abc;" +
                     "*.mei;" +
-                    "*.mnx;" +
+//                    "*.mnx;" +
                     "*.musicxml;*.mxl;" +
                      "*.tc" +
                    "|";
@@ -133,9 +133,11 @@ namespace LuteScribe.ViewModel.Commands
                     "Fandango files (*.jtz,*.jtxml)|*.jtz;*.jtxml|" +
                     "ABC Tab files (*.abc)|*.abc|" +
                     "MEI files (*.mei)|*.mei|" +
-                    "MNX files (*.mnx)|*.mnx|" +
+                    //too experimental   at present - MNX spec not published yet.
+                    //conversion will still work though
+                    //"MNX files (*.mnx)|*.mnx|" +
                     "MusicXML files (*.musicxml,*.mxl)|*.musicxml;*.mxl|" + 
-                    "Tab code files (*.tc)|*.tc|" +
+                    "TabCode files (*.tc)|*.tc|" +
                     "All files (*.*)|*.*";
 
                 openFileDialog.Filter = allFilesFilter + openFileDialog.Filter;
