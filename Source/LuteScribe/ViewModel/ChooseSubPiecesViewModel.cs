@@ -41,20 +41,19 @@ namespace LuteScribe.ViewModel
 {
     public class SubPiece : ObservableObject
     {
-        private string _description;
+        private string _title;
         private int _index;
-
-
-        public string Description
+        
+        public string Title
         {
             get
             {
-                return _description;
+                return _title;
             }
             set
             {
-                _description = value;
-                base.RaisePropertyChangedEvent("Description");
+                _title = value;
+                base.RaisePropertyChangedEvent("Title");
             }
         }
         public int Index
@@ -69,7 +68,6 @@ namespace LuteScribe.ViewModel
                 base.RaisePropertyChangedEvent("Index");
             }
         }
-
     }
 
 
@@ -78,35 +76,45 @@ namespace LuteScribe.ViewModel
 
 
         private ObservableCollection<SubPiece> _subPieces;
+        private SubPiece _selected;
 
-        public ICommand AssociateFileExtensions { get; }
         private MainWindowViewModel _mainWindowViewModel;
 
-        public void LoadFileTypes()
+        public ChooseSubPiecesViewModel(List<string> pieces)
         {
-            SubPieces = new ObservableCollection<SubPiece>();
+            _subPieces = new ObservableCollection<SubPiece>();
 
-
-            //by default we suggest LSML and TAB files.
-            SubPieces.Add(new SubPiece
+            var index = 0;
+            foreach (var piece in pieces)
             {
-                Index = 1,
-                Description = "LuteScribe LSML files"
-            });
+                var subPiece = new SubPiece() { Index = index, Title = piece };
 
-            
+                _subPieces.Add(subPiece);
+
+               //select the first one
+               if (index == 0 )
+                {
+                    Selected = subPiece;
+                }
+
+                index++;
+            }
 
         }
-        public ChooseSubPiecesViewModel()
+
+        public  SubPiece Selected
         {
+            get
+            {
+                return _selected;
+            }
 
-           // LoadFileTypes();
-           // AssociateFileExtensions = new AssociateFileExtensionsCommand(this);
+            set { 
+                _selected = value;
+                base.RaisePropertyChangedEvent("Selected");
 
+            }
         }
-
-
-
         public MainWindowViewModel MainWindowViewModel
         {
             set
@@ -115,26 +123,20 @@ namespace LuteScribe.ViewModel
             }
         }
 
-        public void CloseWindow()
-        {
-            //pass up to mainviewmodel which holds a ref to this window
-            _mainWindowViewModel.CloseFileAssociateWindow();
-        }
-
         public ObservableCollection<SubPiece> SubPieces
         {
             get
             {
                 return _subPieces;
             }
-
-            set
-            {
-                _subPieces = value;
-
-                RaisePropertyChangedEvent("SubPieces");
-            }
         }
+
+        public void CloseWindow()
+        {
+            //pass up to mainviewmodel which holds a ref to this window
+            _mainWindowViewModel.CloseChooseSubPieceWindow();
+        }
+
 
 
     }

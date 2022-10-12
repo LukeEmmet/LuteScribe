@@ -154,27 +154,15 @@ namespace LuteScribe.ViewModel.Commands
             if (openFile)
             {
                 var ext = Path.GetExtension(path).ToLower();
+               _viewModel.HasMultipleSections = false;
 
-                _viewModel.HasMultipleSections = false;
 
-                var loader = new LuteConvLoader();
-                var format = ext.Substring(1); //trim leading . to get type for luteconv
-                var pieces = loader.ListPieces(path, format);
-
-                var loadPieceIndex = 0;
-
-                if (pieces.Count > 1)
-                {
-                    MessageBox.Show("Choose piece here from " + pieces.Count + "...");
-                }
                try
                 {
                     switch (ext)
-                {
+                    {
 
 
-
-                        
                         case ".lsml":
                             _viewModel.OpenXml.Execute(path);
                             break;
@@ -183,6 +171,24 @@ namespace LuteScribe.ViewModel.Commands
                             break;
 
                         default:
+
+
+                            var loader = new LuteConvLoader();
+                            var format = ext.Substring(1); //trim leading . to get type for luteconv
+                            var pieces = loader.ListPieces(path, format);
+
+                            var loadPieceIndex = 0;
+
+                            if (pieces.Count > 1)
+                            {
+                                loadPieceIndex = _viewModel.PopupSubPieceListWindow(pieces);
+                                if (loadPieceIndex < 0)
+                                {
+                                    return;     //user cancelled, just exit
+                                }
+                            }
+
+
                             var openLuteConv = _viewModel.OpenLuteConv;
                             openLuteConv.Execute(new Tuple<string, string, int>(path, format, loadPieceIndex));
 

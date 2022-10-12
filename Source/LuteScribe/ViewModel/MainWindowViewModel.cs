@@ -643,6 +643,18 @@ namespace LuteScribe
             _fileAssociateWindow.ShowDialog();
         }
 
+        public int PopupSubPieceListWindow(List<string> pieces)
+        {   //return index of piece in collection, or -1 if user cancelled
+
+            _chooseSubPieceWindow = new ChoosePieceWindow();
+            _chooseSubPiecesViewModel = new ChooseSubPiecesViewModel(pieces);
+            _chooseSubPiecesViewModel.MainWindowViewModel = this;
+            _chooseSubPieceWindow.DataContext = _chooseSubPiecesViewModel;
+            _chooseSubPieceWindow.Owner = App.Current.MainWindow;
+            _chooseSubPieceWindow.ShowDialog();
+
+            return (_chooseSubPiecesViewModel.Selected == null ? -1 : _chooseSubPiecesViewModel.Selected.Index);
+        }
         public void CloseFileAssociateWindow()
         {
             _fileAssociateWindow.Close();

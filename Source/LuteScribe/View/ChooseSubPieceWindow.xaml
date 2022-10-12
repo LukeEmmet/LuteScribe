@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LuteScribe.View"
         mc:Ignorable="d"
         Icon="/LuteScribe;component/Resources/logo.ico"
-        Title="Choose piece to import" Height="320" Width="238.626" 
+        Title="Choose the piece to import" Height="600" Width="450" 
         ShowInTaskbar="False" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         
@@ -14,13 +14,13 @@
     <StackPanel>
 
         <TextBlock TextWrapping="Wrap" Margin="5">
-            <TextBlock.Text>Choose the piece from the file to import</TextBlock.Text>
+            <TextBlock.Text>The selected file has multiple sub pieces. Choose the piece from the file to import</TextBlock.Text>
         </TextBlock>
-        <ListBox ItemsSource="{Binding SubPieces}"  Margin="5"  Height="180">
+        <ListBox ItemsSource="{Binding SubPieces}" MouseDoubleClick="SubPieces_MouseDoubleClick" SelectedItem="{Binding Selected}" Margin="5"  Height="460">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <CheckBox Content="{Binding Description}" IsChecked="{Binding Checked}"/>
+                        <Label Content="{Binding Title}" Margin="3"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -35,8 +35,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Margin="5" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Content="OK" Command="{Binding ChooseSubPiece}"/>
-            <Button Margin="5" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Content="Cancel" Click="Cancel_Click"/>
+            <Button Margin="5" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Width="100" Content="OK" Click="Ok_Click"/>
+            <Button Margin="5" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Width="100" Content="Cancel" Click="Cancel_Click"/>
 
         </Grid>
 

@@ -35,6 +35,7 @@ using LuteScribe.Singletons;
 using LuteScribe.ViewModel.Services;
 using GenericUndoRedo;
 using LuteScribe.Audio;
+using LuteScribe.Serialization;
 
 namespace LuteScribe.ViewModel
 {
@@ -94,6 +95,7 @@ namespace LuteScribe.ViewModel
             }
         }
     }
+
 
 
     public class FileAssociateViewModel : ViewModelBase

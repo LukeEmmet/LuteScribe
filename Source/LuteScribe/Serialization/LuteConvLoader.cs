@@ -44,9 +44,7 @@ namespace LuteScribe.Serialization
             var list = new List<string>();
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
 
-
-            SimpleLogger.Instance.LogMessage("Setting temp " + format + " file to be readable");
-            var pathToRead = CopyToTemp(path);
+            var pathToRead = path;
 
             var luteConvPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Luteconv\\luteconv.exe"));
             var command = String.Format("\"{0}\" -s {1} -l \"{2}\"", luteConvPath, format, pathToRead);
@@ -74,28 +72,6 @@ namespace LuteScribe.Serialization
         }
 
 
-        private string CopyToTemp(string path)
-        {
-            var sessionPath = Session.Instance.SessionPath;
-
-            var pathToRead = path;
-
-            var guid = Guid.NewGuid();
-
-            var temp = sessionPath + "\\" + guid + ".tmp";  // Path.GetTempFileName();
-
-            SimpleLogger.Instance.LogMessage("Creating temp file: " + temp);
-
-            File.Copy(path, temp, true);
-
-
-            //make file readable and writeable
-            File.SetAttributes(temp, FileAttributes.Normal);
-            File.SetLastWriteTime(temp, DateTime.Now);
-
-            return temp;
-        }
-
         /// <summary>
         /// Loads a file using Luteconv *->LSML route
         /// </summary>
@@ -105,8 +81,7 @@ namespace LuteScribe.Serialization
             var sessionPath = Session.Instance.SessionPath;
             var appDir = System.AppDomain.CurrentDomain.BaseDirectory;
 
-            SimpleLogger.Instance.LogMessage("Setting temp " + format + " file to be readable");
-            var pathToRead = CopyToTemp(path);
+            var pathToRead = path;
 
             var luteConvPath = Path.GetFullPath(Path.Combine(appDir, "..\\..\\..\\Luteconv\\luteconv.exe"));
 

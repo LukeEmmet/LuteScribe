@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LuteScribe.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,24 @@ namespace LuteScribe.View
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            //just close no action
+            //unselect any chosen item
+            (DataContext as ChooseSubPiecesViewModel).Selected = null;
+
             Close();
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            //just close the window - the selected item is assigned
+            Close();
+
+        }
+
+        private void SubPieces_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //just close the window - the selected item is assigned
+            Close();
+
         }
     }
 }
