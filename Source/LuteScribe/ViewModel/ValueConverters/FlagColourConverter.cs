@@ -45,7 +45,7 @@ namespace LuteScribe.ValueConverters
                     FlagParser.IsHeavyBarLine(flagValue)
                     )
                 {
-                    return Brushes.LightGray;
+                    return Brushes.White;
                 }
 
                 if (FlagParser.IsBarLine(flagValue))
@@ -59,7 +59,7 @@ namespace LuteScribe.ValueConverters
 
                 if (FlagParser.IsComment(flagValue))
                 {
-                    return Brushes.LightGray;
+                    return Brushes.Gray;
                 }
             }
             return Brushes.Black;

@@ -82,7 +82,7 @@ namespace LuteScribe.ViewModel.Commands
             }
             chords.Add(new Chord("e, , , , , , , ".Split(',')));
 
-            section.Headers.Add(new Header("{Untitled}"));
+            section.HeadersText = "{Untitled}";
 
 
             //show first section

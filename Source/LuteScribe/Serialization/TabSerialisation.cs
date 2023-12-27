@@ -38,7 +38,7 @@ namespace LuteScribe.Serialization
     }
     public static class TabSerialisation
     {
-        public static string GenerateTab(ObservableCollection<Header> headers, List<Header> extraHeaders, PrettyOptions prettyOptions, bool prettify)
+        public static string GenerateTab(List<string> headers, List<string> extraHeaders, PrettyOptions prettyOptions, bool prettify)
         {
 
             var builder = new StringBuilder();
@@ -49,7 +49,7 @@ namespace LuteScribe.Serialization
             //emit extra headers
             foreach (var header in extraHeaders)
             {
-                builder.Append(header.Content.ToString());
+                builder.Append(header);
                 builder.Append("\n");
             }
 
@@ -57,7 +57,7 @@ namespace LuteScribe.Serialization
 
         }
 
-        public static string GenerateTab(ObservableCollection<Header> headers, PrettyOptions prettyOptions, bool prettify)
+        public static string GenerateTab(List<string> headers, PrettyOptions prettyOptions, bool prettify)
         {
 
             var builder = new StringBuilder();
@@ -78,7 +78,7 @@ namespace LuteScribe.Serialization
 
             foreach (var header in headers)
             {
-                builder.Append(header.Content);
+                builder.Append(header);
                 builder.Append("\n");       //output unix/mac style new lines - most samples in this format. TAB accepts both unix and win style
 
             }
@@ -92,7 +92,7 @@ namespace LuteScribe.Serialization
             var builder = new StringBuilder();
 
             //standard headers
-            builder.Append(GenerateTab(piece.Headers, prettyOptions, prettify));
+            builder.Append(GenerateTab(piece.StringToLines(piece.HeadersText), prettyOptions, prettify));
 
             builder.Append("\n");
 
@@ -269,12 +269,12 @@ namespace LuteScribe.Serialization
         {
             return chord.Stave.Chords.IndexOf(chord);
         }
-        private static bool HeaderCharStyleSet(ObservableCollection<Header> headers)
+        private static bool HeaderCharStyleSet(List<string> headers)
         {
             var result = false;
             foreach (var header in headers)
             {
-                switch (header.Content) {
+                switch (header) {
                     case "-b":
                         result = true;
                         break;
@@ -295,10 +295,10 @@ namespace LuteScribe.Serialization
                         result = true;
                         break;
                     default:
-                        if (header.Content != null)
+                        if (header != null)
                         {
 
-                            if (Regex.IsMatch(header.Content, "\\$charstyle=.*"))
+                            if (Regex.IsMatch(header, "\\$charstyle=.*"))
                             {
                                 result = true;
                             }
@@ -312,12 +312,12 @@ namespace LuteScribe.Serialization
             return result;
         }
 
-        private static bool HeaderFlagStyleSet(ObservableCollection<Header> headers)
+        private static bool HeaderFlagStyleSet(List<string> headers)
         {
             var result = false;
             foreach (var header in headers)
             {
-                switch (header.Content)
+                switch (header)
                 {
                     case "-b":
                         //baroque flags and chars
@@ -349,8 +349,8 @@ namespace LuteScribe.Serialization
                         break;
                     default:
 
-                        if (header.Content != null) {
-                            if (Regex.IsMatch(header.Content, "\\$flagstyle=.*"))
+                        if (header != null) {
+                            if (Regex.IsMatch(header, "\\$flagstyle=.*"))
                             {
                                 result = true;
                             }

@@ -56,7 +56,7 @@ namespace LuteScribe.Tests
             //get 2nd piece
             var piece = model.Pieces[1];
             Assert.AreEqual("Aria detto Balletto", piece.Title);
-            Assert.AreEqual(7, piece.Headers.Count);
+            Assert.AreEqual(7, piece.StringToLines(piece.HeadersText).Count);
 
         }
 

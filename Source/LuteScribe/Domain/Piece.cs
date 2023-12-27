@@ -20,6 +20,7 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +28,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Xml.Serialization;
 
 namespace LuteScribe.Domain
@@ -34,9 +37,9 @@ namespace LuteScribe.Domain
     public class Piece : ObservableObject
     {
         private ObservableCollection<Stave> _staves;
-        private ObservableCollection<Header> _headers;
         private Stave _selectedItem;
         private string _title;
+        private string _headersText;
         private TabModel _tabModel;
 
         
@@ -46,14 +49,16 @@ namespace LuteScribe.Domain
         public void SetTitleFromHeaders()
         {
             var currentTitle = Title;
-            var newTitle = "(Untitled)";
+            var newTitle = "";
 
-            foreach (var header in _headers)
+            var headers = StringToLines(_headersText);
+
+            foreach (var header in headers)
             {
-                if (header.Content != null)
+                if (header != null)
                 {
                     var regex = new Regex("^{(.*)}$");
-                    var match = regex.Match(header.Content);
+                    var match = regex.Match(header);
                     if (match.Success)
                     {
                         newTitle = match.Groups[1].ToString();
@@ -62,31 +67,53 @@ namespace LuteScribe.Domain
                 }
             }
 
-            //update if changed
+            //update only if changed, otherwise can set the headers/title into infinite
+            //mutual update spin
             if (newTitle != currentTitle) { Title = newTitle; }
-            
+
         }
+
+
 
         public void SetHeadersFromTitle()
         {
             var title = Title;
+            var found = false;
+            var headers = StringToLines(_headersText);
 
-            foreach (var header in _headers)
+            for (int i = 0; i < headers.Count; i++)
             {
-                if (header.Content != null)
+                var header = headers[i];
+                if (header != null)
                 {
                     var regex = new Regex("^{(.*)}$");
-                    var match = regex.Match(header.Content);
+                    var match = regex.Match(header);
                     if (match.Success)
                     {
                         //only match first one...
-                        header.Content = "{" + title + "}";
+                        header = "{" + title + "}";
+                        headers[i] = header;        //update in place
+                        found = true;
+
+                        if (title == "")
+                        {
+                            headers.RemoveAt(i);
+                        }
                         break;
                     }
                 }
+                
             }
 
+            //insert at top of headers if not found
+            if (!found && title.Trim() != "") { headers.Insert(0, "{" + title + "}"); }
+
+            HeadersText = LinesToString(headers);  //update and trigger any listeners
+
         }
+
+
+
         /// <summary>
         /// Updates the ItemCount Property when the Stave collection changes.
         /// </summary>
@@ -158,31 +185,53 @@ namespace LuteScribe.Domain
             }
         }
 
-        void OnHeadersChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //use two separate methods to get and set as list, otherwise
+        //calling functions may incorrectly assume that updating the list
+        //in situ will work (it wont since we wont know whether it was updated)
+        public List<string> StringToLines(string s)
         {
+            var List = new List<string>();
 
-            foreach (var header in _headers)
+            foreach (var line in s.Split('\n'))
             {
-                header.SetPiece(this);
-
+                List.Add(line);
             }
 
-            SetTitleFromHeaders();
+            return List;
+
         }
 
-        public ObservableCollection<Header> Headers
+        public string LinesToString(List<string> lines)
+        {
+            var newText = "";
+
+            foreach (var line in lines)
+            {
+                if (line != null)
+                {
+                    newText += line + "\n";
+                }
+            }
+
+            return newText.Trim();
+        }
+
+        public String HeadersText
         {
             get
             {
-                return _headers;
+                return _headersText;
             }
 
             set
             {
-                _headers = value;
-                base.RaisePropertyChangedEvent("Headers");
+                _headersText = value;
+                SetTitleFromHeaders();
+
+                base.RaisePropertyChangedEvent("HeadersText");
             }
         }
+
 
         public ObservableCollection<Stave> Staves
         {
@@ -230,9 +279,12 @@ namespace LuteScribe.Domain
             {
                 _title = value;
                 SetHeadersFromTitle();
+
                 base.RaisePropertyChangedEvent("Title");
             }
         }
+
+
 
         [XmlIgnoreAttribute]
         public TabModel TabModel
@@ -250,11 +302,10 @@ namespace LuteScribe.Domain
         public Piece()
         {
             Staves = new ObservableCollection<Stave>();
-            Headers = new ObservableCollection<Header>();
+            HeadersText = "{Untitled}";
 
             // Subscribe to CollectionChanged event
             _staves.CollectionChanged += OnStavesChanged;
-            _headers.CollectionChanged += OnHeadersChanged;     //we set the piece property on each header so when content changes we can rescan for an update title.
             
         }
     }

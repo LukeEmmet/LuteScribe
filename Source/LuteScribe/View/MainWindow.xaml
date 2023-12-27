@@ -222,8 +222,8 @@
                         
                     </RowDefinition>
                 </Grid.RowDefinitions>
-                
-                <TextBox Text="{Binding TabModel.ActivePiece.Title}"  
+
+                <TextBox Text="{Binding Path=TabModel.ActivePiece.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                          Grid.Row="0" Grid.Column="0" 
                          BorderThickness="0" Margin="0,5,0,5" TextWrapping="Wrap" 
                          VerticalAlignment="Bottom" FontFamily="Cambria" FontSize="21.333">
@@ -417,29 +417,19 @@
 
             </TabItem>
             <TabItem Name="headersTab" Header="Headers">
-                <DataGrid 
-                    Margin="10"
-                    AutoGenerateColumns="False" 
-                    CanUserSortColumns="False"
-                    CanUserResizeColumns="False"
-                    CanUserResizeRows="False"
-                    SelectionMode="Single"
-                    
-                    ItemsSource="{Binding TabModel.ActivePiece.Headers}" 
-                    HorizontalGridLinesBrush="LightGray" 
-                    VerticalGridLinesBrush="LightGray" 
-                    HeadersVisibility="None">
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}">
-                            <Setter Property="FontSize" Value="14"/>
+                <TextBox
+                    Text="{Binding Path=TabModel.ActivePiece.HeadersText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                 
+                    VerticalScrollBarVisibility="Auto" 
+                    HorizontalScrollBarVisibility="Auto" 
+                    FontFamily="Consolas"
+                    FontSize="14"
+                    DockPanel.Dock="Top"
+                    Padding="8"
+                    />
 
-                        </Style>
-                    </DataGrid.RowStyle>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Header" Width="*" Binding="{Binding Content}" IsReadOnly="false"/>
-
-                    </DataGrid.Columns>
-                </DataGrid>
             </TabItem>
 
             <!-- print view-->

@@ -41,21 +41,29 @@ namespace LuteScribe.ValueConverters
 
                 if (FlagParser.IsRhythm(flagValue) || FlagParser.IsFontedSymbol(flagValue))
                 {
-                    return 28;
+                    return 32;
                 }
 
                 if (
                     FlagParser.IsContinue(flagValue) ||
                     FlagParser.IsSimpleBarLine(flagValue) ||
-                    FlagParser.IsHeavyBarLine(flagValue) ||
+                    FlagParser.IsHeavyBarLine(flagValue)
+                    )
+                {
+                    return 22;
+                }
+
+                if (
+                    FlagParser.IsEnd(flagValue) ||
                     FlagParser.IsComment(flagValue)
+
                     )
                 {
                     return 14;
                 }
             }
 
-            return 16;
+            return 22;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

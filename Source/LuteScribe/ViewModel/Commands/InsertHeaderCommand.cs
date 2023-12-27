@@ -66,9 +66,8 @@ namespace LuteScribe.ViewModel.Commands
             if (_viewModel.TabModel.ActivePiece == null) { return; }
 
             var piece = _viewModel.TabModel.ActivePiece;
-            var headers = piece.Headers;
-            var header = new Header();
-            header.SetPiece(piece);
+            var headers = piece.StringToLines(piece.HeadersText);
+            var header = (string) parameter;
 
             const int headersTab = 1;
 
@@ -81,10 +80,10 @@ namespace LuteScribe.ViewModel.Commands
                 _viewModel.SelectedTab = headersTab;
 
                 //only add header if it is not already there
-                var count = (from h in headers where h.Content == headerCommand select h).Count();
+                var count = (from h in headers where h == headerCommand select h).Count();
                 if (count == 0) {
                     headers.Add(header);
-                    header.Content = headerCommand;
+                    header = headerCommand;
                 } else
                 {
                     _viewModel.ToastNofify(
@@ -92,8 +91,9 @@ namespace LuteScribe.ViewModel.Commands
                         , MainWindowViewModel.ToastMessageStyles.Information);
                 }
             }
-            
 
+            //write back to the model
+            piece.HeadersText = piece.LinesToString(headers) ;
         }
 
     }

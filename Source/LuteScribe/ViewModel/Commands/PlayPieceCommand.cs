@@ -209,8 +209,8 @@ namespace LuteScribe.ViewModel.Commands
 
             
             var piece = _viewModel.TabModel.ActivePiece;
-            var headers = piece.Headers;
             var staves = piece.Staves;
+            var headers = piece.StringToLines(piece.HeadersText);
 
             SimpleLogger.Instance.Log("Saving MIDI of current piece");
 
@@ -218,17 +218,18 @@ namespace LuteScribe.ViewModel.Commands
             var options = new PrettyOptions();
 
             //extra headers so we can control midi patch of output
-            var extraHeaders = new List<Header>();
+            var extraHeaders = new List<string>();
 
             //set the midi patch to be used, as passed in
-            extraHeaders.Add(new Header("$midi-patch=" + patch));
+            extraHeaders.Add("$midi-patch=" + patch);
+
 
             //if no existing tempo setting provide one (otherwise TAB plays it too fast with 
             //default tempo being 2)
-            var tempoCount = (from header in headers where header.Content.StartsWith("$tempo=") select header).Count();
+            var tempoCount = (from header in headers where header.StartsWith("$tempo=") select header).Count();
             if (tempoCount < 1)
             {
-                extraHeaders.Add(new Header("$tempo=" + speed));
+                extraHeaders.Add("$tempo=" + speed);
             }
 
             var scope = GetPlaybackScope(selection, piece);

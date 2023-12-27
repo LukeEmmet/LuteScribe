@@ -20,8 +20,13 @@
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //===================================================
 
+using NAudio.Wave.Compression;
 using System;
 using System.IO;
+using System.Net.Security;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace LuteScribe.Serialization
@@ -48,19 +53,32 @@ namespace LuteScribe.Serialization
         /// <param name="append">If false the file will be overwritten if it already exists. If true the contents will be appended to the file.</param>
         public static void WriteToXmlFile<T>(string filePath, T objectToWrite, bool append = false) where T : new()
         {
-            TextWriter writer = null;
-            try
-            {
-                var serializer = new XmlSerializer(typeof(T));
-                writer = new StreamWriter(filePath, append);
-                serializer.Serialize(writer, objectToWrite);
-            }
-            finally
-            {
-                if (writer != null)
-                    writer.Close();
-            }
+            //based on https://stackoverflow.com/questions/7461925/xml-loading-from-memory-stream-issue
+            //and https://www.c-sharpcorner.com/article/serializing-and-deserializing-xml-string/
+
+            var ser = new XmlSerializer(typeof(T));
+            var memStream = new MemoryStream();
+            var xmlWriter = new XmlTextWriter(memStream, Encoding.UTF8);
+            xmlWriter.Namespaces = true;
+
+            ser.Serialize(xmlWriter, objectToWrite);
+
+            //point back to the start of the stream where we will load from
+            memStream.Position = 0;
+
+            var dom = new XmlDocument();
+            dom.Load(memStream);
+
+            xmlWriter.Close();
+            memStream.Close();
+            xmlWriter.Dispose();
+            memStream.Dispose();
+
+
+            TransformToLegacyContent(dom);
+            dom.Save(filePath);
         }
+
 
         /// <summary>
         /// Reads an object instance from an XML file.
@@ -71,23 +89,63 @@ namespace LuteScribe.Serialization
         /// <returns>Returns a new instance of the object read from the XML file.</returns>
         public static T ReadFromXmlFile<T>(string filePath) where T : new()
         {
-            TextReader reader = null;
-            try
+            var dom = new XmlDocument();
+            dom.Load(filePath);
+
+            return LoadXML<T>(dom.OuterXml);
+        }
+
+        //map published format to new format - legacy format has a collection of individual headers
+        //but current model expects a single HeadersText
+        private static void TransformFromLegacyContent(XmlDocument dom)
+        {
+            foreach (XmlElement piece in dom.DocumentElement.SelectNodes("Pieces/Piece"))
             {
-                var serializer = new XmlSerializer(typeof(T));
-                reader = new StreamReader(filePath);
-                return (T)serializer.Deserialize(reader);
+                var headersText = "";
+                var headersEl = piece.SelectSingleNode("Headers");
+
+                foreach (XmlElement header in headersEl.SelectNodes("Header/Content")) {
+                    headersText += header.InnerText + "\n";
+                }
+
+                var headersTextEl = dom.CreateElement("HeadersText");   //add new element
+                headersTextEl.InnerText = headersText;
+                piece.AppendChild(headersTextEl);
+
+                piece.RemoveChild(headersEl);   //remove legacy element
             }
-            finally
+        }
+
+        private static void TransformToLegacyContent(XmlDocument dom)
+        {
+            foreach (XmlElement piece in dom.DocumentElement.SelectNodes("Pieces/Piece"))
             {
-                if (reader != null)
-                    reader.Close();
+                var headersEl = dom.CreateElement("Headers");
+                piece.AppendChild(headersEl);
+
+                var headersTextEl = piece.SelectSingleNode("HeadersText");
+                foreach (string line in headersTextEl.InnerText.Split('\n'))
+                {
+                    var headerEl = dom.CreateElement("Header");
+                    var contentEl = dom.CreateElement("Content");
+
+                    headersEl.AppendChild(headerEl).AppendChild(contentEl);
+                    contentEl.InnerText = line;
+                }
+
+                piece.RemoveChild(headersTextEl);       //remove unrequired element
             }
         }
 
         public static T LoadXML<T>(string content) where T: new()
         {
-            using (var stringReader = new StringReader(content))
+
+            var dom = new XmlDocument();
+            dom.LoadXml(content);
+
+            TransformFromLegacyContent(dom);
+
+            using (var stringReader = new StringReader(dom.OuterXml))
             {
                 var serializer = new XmlSerializer(typeof(T));
 
