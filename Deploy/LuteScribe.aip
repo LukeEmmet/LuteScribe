@@ -5,7 +5,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_CURRENT_YEAR" Value="2022" ValueLocId="-"/>
+    <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
     <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 19.8.1 build ff1d5dfa" ValueLocId="-"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION"/>
     <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
@@ -17,7 +17,7 @@
     <ROW Property="ProductCode" Value="1033:{43EEEC5D-DD3F-4C6A-BB81-44B4BBD08721} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="LuteScribe"/>
-    <ROW Property="ProductVersion" Value="1.2.3"/>
+    <ROW Property="ProductVersion" Value="1.2.4"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{2A9E2BC3-5251-46AE-9C54-9743C74B4CED}"/>
@@ -35,6 +35,7 @@
     <ROW Directory="Bin_Dir" Directory_Parent="Ghostscript_Dir" DefaultDir="Bin"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="FileConverters_Dir" Directory_Parent="APPDIR" DefaultDir="FILECO~1|FileConverters"/>
+    <ROW Directory="FluidSynth_Dir" Directory_Parent="Utils_Dir" DefaultDir="FLUIDS~1|FluidSynth"/>
     <ROW Directory="FontsFolder" Directory_Parent="TARGETDIR" DefaultDir="FONTSF~1|FontsFolder" IsPseudoRoot="1"/>
     <ROW Directory="Fonts_Dir" Directory_Parent="APPDIR" DefaultDir="Fonts"/>
     <ROW Directory="Ghostscript_Dir" Directory_Parent="APPDIR" DefaultDir="GHOSTS~1|Ghostscript"/>
@@ -51,8 +52,12 @@
     <ROW Directory="Tab_Dir" Directory_Parent="APPDIR" DefaultDir="Tab"/>
     <ROW Directory="Utils_Dir" Directory_Parent="APPDIR" DefaultDir="Utils"/>
     <ROW Directory="bin_1_Dir" Directory_Parent="Tab_Dir" DefaultDir="bin"/>
+    <ROW Directory="bin_2_Dir" Directory_Parent="FluidSynth_Dir" DefaultDir="bin"/>
     <ROW Directory="bin_Dir" Directory_Parent="LuteScribe_Dir" DefaultDir="bin"/>
+    <ROW Directory="lute_Dir" Directory_Parent="soundfonts_Dir" DefaultDir="lute"/>
     <ROW Directory="luteconv_Dir" Directory_Parent="APPDIR" DefaultDir="luteconv"/>
+    <ROW Directory="piano_Dir" Directory_Parent="soundfonts_Dir" DefaultDir="piano"/>
+    <ROW Directory="soundfonts_Dir" Directory_Parent="FluidSynth_Dir" DefaultDir="SOUNDF~1|soundfonts"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{2A26DBB4-B0ED-43C9-8757-935D927BB167}" Directory_="APPDIR" Attributes="0"/>
@@ -78,10 +83,30 @@
     <ROW Component="application_edit.ico" ComponentId="{9FD32567-B4E3-4BFD-A486-CBD1E75D5D0A}" Directory_="Resources_Dir" Attributes="0" KeyPath="TabFlags.xml" Type="0"/>
     <ROW Component="bin" ComponentId="{00F0DDB2-963A-466C-A2E2-5EE91CA0275C}" Directory_="bin_Dir" Attributes="0"/>
     <ROW Component="blute6.1200pk" ComponentId="{AE36BCAD-CDA0-449F-99AB-A9038E97E633}" Directory_="bin_1_Dir" Attributes="0" KeyPath="blute6.1200pk" Type="0"/>
+    <ROW Component="fluidsynth.exe" ComponentId="{A4C02120-9651-4942-B3BD-B3A6224717D7}" Directory_="bin_2_Dir" Attributes="0" KeyPath="fluidsynth.exe"/>
+    <ROW Component="gpl.txt" ComponentId="{9AA1D079-D997-4DC7-ACC5-E12DFC8F55BB}" Directory_="piano_Dir" Attributes="0" KeyPath="gpl.txt" Type="0"/>
     <ROW Component="gsdll32.dll" ComponentId="{F7386576-A4EA-4EBF-8C38-5701AF14C8A6}" Directory_="Bin_Dir" Attributes="0" KeyPath="gsdll32.dll"/>
     <ROW Component="gsdll32.lib" ComponentId="{137FA5E2-9BB1-4827-B778-470EAB539ECB}" Directory_="Bin_Dir" Attributes="0" KeyPath="gsdll32.lib" Type="0"/>
     <ROW Component="gswin32c.exe" ComponentId="{497A5C98-1463-4D40-9592-AEF76764B0C4}" Directory_="Bin_Dir" Attributes="0" KeyPath="gswin32c.exe"/>
+    <ROW Component="libFLAC8.dll" ComponentId="{0E96C50B-AB01-438E-9CB3-44E886843845}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libFLAC8.dll"/>
+    <ROW Component="libfluidsynth2.dll" ComponentId="{2E77303A-F330-446A-BDBE-6A4D30B624C9}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libfluidsynth2.dll"/>
+    <ROW Component="libgcc_s_dw21.dll" ComponentId="{AFA6CBB8-5312-4ABA-8D9E-9A859E8500B8}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libgcc_s_dw21.dll"/>
+    <ROW Component="libglib2.00.dll" ComponentId="{CF901380-56D5-43BA-8591-166644862C0A}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libglib2.00.dll"/>
+    <ROW Component="libgmodule2.00.dll" ComponentId="{672BFF8D-1937-428B-87F2-2E373E15B1B2}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libgmodule2.00.dll"/>
+    <ROW Component="libiconv2.dll" ComponentId="{15AD5D56-D4C5-42AF-8B6C-14AC7C4497C4}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libiconv2.dll"/>
+    <ROW Component="libintl8.dll" ComponentId="{4EB32E61-F5D8-4CB6-B4C5-70824C243B8E}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libintl8.dll"/>
     <ROW Component="libmupdf.dll" ComponentId="{28DE6DDD-13E3-4C4D-A4ED-281DF1B60AB1}" Directory_="Release_Dir" Attributes="0" KeyPath="libmupdf.dll"/>
+    <ROW Component="libogg0.dll" ComponentId="{428FB01A-20A8-41D0-B143-61E0C43E63DC}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libogg0.dll"/>
+    <ROW Component="libpcre1.dll" ComponentId="{9A5402AB-C248-4B82-8960-003CF036ADAF}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libpcre1.dll"/>
+    <ROW Component="libportaudio2.dll" ComponentId="{C13AADB3-026B-488C-84FB-32FAEB8DDF45}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libportaudio2.dll"/>
+    <ROW Component="libreadline7.dll" ComponentId="{12B598F1-537E-4D68-981A-BFA071CE714D}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libreadline7.dll"/>
+    <ROW Component="libsndfile1.dll" ComponentId="{0F2E66EC-FBCF-4572-9BA4-9AB38806A948}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libsndfile1.dll"/>
+    <ROW Component="libspeex1.dll" ComponentId="{FA4D6CB5-990B-4923-BA58-3A7E4F70DA34}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libspeex1.dll"/>
+    <ROW Component="libtermcap0.dll" ComponentId="{92542A2E-B9CD-41F5-BEBE-BDC3A5277B9E}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libtermcap0.dll"/>
+    <ROW Component="libvorbis0.dll" ComponentId="{800AE0F9-F0C1-4BE0-A7FB-0F9FB5EE7C3F}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libvorbis0.dll"/>
+    <ROW Component="libvorbisenc2.dll" ComponentId="{4370BE87-DC0D-4613-B384-3259C376750F}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libvorbisenc2.dll"/>
+    <ROW Component="libwinpthread1.dll" ComponentId="{88323440-F3E5-49E6-8306-39CB4DB6D90E}" Directory_="bin_2_Dir" Attributes="0" KeyPath="libwinpthread1.dll"/>
+    <ROW Component="lute.sf2" ComponentId="{92D1694A-F035-4A5F-B023-F0D211DE3EFC}" Directory_="lute_Dir" Attributes="0" KeyPath="lute.sf2" Type="0"/>
     <ROW Component="luteconv.exe" ComponentId="{3457DC6B-399C-4E11-9792-EDC56DA87162}" Directory_="luteconv_Dir" Attributes="0" KeyPath="luteconv.exe"/>
     <ROW Component="r3core.exe" ComponentId="{C609904A-7630-4847-964C-294A336FD113}" Directory_="Rebol_Dir" Attributes="0" KeyPath="r3core.exe"/>
     <ROW Component="readme.txt" ComponentId="{81F429AC-9853-4788-9981-3649E3C20E4E}" Directory_="luteconv_Dir" Attributes="0" KeyPath="readme.txt" Type="0"/>
@@ -463,6 +488,29 @@
     <ROW File="readme.txt_1" Component_="TabManual.pdf" FileName="readme.txt" Attributes="0" SourcePath="..\Source\Tab\readme.txt" SelfReg="false"/>
     <ROW File="luteconv.exe" Component_="luteconv.exe" FileName="luteconv.exe" Attributes="0" SourcePath="..\Source\luteconv\luteconv.exe" SelfReg="false" DigSign="true"/>
     <ROW File="readme.txt" Component_="readme.txt" FileName="readme.txt" Attributes="0" SourcePath="..\Source\luteconv\readme.txt" SelfReg="false"/>
+    <ROW File="fluidsynth.exe" Component_="fluidsynth.exe" FileName="FLUIDS~1.EXE|fluidsynth.exe" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\fluidsynth.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="libFLAC8.dll" Component_="libFLAC8.dll" FileName="LIBFLA~1.DLL|libFLAC-8.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libFLAC-8.dll" SelfReg="false"/>
+    <ROW File="libfluidsynth2.dll" Component_="libfluidsynth2.dll" FileName="LIBFLU~1.DLL|libfluidsynth-2.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libfluidsynth-2.dll" SelfReg="false"/>
+    <ROW File="libgcc_s_dw21.dll" Component_="libgcc_s_dw21.dll" FileName="LIBGCC~1.DLL|libgcc_s_dw2-1.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libgcc_s_dw2-1.dll" SelfReg="false"/>
+    <ROW File="libglib2.00.dll" Component_="libglib2.00.dll" FileName="LIBGLI~1.DLL|libglib-2.0-0.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libglib-2.0-0.dll" SelfReg="false"/>
+    <ROW File="libgmodule2.00.dll" Component_="libgmodule2.00.dll" FileName="LIBGMO~1.DLL|libgmodule-2.0-0.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libgmodule-2.0-0.dll" SelfReg="false"/>
+    <ROW File="libiconv2.dll" Component_="libiconv2.dll" FileName="LIBICO~1.DLL|libiconv-2.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libiconv-2.dll" SelfReg="false"/>
+    <ROW File="libintl8.dll" Component_="libintl8.dll" FileName="LIBINT~1.DLL|libintl-8.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libintl-8.dll" SelfReg="false"/>
+    <ROW File="libogg0.dll" Component_="libogg0.dll" FileName="libogg-0.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libogg-0.dll" SelfReg="false"/>
+    <ROW File="libpcre1.dll" Component_="libpcre1.dll" FileName="LIBPCR~1.DLL|libpcre-1.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libpcre-1.dll" SelfReg="false"/>
+    <ROW File="libportaudio2.dll" Component_="libportaudio2.dll" FileName="LIBPOR~1.DLL|libportaudio-2.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libportaudio-2.dll" SelfReg="false"/>
+    <ROW File="libreadline7.dll" Component_="libreadline7.dll" FileName="LIBREA~1.DLL|libreadline7.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libreadline7.dll" SelfReg="false"/>
+    <ROW File="libsndfile1.dll" Component_="libsndfile1.dll" FileName="LIBSND~1.DLL|libsndfile-1.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libsndfile-1.dll" SelfReg="false"/>
+    <ROW File="libspeex1.dll" Component_="libspeex1.dll" FileName="LIBSPE~1.DLL|libspeex-1.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libspeex-1.dll" SelfReg="false"/>
+    <ROW File="libtermcap0.dll" Component_="libtermcap0.dll" FileName="LIBTER~1.DLL|libtermcap-0.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libtermcap-0.dll" SelfReg="false"/>
+    <ROW File="libvorbis0.dll" Component_="libvorbis0.dll" FileName="LIBVOR~1.DLL|libvorbis-0.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libvorbis-0.dll" SelfReg="false"/>
+    <ROW File="libvorbisenc2.dll" Component_="libvorbisenc2.dll" FileName="LIBVOR~2.DLL|libvorbisenc-2.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libvorbisenc-2.dll" SelfReg="false"/>
+    <ROW File="libwinpthread1.dll" Component_="libwinpthread1.dll" FileName="LIBWIN~1.DLL|libwinpthread-1.dll" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\bin\libwinpthread-1.dll" SelfReg="false"/>
+    <ROW File="lute.sf2" Component_="lute.sf2" FileName="lute.sf2" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\lute\lute.sf2" SelfReg="false"/>
+    <ROW File="gpl.txt" Component_="gpl.txt" FileName="gpl.txt" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\gpl.txt" SelfReg="false"/>
+    <ROW File="photo.jpg" Component_="gpl.txt" FileName="photo.jpg" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\photo.jpg" SelfReg="false"/>
+    <ROW File="piano.sf2" Component_="gpl.txt" FileName="piano.sf2" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\piano.sf2" SelfReg="false"/>
+    <ROW File="readme.txt_2" Component_="gpl.txt" FileName="readme.txt" Attributes="0" SourcePath="..\Source\Utils\FluidSynth\soundfonts\piano\readme.txt" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_DetectSoftware" Sequence="151"/>
@@ -570,6 +618,26 @@
     <ROW Feature_="MainFeature" Component_="r3core.exe"/>
     <ROW Feature_="MainFeature" Component_="tab.exe"/>
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="fluidsynth.exe"/>
+    <ROW Feature_="MainFeature" Component_="libFLAC8.dll"/>
+    <ROW Feature_="MainFeature" Component_="libfluidsynth2.dll"/>
+    <ROW Feature_="MainFeature" Component_="libgcc_s_dw21.dll"/>
+    <ROW Feature_="MainFeature" Component_="libglib2.00.dll"/>
+    <ROW Feature_="MainFeature" Component_="libgmodule2.00.dll"/>
+    <ROW Feature_="MainFeature" Component_="libiconv2.dll"/>
+    <ROW Feature_="MainFeature" Component_="libintl8.dll"/>
+    <ROW Feature_="MainFeature" Component_="libogg0.dll"/>
+    <ROW Feature_="MainFeature" Component_="libpcre1.dll"/>
+    <ROW Feature_="MainFeature" Component_="libportaudio2.dll"/>
+    <ROW Feature_="MainFeature" Component_="libreadline7.dll"/>
+    <ROW Feature_="MainFeature" Component_="libsndfile1.dll"/>
+    <ROW Feature_="MainFeature" Component_="libspeex1.dll"/>
+    <ROW Feature_="MainFeature" Component_="libtermcap0.dll"/>
+    <ROW Feature_="MainFeature" Component_="libvorbis0.dll"/>
+    <ROW Feature_="MainFeature" Component_="libvorbisenc2.dll"/>
+    <ROW Feature_="MainFeature" Component_="libwinpthread1.dll"/>
+    <ROW Feature_="MainFeature" Component_="lute.sf2"/>
+    <ROW Feature_="MainFeature" Component_="gpl.txt"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFontsComponent">
     <ROW File_="LeRoy.ttf"/>
